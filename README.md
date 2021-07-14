@@ -1,4 +1,5 @@
-# licaitong
+# 点赚通 DianZhuanTong
+This is the repository for DianZhuanTong Application.
 
 ## Project setup
 ```
