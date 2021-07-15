@@ -1,5 +1,7 @@
 <template>
-  <div class="home"></div>
+  <div class="home">
+    wangye
+  </div>
 </template>
 
 <script>
