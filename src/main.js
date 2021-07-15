@@ -8,8 +8,6 @@ import store from "./store";
 
 //引入重置css样式
 import "./assets/css/reset.less";
-//设置根字体大小
-import "amfe-flexible";
 
 // 按需引入vant组件
 import { Toast } from "vant";
