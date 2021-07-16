@@ -41,7 +41,7 @@ const routes = [
   // 首页-积分详情页
   {
     path: "/pointsdetails",
-    component: () => import("../views/PointsDetails.vue"),
+    component: () => import("../components/index/PointsDetails.vue"),
   },
   // 首页-项目详情页
   {
