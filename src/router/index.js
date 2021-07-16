@@ -40,13 +40,13 @@ const routes = [
   },
   // 首页-积分详情页
   {
-    path: "/pointsdetails",
-    component: () => import("../components/index/PointsDetails.vue"),
+    path: "/pointsdetail",
+    component: () => import("../views/index/PointsDetail.vue"),
   },
   // 首页-加入点赚通页
   {
     path: "/join",
-    component: () => import("../components/index/Join.vue"),
+    component: () => import("../views/index/Join.vue"),
   },
   // 首页-项目详情页
   {
