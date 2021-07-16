@@ -8,15 +8,14 @@ import store from "./store";
 
 //引入重置css样式
 import "./assets/css/reset.less";
-//设置根字体大小
-import "amfe-flexible";
 
 // 按需引入vant组件
-import { Toast } from "vant";
-import { NavBar } from "vant";
+import { Toast, Icon, Image as VanImage, NavBar } from "vant";
 
-const app = createApp();
+const app = createApp(App);
 app.use(Toast);
+app.use(Icon);
+app.use(VanImage);
 app.use(NavBar);
 
-createApp(App).use(store).use(router).mount("#app");
+app.use(store).use(router).mount("#app");
