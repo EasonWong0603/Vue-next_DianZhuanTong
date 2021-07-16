@@ -24,6 +24,7 @@
           <img
             src="../../assets/images/index/PointsDetails/兑换@3x.png"
             class="rigth"
+            @click="handluclick"
           />
         </li>
         <li>
@@ -37,6 +38,7 @@
           <img
             src="../../assets/images/index/PointsDetails/兑换@3x.png"
             class="rigth"
+            @click="handluclick"
           />
         </li>
         <li>
@@ -50,6 +52,7 @@
           <img
             src="../../assets/images/index/PointsDetails/兑换@3x.png"
             class="rigth"
+            @click="handluclick"
           />
         </li>
         <li style="border: none">
@@ -63,13 +66,29 @@
           <img
             src="../../assets/images/index/PointsDetails/兑换@3x.png"
             class="rigth"
+            @click="handluclick"
           />
         </li>
       </ul>
     </footer>
   </div>
 </template>
+<script>
+import { Toast } from "vant";
 
+export default {
+  setup() {
+    const handluclick = () => {
+      Toast.loading({
+        message: "加载中...",
+        forbidClick: true,
+        duration: 5000,
+      });
+    };
+    return { handluclick };
+  },
+};
+</script>
 <style lang="less" scoped>
 @import "../../assets/css/var.less";
 
