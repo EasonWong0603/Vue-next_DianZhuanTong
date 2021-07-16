@@ -12,7 +12,7 @@ import "./assets/css/reset.less";
 // 按需引入vant组件
 import { Toast } from "vant";
 
-const app = createApp();
+const app = createApp(App);
 app.use(Toast);
 
-createApp(App).use(store).use(router).mount("#app");
+app.use(store).use(router).mount("#app");

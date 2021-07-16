@@ -1,5 +1,6 @@
 <template>
-  <div class="home"></div>
+  <div class="home">home</div>
+  <router-view />
 </template>
 
 <script>
