@@ -13,8 +13,10 @@ import "amfe-flexible";
 
 // 按需引入vant组件
 import { Toast } from "vant";
+import { NavBar } from "vant";
 
 const app = createApp();
 app.use(Toast);
+app.use(NavBar);
 
 createApp(App).use(store).use(router).mount("#app");
