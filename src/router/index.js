@@ -66,35 +66,36 @@ const routes = [
       },
     ],
   },
-  // 首页-导师详情页
+  // 首页-导师列表页
   {
     path: "/leaderdetail",
     component: () => import("../components/index/Leaderdetail.vue"),
+  },
+  // 首页-导师详情页
+  {
+    path: "/head",
+    component: () => import("../components/index/leaderdetail/Head.vue"),
     children: [
-      // 二级重定向
+      // 首页-导师介绍页
       {
-        path: "/leaderdetail",
-        redirect: "/leaderdetail/introduction",
-      },
-      // 首页-导师详情页-介绍
-      {
-        path: "/leaderdetail/introduction",
+        path: "/head/introduction",
         component: () =>
           import("../components/index/leaderdetail/Introduction.vue"),
       },
       // 首页-导师详情页-评价
       {
-        path: "/leaderdetail/evaluation",
+        path: "/head/evaluation",
         component: () =>
           import("../components/index/leaderdetail/Evaluation.vue"),
       },
       // 首页-导师详情页-动态
       {
-        path: "/leaderdetail/news",
+        path: "/head/news",
         component: () => import("../components/index/leaderdetail/News.vue"),
       },
     ],
   },
+
   // 社区-社区详情页
   {
     path: "/communitydetail",
