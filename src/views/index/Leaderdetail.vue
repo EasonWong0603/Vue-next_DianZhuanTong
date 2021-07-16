@@ -13,7 +13,7 @@
     <div class="van-card">
       <div>
         <span class="name">白雅晴</span>
-        <img src="./images/redu@3x.png" />
+        <img src="../../assets/images/index/leader/redu@3x.png" />
         <span class="count">68796</span>
       </div>
       <span class="num1">风险投资</span>

@@ -18,10 +18,10 @@
       </template>
       <template #footer>
         <div class="image">
-          <img src="../index/leaderdetail/images/redu@3x.png" /><span
+          <img src="../../assets/images/index/leader/redu@3x.png" /><span
             >2322</span
           >
-          <img src="../index/leaderdetail/images/yonghu2@3x.png" /><span
+          <img src="../../assets/images/index/leader/yonghu2@3x.png" /><span
             >2322</span
           >
         </div></template

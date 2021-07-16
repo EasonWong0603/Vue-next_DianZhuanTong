@@ -1,10 +1,14 @@
 <template>
-  <div class="home">home</div>
   <router-view />
+  <Homefooter />
 </template>
 
 <script>
+import Homefooter from "../components/Homefooter.vue";
+
 export default {
-  components: {},
+  components: {
+    Homefooter,
+  },
 };
 </script>

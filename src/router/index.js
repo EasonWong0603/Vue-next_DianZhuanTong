@@ -38,10 +38,20 @@ const routes = [
       },
     ],
   },
+  // 首页-积分详情页
+  {
+    path: "/pointsdetail",
+    component: () => import("../views/index/PointsDetail.vue"),
+  },
+  // 首页-加入点赚通页
+  {
+    path: "/join",
+    component: () => import("../views/index/Join.vue"),
+  },
   // 首页-项目详情页
   {
     path: "/itemdetail",
-    component: () => import("../components/index/ItemDetail.vue"),
+    component: () => import("../views/index/ItemDetail.vue"),
     children: [
       // 二级重定向
       {
@@ -51,47 +61,44 @@ const routes = [
       // 首页-项目详情页-项目信息
       {
         path: "/itemdetail/overview",
-        component: () => import("../components/index/itemdetail/Overview.vue"),
+        component: () => import("../views/index/itemdetail/Overview.vue"),
       },
       // 首页-项目详情页-安全保障
       {
         path: "/itemdetail/security",
-        component: () => import("../components/index/itemdetail/Security.vue"),
+        component: () => import("../views/index/itemdetail/Security.vue"),
       },
       // 首页-项目详情页-指导名师
       {
         path: "/itemdetail/itemleader",
-        component: () =>
-          import("../components/index/itemdetail/Itemleader.vue"),
+        component: () => import("../views/index/itemdetail/Itemleader.vue"),
       },
     ],
   },
   // 首页-导师列表页
   {
-    path: "/leaderdetail",
-    component: () => import("../components/index/Leaderdetail.vue"),
+    path: "/leaderlist",
+    component: () => import("../views/index/Leaderlist.vue"),
   },
   // 首页-导师详情页
   {
-    path: "/head",
-    component: () => import("../components/index/leaderdetail/Head.vue"),
+    path: "/leaderdetail",
+    component: () => import("../views/index/Leaderdetail.vue"),
     children: [
       // 首页-导师介绍页
       {
-        path: "/head/introduction",
-        component: () =>
-          import("../components/index/leaderdetail/Introduction.vue"),
+        path: "/leaderdetail/introduction",
+        component: () => import("../views/index/leaderdetail/Introduction.vue"),
       },
       // 首页-导师详情页-评价
       {
-        path: "/head/evaluation",
-        component: () =>
-          import("../components/index/leaderdetail/Evaluation.vue"),
+        path: "/leaderdetail/evaluation",
+        component: () => import("../views/index/leaderdetail/Evaluation.vue"),
       },
       // 首页-导师详情页-动态
       {
-        path: "/head/news",
-        component: () => import("../components/index/leaderdetail/News.vue"),
+        path: "/leaderdetail/news",
+        component: () => import("../views/index/leaderdetail/News.vue"),
       },
     ],
   },
@@ -99,7 +106,7 @@ const routes = [
   // 社区-社区详情页
   {
     path: "/communitydetail",
-    component: () => import("../components/community/Communitydetail.vue"),
+    component: () => import("../views/community/Communitydetail.vue"),
     children: [
       // 二级重定向
       {
@@ -110,19 +117,18 @@ const routes = [
       {
         path: "/communitydetail/comment",
         component: () =>
-          import("../components/community/communitydetail/Comment.vue"),
+          import("../views/community/communitydetail/Comment.vue"),
       },
       // 社区-社区详情页-转发
       {
         path: "/communitydetail/forward",
         component: () =>
-          import("../components/community/communitydetail/Forward.vue"),
+          import("../views/community/communitydetail/Forward.vue"),
       },
       // 社区-社区详情页-赞
       {
         path: "/communitydetail/like",
-        component: () =>
-          import("../components/community/communitydetail/Like.vue"),
+        component: () => import("../views/community/communitydetail/Like.vue"),
       },
     ],
   },
