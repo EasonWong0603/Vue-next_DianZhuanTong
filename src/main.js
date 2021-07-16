@@ -10,10 +10,11 @@ import store from "./store";
 import "./assets/css/reset.less";
 
 // 按需引入vant组件
-import { Toast, Icon } from "vant";
+import { Toast, Icon, Image as VanImage } from "vant";
 
 const app = createApp(App);
 app.use(Toast);
 app.use(Icon);
+app.use(VanImage);
 
 app.use(store).use(router).mount("#app");
