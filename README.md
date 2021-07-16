@@ -1,5 +1,5 @@
 # 点赚通 DianZhuanTong
-This is the repository for the DianZhuanTong Application.111111111111
+This is the repository for the DianZhuanTong Application.
 
 ## Project setup
 ```
