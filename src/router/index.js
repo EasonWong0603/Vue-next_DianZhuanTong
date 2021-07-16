@@ -54,10 +54,10 @@ const routes = [
     component: () => import("../views/index/ItemDetail.vue"),
     children: [
       // 二级重定向
-      {
-        path: "/itemdetail",
-        redirect: "/itemdetail/overview",
-      },
+      // {
+      //   path: "/itemdetail",
+      //   redirect: "/itemdetail/overview",
+      // },
       // 首页-项目详情页-项目信息
       {
         path: "/itemdetail/overview",

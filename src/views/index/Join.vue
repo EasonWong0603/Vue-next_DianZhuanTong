@@ -3,7 +3,12 @@
   <div id="join">
     <!-- 头部导航 -->
     <header>
-      <van-nav-bar title="加入点赚通" left-arrow @click-left="onClickLeft" />
+      <van-nav-bar
+        title="加入点赚通"
+        left-arrow
+        @click-left="onClickLeft"
+        :fixed="true"
+      />
     </header>
     <!-- 内容 -->
     <main>
@@ -85,12 +90,6 @@ export default {
     height: 39px;
 
     /* 头部导航组件 */
-    .van-nav-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-    }
     .van-nav-bar__title {
       font-family: PingFang;
       font-weight: 500;
