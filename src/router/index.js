@@ -43,6 +43,11 @@ const routes = [
     path: "/pointsdetails",
     component: () => import("../components/index/PointsDetails.vue"),
   },
+  // 首页-加入点赚通页
+  {
+    path: "/join",
+    component: () => import("../components/index/Join.vue"),
+  },
   // 首页-项目详情页
   {
     path: "/itemdetail",

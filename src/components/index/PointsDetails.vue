@@ -4,7 +4,7 @@
     <header>
       <img
         src="@/assets/images/index/PointsDetails/矢量智能对象@3x.png"
-        alt=""
+        @click="out"
       />
     </header>
     <main>
@@ -75,9 +75,11 @@
 </template>
 <script>
 import { Toast } from "vant";
+import router from "@/router/index.js";
 
 export default {
   setup() {
+    // 点击兑换触发
     const handluclick = () => {
       Toast.loading({
         message: "加载中...",
@@ -85,7 +87,13 @@ export default {
         duration: 5000,
       });
     };
-    return { handluclick };
+
+    // 点击后退上个页面
+    const out = () => {
+      router.go(-1);
+    };
+
+    return { handluclick, out };
   },
 };
 </script>
