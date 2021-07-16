@@ -102,10 +102,11 @@ export default {
       Toast.loading({
         message: "加载中...",
         forbidClick: true,
+        duration: 0,
       });
       setTimeout(() => {
         Toast.fail("网络错误");
-      }, 2500);
+      }, 4000);
     };
 
     // 点击后退上个页面
