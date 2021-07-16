@@ -1,6 +1,15 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 
-const routes = [];
+const routes = [
+  {
+    path: "/",
+    redirect: "/pointsdetails",
+  },
+  {
+    path: "/pointsdetails",
+    component: () => import("../views/index/PointsDetails.vue"),
+  },
+];
 
 const router = createRouter({
   history: createWebHashHistory(),
