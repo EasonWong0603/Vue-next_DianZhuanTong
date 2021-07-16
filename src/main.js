@@ -19,6 +19,10 @@ import {
   ActionSheet,
   Tab,
   Tabs,
+  Card,
+  ActionBar,
+  ActionBarIcon,
+  ActionBarButton,
 } from "vant";
 
 const app = createApp(App);
@@ -30,5 +34,9 @@ app.use(ShareSheet);
 app.use(ActionSheet);
 app.use(Tab);
 app.use(Tabs);
+app.use(Card);
+app.use(ActionBar);
+app.use(ActionBarIcon);
+app.use(ActionBarButton);
 
 app.use(store).use(router).mount("#app");

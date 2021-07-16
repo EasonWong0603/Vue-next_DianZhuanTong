@@ -6,7 +6,8 @@ import { Toast } from "vant";
 // 使用自定义配置新建一个实例
 const instance = axios.create({
   // 接口前缀
-  baseURL: "http://www.pudge.wang:4000",
+  baseURL:
+    "https://www.fastmock.site/mock/f4ea11a88ec2052b7184d0a88694a826/home",
   // 超时事件
   timeout: 10000,
 });
