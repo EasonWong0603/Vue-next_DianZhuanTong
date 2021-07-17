@@ -1,15 +1,54 @@
 <template>
   <footer>
-    <van-tabbar v-model="active">
+    <van-tabbar v-model="active" :placeholder="true" :border="false">
       <van-tabbar-item>
         <span>首页</span>
         <template #icon="props">
-          <img :src="props.active ? icon.active : icon.inactive" />
+          <img
+            :src="
+              props.active
+                ? require('@/assets/images/home/index_b.png')
+                : require('@/assets/images/home/index_s.png')
+            "
+          />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item icon="search">标签</van-tabbar-item>
-      <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-      <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
+      <van-tabbar-item>
+        <span>社区</span>
+        <template #icon="search">
+          <img
+            :src="
+              search.active
+                ? require('../assets/images/home/community_b.png')
+                : require('../assets/images/home/coummunity_s.png')
+            "
+          />
+        </template>
+      </van-tabbar-item>
+      <van-tabbar-item>
+        <span>消息</span>
+        <template #icon="search">
+          <img
+            :src="
+              search.active
+                ? require('../assets/images/home/message_b.png')
+                : require('../assets/images/home/message_s.png')
+            "
+          />
+        </template>
+      </van-tabbar-item>
+      <van-tabbar-item icon="setting-o">
+        <span>我的</span>
+        <template #icon="search">
+          <img
+            :src="
+              search.active
+                ? require('../assets/images/home/mine_b.png')
+                : require('../assets/images/home/mine_s.png')
+            "
+          />
+        </template>
+      </van-tabbar-item>
     </van-tabbar>
   </footer>
 </template>
@@ -20,12 +59,8 @@ import { ref } from "vue";
 export default {
   setup() {
     const active = ref(0);
-    const icon = {
-      active: require("../assets/images/home/index_b.png"),
-      inactive: require("../assets/images/home/index_s.png"),
-    };
+
     return {
-      icon,
       active,
     };
   },
@@ -35,63 +70,37 @@ export default {
 <style lang="less">
 .van-tabbar {
   height: 49px;
+  background: #f8f8f8;
+  box-shadow: 0px -4px 8px 0px rgba(198, 198, 198, 0.38);
 }
-// footer {
-//   width: 375px;
-//   margin-bottom: 34px;
-//   background: #000;
-//   position: absolute;
-//   bottom: 0;
-//   // right: 0;
-//   // left: 0;
-//   .wave-wrap {
-//     position: relative;
-//     width: 375px;
-//     height: 16px;
-//     overflow: hidden;
-//     // margin-bottom: 0;
-//     #wave {
-//       position: absolute;
-//       width: 150px;
-//       transform-origin: bottom;
-//       transform: scaleY(0.8);
-//       transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-//       .path {
-//         fill: #f8f8f8;
-//       }
-//     }
-//   }
-//   .list-wrap {
-//     width: 375px;
-//     height: 49px;
-//     display: flex;
-//     justify-content: space-around;
-//     background: #f8f8f8;
-//     padding: 0 20px;
-//     li {
-//       cursor: pointer;
-//       position: relative;
-//       background: blue;
-//       width: 100%;
-//       height: 100%;
-//       display: flex;
-//       justify-content: center;
-//       align-items: center;
-//       transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-//     }
-//     li.active {
-//       margin-top: -10px;
-//       background: red;
-//     }
-//     li.active:before {
-//       transform: scale(1);
-//     }
-//   }
-// }
 
-// img {
-//   width: 50px;
-//   height: 50px;
-//   border-radius: 50%;
-// }
+.van-tabbar-item--active {
+  color: #ff574b;
+}
+
+.van-tabbar-item--active {
+  position: relative;
+  background: #f8f8f8;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: #f8f8f8;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: 0px -8px 8px 0px rgba(198, 198, 198, 0.38);
+  }
+
+  img {
+    position: relative;
+    transform: translateY(-10px) scale(2);
+    z-index: 10;
+  }
+}
 </style>
