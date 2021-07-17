@@ -8,13 +8,13 @@ import store from "./store";
 
 //引入重置css样式
 import "./assets/css/reset.less";
-//设置根字体大小
-import "amfe-flexible";
 
 // 按需引入vant组件
-import { Toast } from "vant";
+import { Toast, Grid, GridItem } from "vant";
 
-const app = createApp();
+const app = createApp(App);
 app.use(Toast);
+app.use(Grid);
+app.use(GridItem);
 
-createApp(App).use(store).use(router).mount("#app");
+app.use(store).use(router).mount("#app");

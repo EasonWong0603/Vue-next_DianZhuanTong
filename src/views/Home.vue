@@ -1,7 +1,6 @@
 <template>
-  <div class="home">
-    wangye
-  </div>
+  <div class="home"></div>
+  <router-view />
 </template>
 
 <script>
