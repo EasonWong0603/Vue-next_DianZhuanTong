@@ -1,6 +1,6 @@
 <!-- 积分详情页 -->
 <template>
-  <div class="pointsdetail">
+  <div id="pointsdetail">
     <!-- 头部导航栏 -->
     <header>
       <img
@@ -123,7 +123,7 @@ export default {
 @import "../../assets/css/var.less";
 
 // 积分详情区
-.pointsdetail {
+#pointsdetail {
   background: linear-gradient(181deg, #ff495f, #ff975e);
   display: flex;
   flex-direction: column;

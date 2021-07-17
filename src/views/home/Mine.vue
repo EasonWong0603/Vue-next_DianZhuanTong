@@ -4,7 +4,7 @@
     <router-link to="/setup">
       <img
         class="setupdiv"
-        src="../../../public/mine_slices/icon_setup.png"
+        src="../../assets/images/mine/icon_setup.png"
         alt=""
       />
     </router-link>
@@ -50,17 +50,17 @@
       <van-grid class="membercenter" :border="false">
         <van-grid-item
           to="/membercenter"
-          :icon="require('../../../public/mine_slices/icon_vip.png')"
+          :icon="require('../../assets/images/mine/icon_vip.png')"
           text="会员"
         >
         </van-grid-item>
         <van-grid-item
           to="/wallet"
-          :icon="require('../../../public/mine_slices/icon_wallet.png')"
+          :icon="require('../../assets/images/mine/icon_wallet.png')"
           text="我的钱包"
         />
         <van-grid-item
-          :icon="require('../../../public/mine_slices/icon_wallet.png')"
+          :icon="require('../../assets/images/mine/icon_wallet.png')"
           text="关注文章"
         />
       </van-grid>
@@ -69,21 +69,10 @@
 </template>
 
 <script>
-import MineHeader from "@/components/mine/MineHeader.vue";
+// import MineHeader from "@/components/mine/MineHeader.vue";
+
 export default {
-  data() {
-    return {};
-  },
-
-  components: {
-    MineHeader,
-  },
-
-  computed: {},
-
-  mounted() {},
-
-  methods: {},
+  setup() {},
 };
 </script>
 
@@ -104,8 +93,7 @@ export default {
   }
   .namediv {
     height: 171px;
-    background: #ffffff url(../../../public/mine_slices/pic_shading.png)
-      no-repeat;
+    background: #ffffff url(../../assets/images/mine/pic_shading.png) no-repeat;
     background-position: bottom;
     background-size: 100%;
     box-shadow: 0px 4px 16px 0px rgba(255, 76, 71, 0.21);
@@ -178,7 +166,7 @@ export default {
         font-size: 17px;
         font-family: PingFang;
         font-weight: 500;
-        color: #333333;
+        color: #333;
       }
       span {
         display: inline-block;

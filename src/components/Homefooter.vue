@@ -1,112 +1,106 @@
 <template>
   <footer>
-    <div class="wave-wrap">
-      <svg
-        version="1.1"
-        id="wave"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 119 26"
-      >
-        <path
-          class="path"
-          d="M120.8,26C98.1,26,86.4,0,60.4,0C35.9,0,21.1,26,0.5,26H120.8z"
-        ></path>
-      </svg>
-    </div>
-    <ul class="list-wrap">
-      <li data-color="#eccc68" title="Home">
-        <!-- <img src="./1.png" alt="" /> -->
-      </li>
-      <li data-color="#ff6b81" title="Profile">
-        <!-- <img src="./1.png" alt="" /> -->
-      </li>
-      <li data-color="#7bed9f" title="Get a beer!">
-        <!-- <img src="./1.png" alt="" /> -->
-      </li>
-      <li data-color="#70a1ff" title="Files">
-        <!-- <img src="./1.png" alt="" /> -->
-      </li>
-      <li data-color="#dfe4ea" title="Settings">
-        <!-- <img src="./1.png" alt="" /> -->
-      </li>
-    </ul>
+    <van-tabbar v-model="active" :placeholder="true" :border="false">
+      <van-tabbar-item to="/home/index">
+        <span>首页</span>
+        <template #icon="props">
+          <img
+            :src="
+              props.active
+                ? require('@/assets/images/home/index_b.png')
+                : require('@/assets/images/home/index_s.png')
+            "
+          />
+        </template>
+      </van-tabbar-item>
+      <van-tabbar-item to="/home/community">
+        <span>社区</span>
+        <template #icon="search">
+          <img
+            :src="
+              search.active
+                ? require('../assets/images/home/community_b.png')
+                : require('../assets/images/home/coummunity_s.png')
+            "
+          />
+        </template>
+      </van-tabbar-item>
+      <van-tabbar-item to="/home/message">
+        <span>消息</span>
+        <template #icon="search">
+          <img
+            :src="
+              search.active
+                ? require('../assets/images/home/message_b.png')
+                : require('../assets/images/home/message_s.png')
+            "
+          />
+        </template>
+      </van-tabbar-item>
+      <van-tabbar-item to="/home/mine">
+        <span>我的</span>
+        <template #icon="search">
+          <img
+            :src="
+              search.active
+                ? require('../assets/images/home/mine_b.png')
+                : require('../assets/images/home/mine_s.png')
+            "
+          />
+        </template>
+      </van-tabbar-item>
+    </van-tabbar>
   </footer>
 </template>
 
 <script>
+import { ref } from "vue";
+
 export default {
-  data() {
-    return {};
+  setup() {
+    const active = ref(0);
+
+    return {
+      active,
+    };
   },
-
-  components: {},
-
-  computed: {},
-
-  mounted() {},
-
-  methods: {},
 };
 </script>
 
-<style lang="less" scoped>
-footer {
-  width: 440px;
+<style lang="less">
+.van-tabbar {
+  height: 49px;
+  background: #f8f8f8;
+  box-shadow: 0px -4px 8px 0px rgba(198, 198, 198, 0.38);
 }
 
-.wave-wrap {
+.van-tabbar-item--active {
+  color: #ff574b;
+}
+
+.van-tabbar-item--active {
   position: relative;
-  width: 100%;
-  height: 33px;
-  overflow: hidden;
-  margin-bottom: 0;
-}
+  background: #f8f8f8;
 
-.wave-wrap #wave {
-  position: absolute;
-  width: 150px;
-  transform-origin: bottom;
-  transform: scaleY(0.8);
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-}
+  &::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 50px;
+    background: #f8f8f8;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: 0px -8px 8px 0px rgba(198, 198, 198, 0.38);
+  }
 
-.wave-wrap #wave .path {
-  fill: #2f3542;
-}
-
-.list-wrap {
-  display: flex;
-  width: 100%;
-  height: 80px;
-  background: #2f3542;
-  list-style: none;
-  justify-content: space-around;
-  padding: 0 20px;
-}
-
-.list-wrap li {
-  cursor: pointer;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.list-wrap li.active {
-  margin-top: -10px;
-}
-
-.list-wrap li.active:before {
-  transform: scale(1);
-}
-
-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  img {
+    position: relative;
+    transform: translateY(-10px) scale(2);
+    z-index: 10;
+  }
 }
 </style>
