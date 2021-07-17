@@ -8,6 +8,7 @@
         title="星时代金融投资"
         left-arrow
         :fixed="true"
+        :placeholder="true"
         @click-left="onClickLeft"
         @click-right="onClickRight"
       >
@@ -28,19 +29,42 @@
     <!-- 内容 -->
     <main>
       <!-- tap -->
-      <van-tabs v-model:active="active">
+      <van-tabs v-model:active="active" background="transparent">
         <van-tab title="项目信息">
-          <img src="../../assets/images/index/ItemDetail/形状@3x.png" />
+          <div class="imagebox">
+            <img
+              class="tab-bg"
+              src="../../assets/images/index/ItemDetail/01.png"
+            />
+          </div>
         </van-tab>
-        <van-tab title="安全保障">内容 2</van-tab>
-        <van-tab title="指导名师">内容 3</van-tab>
+        <van-tab title="安全保障">
+          <div class="imagebox">
+            <img
+              class="tab-bg"
+              src="../../assets/images/index/ItemDetail/02.png"
+            />
+          </div>
+        </van-tab>
+        <van-tab title="指导名师">
+          <div class="imagebox">
+            <img
+              class="tab-bg"
+              src="../../assets/images/index/ItemDetail/03.png"
+            />
+            <!-- 点击关注 -->
+            <div class="btn" @click="follow"></div>
+          </div>
+        </van-tab>
       </van-tabs>
-      <!-- 版心 -->
+      <!-- 模板 -->
       <div class="template"></div>
     </main>
     <!-- 底部 -->
     <footer>
       <img src="../../assets/images/index/ItemDetail/联系导师@3x.png" />
+      <!-- 点击跳转导师列表 -->
+      <div class="btn" @click="handleclick"></div>
     </footer>
   </div>
 </template>
@@ -57,6 +81,23 @@ export default {
   setup() {
     // tap信息
     const active = ref(0);
+
+    // 点击跳转老师页
+    const handleclick = () => {
+      router.push("/leaderlist");
+    };
+
+    // 点击关注
+    const follow = () => {
+      Toast.loading({
+        message: "加载中...",
+        forbidClick: true,
+        duration: 1000,
+      });
+      setTimeout(() => {
+        Toast.success("关注成功");
+      }, 1500);
+    };
 
     // 导航信息
     const show = ref(false);
@@ -80,6 +121,8 @@ export default {
       actions,
       onCancel,
       active,
+      handleclick,
+      follow,
     };
   },
 };
@@ -89,10 +132,12 @@ export default {
 @import "../../assets/css/var.less";
 
 #itemdetail {
-  // overflow: hidden;
-
+  position: relative;
   // 头部
   header {
+    .van-nav-bar {
+      z-index: 99 !important;
+    }
     // 导航左边箭头
     .van-nav-bar .van-icon {
       color: #9c9c9c;
@@ -111,35 +156,43 @@ export default {
   // 内容
   main {
     width: 100%;
-    height: 923px;
-    background: url("../../assets/images/index/ItemDetail/组@3x.png") no-repeat
-      center center;
+    height: 834px;
+    background: url("../../assets/images/index/ItemDetail/组@3x.png") no-repeat;
     background-size: 100%;
-    .van-tab__pane {
-      position: relative;
-      img {
-        position: absolute;
-        top: 0;
-        left: -36px;
-        width: 373px;
-      }
-    }
+    position: relative;
 
-    // 版心
-    .template {
-      background: url("../../assets/images/index/ItemDetail/组@3x.png")
-        no-repeat center center;
-      background-size: 100%;
-    }
-
-    // tap
     .van-tabs {
-      width: 80%;
       position: absolute;
-      top: 100px;
+      top: 130px;
+      width: 90%;
       left: 0;
       right: 0;
       margin: auto;
+
+      .van-tabs__nav--line {
+        z-index: 1;
+      }
+
+      .imagebox {
+        padding-bottom: 760px;
+      }
+
+      .tab-bg {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .btn {
+        position: absolute;
+        top: 76px;
+        right: 18px;
+        width: 73px;
+        height: 27px;
+        background: transparent;
+        border-radius: 13px;
+      }
     }
   }
 
@@ -149,9 +202,23 @@ export default {
     position: fixed;
     bottom: 0;
     left: 0;
-    overflow: hidden;
+    box-shadow: -1px -20px 27px 0px rgba(81, 81, 81, 0.05);
+
     img {
-      width: 102%;
+      width: 100%;
+      height: 85px;
+    }
+
+    .btn {
+      position: absolute;
+      top: 22px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 90%;
+      height: 40px;
+      background: transparent;
+      border-radius: 60px;
     }
   }
 }
