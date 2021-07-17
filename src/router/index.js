@@ -75,17 +75,17 @@ const routes = [
       },
     ],
   },
+  // 首页-导师列表页
+  {
+    path: "/leaderlist",
+    component: () => import("../views/index/Leaderlist.vue"),
+  },
   // 首页-导师详情页
   {
     path: "/leaderdetail",
     component: () => import("../views/index/Leaderdetail.vue"),
     children: [
-      // 二级重定向
-      {
-        path: "/leaderdetail",
-        redirect: "/leaderdetail/introduction",
-      },
-      // 首页-导师详情页-介绍
+      // 首页-导师介绍页
       {
         path: "/leaderdetail/introduction",
         component: () => import("../views/index/leaderdetail/Introduction.vue"),
@@ -102,6 +102,7 @@ const routes = [
       },
     ],
   },
+
   // 社区-社区详情页
   {
     path: "/communitydetail",
