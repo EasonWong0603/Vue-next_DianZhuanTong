@@ -24,6 +24,7 @@
         cancel-text="取消"
         close-on-click-action
         @cancel="onCancel"
+        @select="onSelect"
       />
     </header>
     <!-- 内容 -->
@@ -53,12 +54,13 @@
               src="../../assets/images/index/ItemDetail/03.png"
             />
             <!-- 点击关注 -->
-            <div class="btn" @click="follow"></div>
+            <div class="btn" @click="follow" v-if="already"></div>
+            <div class="btnbox" v-else>
+              <p class="btn no" @click="cancel">已关注</p>
+            </div>
           </div>
         </van-tab>
       </van-tabs>
-      <!-- 模板 -->
-      <div class="template"></div>
     </main>
     <!-- 底部 -->
     <footer>
@@ -88,17 +90,41 @@ export default {
     };
 
     // 点击关注
+    const already = ref(true);
+
     const follow = () => {
       Toast.loading({
-        message: "加载中...",
+        message: "关注中...",
         forbidClick: true,
-        duration: 1000,
+        duration: 500,
       });
       setTimeout(() => {
+        if (already.value) {
+          localStorage.setItem("follower", 1);
+        }
+
+        already.value = !already.value;
+
         Toast.success("关注成功");
-      }, 1500);
+      }, 800);
     };
 
+    const cancel = () => {
+      Toast.loading({
+        message: "取消中...",
+        forbidClick: true,
+        duration: 500,
+      });
+      setTimeout(() => {
+        if (!already.value) {
+          localStorage.setItem("follower", -1);
+        }
+
+        already.value = !already.value;
+
+        Toast.success("取消成功");
+      }, 800);
+    };
     // 导航信息
     const show = ref(false);
     const actions = [{ name: "分享" }, { name: "复制链接" }, { name: "举报" }];
@@ -114,15 +140,24 @@ export default {
       show.value = true;
     };
 
+    const onSelect = (item) => {
+      // 默认情况下点击选项时不会自动收起
+      show.value = false;
+      Toast(item.name);
+    };
+
     return {
       onClickLeft,
       onClickRight,
       show,
       actions,
       onCancel,
+      onSelect,
       active,
       handleclick,
       follow,
+      already,
+      cancel,
     };
   },
 };
@@ -161,6 +196,7 @@ export default {
     background-size: 100%;
     position: relative;
 
+    // tap 选项卡
     .van-tabs {
       position: absolute;
       top: 130px;
@@ -177,6 +213,7 @@ export default {
         padding-bottom: 760px;
       }
 
+      // tap背景
       .tab-bg {
         width: 100%;
         position: absolute;
@@ -192,6 +229,35 @@ export default {
         height: 27px;
         background: transparent;
         border-radius: 13px;
+        text-align: center;
+        line-height: 25px;
+        font-size: 15px;
+        font-family: PingFang;
+        font-weight: 500;
+        color: #ffffff;
+      }
+
+      // 按钮盒子
+      .btnbox {
+        background: #ffffff;
+        width: 100px;
+        height: 60px;
+        position: absolute;
+        top: 65px;
+        right: 4px;
+      }
+
+      // 取消关注按钮
+      .no {
+        position: absolute;
+        right: 12px;
+        top: 11px;
+        width: 74px;
+        height: 28px;
+        line-height: 28px;
+        text-shadow: 0px 1px 0px rgba(212, 206, 204, 0.48);
+        background: linear-gradient(-23deg, #857d7d, #e0dddc);
+        box-shadow: 0px 6px 12px 0px rgba(122, 117, 115, 0.49);
       }
     }
   }
@@ -209,6 +275,7 @@ export default {
       height: 85px;
     }
 
+    // 联系导师按钮
     .btn {
       position: absolute;
       top: 22px;

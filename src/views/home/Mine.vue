@@ -69,21 +69,10 @@
 </template>
 
 <script>
-import MineHeader from "@/components/mine/MineHeader.vue";
+// import MineHeader from "@/components/mine/MineHeader.vue";
+
 export default {
-  data() {
-    return {};
-  },
-
-  components: {
-    MineHeader,
-  },
-
-  computed: {},
-
-  mounted() {},
-
-  methods: {},
+  setup() {},
 };
 </script>
 

@@ -2,12 +2,9 @@
   <footer>
     <van-tabbar v-model="active">
       <van-tabbar-item>
-        <span>自定义</span>
+        <span>首页</span>
         <template #icon="props">
-          <van-image
-            height:100%
-            :src="props.active ? icon.active : icon.inactive"
-          />
+          <img :src="props.active ? icon.active : icon.inactive" />
         </template>
       </van-tabbar-item>
       <van-tabbar-item icon="search">标签</van-tabbar-item>

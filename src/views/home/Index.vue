@@ -1,21 +1,13 @@
 <template>
-  <div>index</div>
+  <div id="index">这是首页</div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
-
-  components: {},
-
-  computed: {},
-
-  mounted() {},
-
-  methods: {},
+  setup() {},
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less">
+@import "../../assets/css/var.less";
+</style>
