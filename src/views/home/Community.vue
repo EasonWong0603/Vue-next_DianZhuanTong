@@ -10,10 +10,7 @@
 
 <script>
 export default {
-  name: "community",
-  data() {
-    return {};
-  },
+  setup() {},
 };
 </script>
 
