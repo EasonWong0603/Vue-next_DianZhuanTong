@@ -139,15 +139,15 @@ const routes = [
   },
   {
     path: "/setup",
-    component: () => import("../views/home/mine/Set.vue"),
+    component: () => import("../views/mine/Set.vue"),
   },
   {
     path: "/membercenter",
-    component: () => import("../views/home/mine/MemberCenter.vue"),
+    component: () => import("../views/mine/MemberCenter.vue"),
   },
   {
     path: "/wallet",
-    component: () => import("../views/home/mine/Wallet.vue"),
+    component: () => import("../views/mine/Wallet.vue"),
   },
   // 404页面，将匹配所有内容并将其放在 `$route.params.pathMatch` 下
   {
