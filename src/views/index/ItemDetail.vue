@@ -90,7 +90,7 @@ export default {
     };
 
     // 点击关注
-    const already = ref(true);
+    const already = ref(!localStorage.getItem("follower"));
 
     const follow = () => {
       Toast.loading({
