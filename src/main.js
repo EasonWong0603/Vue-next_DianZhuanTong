@@ -22,6 +22,8 @@ import {
   ActionBar, // 动作栏
   ActionBarIcon, // 动作栏
   ActionBarButton, // 动作栏
+  Grid,
+  GridItem,
 } from "vant";
 
 const app = createApp(App);
@@ -37,5 +39,7 @@ app.use(Card); // 商品卡片
 app.use(ActionBar); // 动作栏
 app.use(ActionBarIcon); // 动作栏
 app.use(ActionBarButton); // 动作栏
+app.use(Grid);
+app.use(GridItem);
 
 app.use(store).use(router).mount("#app");

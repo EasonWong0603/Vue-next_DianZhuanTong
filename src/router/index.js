@@ -137,6 +137,18 @@ const routes = [
     path: "/legister",
     component: () => import("../views/Legister.vue"),
   },
+  {
+    path: "/setup",
+    component: () => import("../views/mine/Set.vue"),
+  },
+  {
+    path: "/membercenter",
+    component: () => import("../views/mine/MemberCenter.vue"),
+  },
+  {
+    path: "/wallet",
+    component: () => import("../views/mine/Wallet.vue"),
+  },
   // 404页面，将匹配所有内容并将其放在 `$route.params.pathMatch` 下
   {
     path: "/:pathMatch(.*)*",
