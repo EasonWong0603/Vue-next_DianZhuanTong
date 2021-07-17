@@ -1,7 +1,7 @@
 <template>
   <footer>
     <van-tabbar v-model="active" :placeholder="true" :border="false">
-      <van-tabbar-item>
+      <van-tabbar-item to="/home/index">
         <span>首页</span>
         <template #icon="props">
           <img
@@ -13,7 +13,7 @@
           />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item>
+      <van-tabbar-item to="/home/community">
         <span>社区</span>
         <template #icon="search">
           <img
@@ -25,7 +25,7 @@
           />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item>
+      <van-tabbar-item to="/home/message">
         <span>消息</span>
         <template #icon="search">
           <img
@@ -37,7 +37,7 @@
           />
         </template>
       </van-tabbar-item>
-      <van-tabbar-item icon="setting-o">
+      <van-tabbar-item to="/home/mine">
         <span>我的</span>
         <template #icon="search">
           <img
