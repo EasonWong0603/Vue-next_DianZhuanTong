@@ -20,9 +20,13 @@ import {
   ActionBar,
   ActionBarIcon,
   ActionBarButton,
+  Grid,
+  GridItem,
 } from "vant";
 
 const app = createApp(App);
+app.use(Grid);
+app.use(GridItem);
 app.use(Toast);
 app.use(Icon);
 app.use(VanImage);
