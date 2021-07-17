@@ -5,7 +5,7 @@
     <header>
       <!-- 头部导航 -->
       <van-nav-bar
-        title="星时代金融投资asdasdas"
+        title="星时代金融投资"
         left-arrow
         :fixed="true"
         @click-left="onClickLeft"
