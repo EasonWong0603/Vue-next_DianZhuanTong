@@ -11,6 +11,8 @@ import "./assets/css/reset.less";
 
 // 按需引入vant组件
 import {
+  Tab,
+  Tabs,
   Toast,
   Icon,
   Image as VanImage,
@@ -36,5 +38,7 @@ app.use(Card);
 app.use(ActionBar);
 app.use(ActionBarIcon);
 app.use(ActionBarButton);
+app.use(Tab);
+app.use(Tabs);
 
 app.use(store).use(router).mount("#app");
