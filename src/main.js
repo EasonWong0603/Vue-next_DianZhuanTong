@@ -22,6 +22,12 @@ import {
   NoticeBar,
   Icon,
   Popover,
+  ShareSheet,
+  Card,
+  ActionBar,
+  ActionBarIcon,
+  ActionBarButton,
+  Search,
 } from "vant";
 
 const app = createApp(App);
@@ -45,5 +51,14 @@ app.use(NoticeBar);
 app.use(Icon);
 //气泡弹出框
 app.use(Popover);
+//
+app.use(Search);
+app.use(VanImage);
+app.use(NavBar);
+app.use(ShareSheet);
+app.use(Card);
+app.use(ActionBar);
+app.use(ActionBarIcon);
+app.use(ActionBarButton);
 
 app.use(store).use(router).mount("#app");

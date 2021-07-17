@@ -1,0 +1,53 @@
+// 引入方式如下：
+// @import "../assets/css/var.less";
+// 前面路径根据自己项目路径位置修改
+
+// 字体大小变量
+@xxl-font: 22px;
+@xl-font: 20px;
+@l-font: 18px;
+@m-font: 16px;
+@s-font: 14px;
+@xs-font: 12px;
+@xxs-font: 10px;
+
+// 混入
+// 文字-超出部分省略号
+.text-ellipsis() {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+// 弹性盒-全居中
+.flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// 弹性盒-主轴左右对齐，侧轴居中
+.flex-between() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// 弹性盒-主轴平均分配，侧轴居中
+.flex-around() {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+// 弹性盒-侧轴居中
+.flex-center-a() {
+  display: flex;
+  align-items: center;
+}
+
+// 弹性盒-主轴居中
+.flex-center-j() {
+  display: flex;
+  justify-content: center;
+}

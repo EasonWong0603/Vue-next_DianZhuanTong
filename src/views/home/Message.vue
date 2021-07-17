@@ -3,7 +3,12 @@
     <!-- bar导航 -->
     <van-nav-bar title="消息">
       <template #right>
-        <van-icon name="manager-o" size="18" color="#333" />&emsp;
+        <van-icon
+          :name="
+            require('../../assets/images/index/Message/icon_maillist@3x.png')
+          "
+          @click="change"
+        />&emsp;
         <van-popover
           v-model:show="showPopover"
           :actions="actions"
@@ -11,14 +16,18 @@
           placement="bottom-end"
         >
           <template #reference>
-            <van-icon name="plus" size="18" color="#333" />
+            <van-icon
+              :name="
+                require('../../assets/images/index/Message/ic_join_dialing_norm@3x.png')
+              "
+            />
           </template>
         </van-popover>
       </template>
     </van-nav-bar>
-    <!-- 气泡弹出 -->
+
     <!-- 通知栏 -->
-    <van-notice-bar mode="closeable"
+    <van-notice-bar mode="closeable" color="#FF504B;"
       >技术是开发它的人的共同灵魂。</van-notice-bar
     >
     <!-- 列表项 -->
@@ -45,6 +54,61 @@
       <!-- 未读消息提醒 -->
       <span class="num">&nbsp;1&nbsp;</span>
     </van-swipe-cell>
+    <!-- 列表项-系统通知-不可见 -->
+    <van-swipe-cell>
+      <div class="icon-left">
+        <span></span>
+        <van-image
+          round
+          width="40"
+          height="40"
+          :src="require('../../assets/images/index/Message/icon_tutor@3x.png')"
+        />
+      </div>
+      <van-cell :border="false">
+        <template #title>
+          <div class="title">
+            <p>这是标题这是标题</p>
+            <span class="time">时间</span>
+          </div>
+        </template>
+        <template #value> <p>这是内容</p></template>
+        <i></i>
+      </van-cell>
+      <template #right>
+        <van-button square type="danger" text="删除" />
+      </template>
+      <!-- 未读消息提醒 -->
+      <span class="num">&nbsp;1&nbsp;</span>
+    </van-swipe-cell>
+    <!-- 列表项-系统通知-不可见 -->
+    <van-swipe-cell>
+      <div class="icon-left">
+        <span></span>
+        <van-image
+          round
+          width="40"
+          height="40"
+          :src="require('../../assets/images/index/Message/icon_team@3x.png')"
+          style="background: linear-gradient(-46deg, #ea7be1, #ff7f7f)"
+        />
+      </div>
+      <van-cell :border="false">
+        <template #title>
+          <div class="title">
+            <p>这是标题这是标题</p>
+            <span class="time">时间</span>
+          </div>
+        </template>
+        <template #value> <p>这是内容</p></template>
+        <i></i>
+      </van-cell>
+      <template #right>
+        <van-button square type="danger" text="删除" />
+      </template>
+      <!-- 未读消息提醒 -->
+      <span class="num">&nbsp;1&nbsp;</span>
+    </van-swipe-cell>
   </div>
 </template>
 
@@ -55,28 +119,60 @@ export default {
   setup() {
     const showPopover = ref(false);
     const actions = [
-      { text: "选项一", icon: "add-o" },
-      { text: "选项二", icon: "music-o" },
+      {
+        text: "添加朋友",
+        icon: require("../../assets/images/index/Message/icon_popup_add@3x.png"),
+      },
+      {
+        text: "创建群聊",
+        icon: require("../../assets/images/index/Message/icon_popup_create@3x.png"),
+      },
     ];
 
+    const change = () => {
+      this.$router.push("/maillist");
+    };
     return {
       actions,
       showPopover,
+      change,
     };
   },
 };
 </script>
 
 <style lang="less" scoped>
+@import "../../assets/css/var.less";
 .van-swipe-cell {
   display: flex;
-  position: relative;
   .van-image {
     position: absolute;
-    left: 12px;
-    top: 14px;
+    left: @xs-font;
+    top: @s-font;
     z-index: 100;
   }
+  .icon-left {
+    position: relative;
+    span {
+      display: block;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(-23deg, #ff514b, #ff814e);
+      box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
+      border-radius: 56px;
+      z-index: 99;
+      left: @xs-font;
+      top: @s-font;
+    }
+    .van-image {
+      position: absolute;
+      left: @xs-font;
+      top: @s-font;
+      z-index: 100;
+    }
+  }
+
   .van-cell {
     padding-left: 58px;
     width: 375px;
@@ -87,11 +183,11 @@ export default {
       width: 305px;
       justify-content: space-between;
       p {
-        font-size: 14px;
+        font-size: @s-font;
       }
 
       span {
-        font-size: 10px;
+        font-size: @xxs-font;
         color: #6b6b6b;
       }
     }
@@ -108,16 +204,20 @@ export default {
     display: block;
     right: 15px;
     top: 50%;
-    font-size: 12px;
+    font-size: @xs-font;
     color: #fff;
-    height: 14px;
-    min-width: 14px;
+    height: @s-font;
+    min-width: @s-font;
     background: linear-gradient(-23deg, #ff514b, #ff814e);
     border-radius: 7px;
     box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
     text-align: center;
-    line-height: 14px;
+    line-height: @s-font;
     color: #f8f8f8;
   }
+}
+.van-notice-bar {
+  height: 32px;
+  font-size: @xs-font;
 }
 </style>
