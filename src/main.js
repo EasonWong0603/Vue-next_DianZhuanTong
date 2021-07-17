@@ -22,6 +22,11 @@ import {
   ActionBarButton,
   Grid,
   GridItem,
+  Cell,
+  CellGroup,
+  Form,
+  Field,
+  Button,
 } from "vant";
 
 const app = createApp(App);
@@ -36,5 +41,10 @@ app.use(Card);
 app.use(ActionBar);
 app.use(ActionBarIcon);
 app.use(ActionBarButton);
+app.use(Cell);
+app.use(CellGroup);
+app.use(Form);
+app.use(Field);
+app.use(Button);
 
 app.use(store).use(router).mount("#app");

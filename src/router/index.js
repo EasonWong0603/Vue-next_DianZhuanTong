@@ -134,17 +134,20 @@ const routes = [
   },
   // 登录
   {
-    path: "/legister",
-    component: () => import("../views/Legister.vue"),
+    path: "/register",
+    component: () => import("../views/Register.vue"),
   },
+  //设置
   {
     path: "/setup",
     component: () => import("../views/mine/Set.vue"),
   },
+  //会员中心
   {
     path: "/membercenter",
     component: () => import("../views/mine/MemberCenter.vue"),
   },
+  //钱包
   {
     path: "/wallet",
     component: () => import("../views/mine/Wallet.vue"),
