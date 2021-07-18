@@ -8,13 +8,19 @@
     </van-nav-bar>
     <!-- 导师详情 -->
     <van-card
-      desc="简介：这是一位有着丰富经验的老司机,投资和理财是他的强项"
-      title="白雅晴"
+      v-for="item in state.preData"
+      :key="item.id"
+      :desc="item.simpleIntro"
+      :title="item.name"
       thumb="../index/leaderdetail/images/1231@3x.png"
     >
       <template #tags>
-        <van-tag plain type="danger" class="tag1">一级导师</van-tag>
-        <van-tag plain type="danger" class="tag2">风头分析</van-tag>
+        <van-tag plain type="danger" class="tag1">{{
+          item.perfession[0]
+        }}</van-tag>
+        <van-tag plain type="danger" class="tag2">{{
+          item.perfession[1]
+        }}</van-tag>
       </template>
       <template #footer>
         <div class="image">
@@ -31,7 +37,34 @@
   <router-view />
 </template>
 
-<script></script>
+<script>
+import { getLeaderlistDataApi } from "../../../src/utils/api";
+import { reactive, onMounted } from "vue";
+
+export default {
+  setup() {
+    const state = reactive({
+      preData: "",
+    });
+
+    const login = async () => {
+      const res = await getLeaderlistDataApi();
+      console.log(res);
+      state.preData = res.data.result;
+      console.log(res.data.result);
+    };
+
+    onMounted(() => {
+      login();
+    });
+
+    return {
+      login,
+      state,
+    };
+  },
+};
+</script>
 
 <style lang="less">
 #leaderdetail {
@@ -77,12 +110,12 @@
       background: linear-gradient(#ff814e, #ff504b);
       display: inline-block;
       width: 60px;
-      height: 20px;
+      height: 21px;
       position: absolute;
       bottom: 40px;
       color: white;
       border-radius: 50px;
-      line-height: 20px;
+      line-height: 21px;
       text-align: center;
     }
 
@@ -93,6 +126,7 @@
       position: absolute;
       margin-left: 54px;
       margin-top: 18px;
+      display: flex;
 
       img {
         width: 13px;
