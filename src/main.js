@@ -10,14 +10,17 @@ import "./assets/css/reset.less";
 
 // 按需引入vant组件
 import {
-  Cell,
-  CellGroup,
-  Form,
-  Field,
-  Button,
-  Toast, // 轻提示
+  // 基础组件
+  Button, //按钮
+  Cell, //单元格
+  CellGroup, //单元格
   Icon, // 图标
   Image as VanImage, // 图片
+  Toast, // 轻提示
+
+  // 表单组件
+  Field, //输入框
+  Form, //表单
 
   // 反馈组件
   ActionSheet, // 动作面板
@@ -43,27 +46,17 @@ import {
 } from "vant";
 
 const app = createApp(App);
-app.use(Grid);
-app.use(GridItem);
-app.use(Toast);
-app.use(Icon);
-app.use(NavBar);
-app.use(ShareSheet);
-app.use(Card);
-app.use(ActionBar);
-app.use(ActionBarIcon);
-app.use(ActionBarButton);
-app.use(Cell);
-app.use(CellGroup);
-app.use(Form);
-app.use(Field);
-app.use(Button);
-// 基础组件
 
 // 基础组件
-app.use(Toast); // 轻提示
+app.use(Button); //按钮
+app.use(Cell).use(CellGroup); //单元格
 app.use(Icon); // 图标
 app.use(VanImage); // 图片
+app.use(Toast); // 轻提示
+
+// 表单组件
+app.use(Field); //输入框
+app.use(Form); //表单
 
 // 反馈组件
 app.use(ActionSheet); // 动作面板
