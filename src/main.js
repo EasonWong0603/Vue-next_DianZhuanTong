@@ -21,6 +21,7 @@ import {
   // 表单组件
   Field, //输入框
   Form, //表单
+  Search, //搜索
 
   // 反馈组件
   ActionSheet, // 动作面板
@@ -57,6 +58,7 @@ app.use(Toast); // 轻提示
 // 表单组件
 app.use(Field); //输入框
 app.use(Form); //表单
+app.use(Search); //搜索
 
 // 反馈组件
 app.use(ActionSheet); // 动作面板
