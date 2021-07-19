@@ -1,6 +1,6 @@
 <template>
   <div class="minebg">
-    <img src="../../assets/images/mine/pic_bg.png" alt="" />
+    <img src="../../assets/images/mine/pic_bg@3x.png" alt="" />
   </div>
 </template>
 

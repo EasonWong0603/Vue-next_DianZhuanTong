@@ -135,6 +135,16 @@ const routes = [
     path: "/wallet",
     component: () => import("../views/mine/Wallet.vue"),
   },
+  //我的-设置-个人信息设置
+  {
+    path: "/SetSelfInformation",
+    component: () => import("../views/mine/SetSelfInformation.vue"),
+  },
+  // 我的-设置-个人信息设置-昵称
+  {
+    path: "/setname",
+    component: () => import("../views/mine/SetName.vue"),
+  },
   // 404页面，将匹配所有内容并将其放在 `$route.params.pathMatch` 下
   {
     path: "/:pathMatch(.*)*",
