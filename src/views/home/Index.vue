@@ -15,7 +15,7 @@
           :clearable="false"
         />
         <!-- 右侧图标 -->
-        <van-icon name="scan" size="24px" color="#fff" />
+        <van-icon name="scan" size="28px" color="#fff" />
       </div>
       <!-- 头部图片 -->
       <div class="head-banner">
@@ -87,8 +87,7 @@
             border-radius: 5px;
           "
         />
-        <!-- <img class="tips" src="../../assets/images/index/Home/ts.png" /> -->
-        <!-- <p>恭喜李某某获在什么时间位置获得了多少积分，导师为...</p> -->
+
         <!-- 积分兑换 -->
         <img
           class="exchange"
@@ -297,7 +296,7 @@ export default {
       .van-icon {
         margin-right: 3.2vw;
         color: rgba(255, 255, 255, 0.7);
-        font-size: 18px;
+        font-size: 20px;
       }
 
       // 搜索框背景
@@ -309,6 +308,7 @@ export default {
       input::-webkit-input-placeholder {
         color: rgba(255, 255, 255, 0.7);
         font-size: 13px;
+        font-weight: 900;
         font-family: PingFang;
       }
     }
@@ -444,7 +444,7 @@ export default {
       }
 
       span {
-        margin: 0 61% 0 6px;
+        margin: 0 60% 0 6px;
         font-size: 17px;
         font-family: PingFang;
         font-weight: 500;
@@ -453,7 +453,7 @@ export default {
 
       i {
         font-size: 14px;
-        color: #b16031;
+        color: #c2c2c2;
         font-weight: 600;
       }
     }

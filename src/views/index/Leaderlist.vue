@@ -12,8 +12,8 @@
       :key="item.id"
       :desc="item.simpleIntro"
       :title="item.name"
-      thumb="../index/leaderdetail/images/1231@3x.png"
-      @click="gotogotoDetail(item.id)"
+      :thumb="item.headimg"
+      @click="gotoDetail(item.id)"
     >
       <template #tags>
         <van-tag plain type="danger" class="tag1">{{
@@ -41,6 +41,8 @@
 <script>
 import { getLeaderlistDataApi } from "../../../src/utils/api";
 import { reactive, onMounted } from "vue";
+// 引入路由
+import router from "@/router/index.js";
 
 export default {
   setup() {
@@ -65,6 +67,10 @@ export default {
       console.log(res.data.result);
     };
 
+    const gotoDetail = (id) => {
+      router.push("/leaderdetail/" + id);
+    };
+
     onMounted(() => {
       login();
     });
@@ -72,6 +78,7 @@ export default {
     return {
       login,
       state,
+      gotoDetail,
     };
   },
 };

@@ -105,7 +105,7 @@ export default {
         duration: 0,
       });
       setTimeout(() => {
-        Toast.fail("网络不太好 检查下网络吧");
+        Toast.fail(`网络不太好`);
       }, 3000);
     };
 
