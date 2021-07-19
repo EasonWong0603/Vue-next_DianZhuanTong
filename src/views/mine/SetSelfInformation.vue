@@ -1,5 +1,5 @@
 <template>
-  <div>legister</div>
+  <div>设置个人信息</div>
 </template>
 
 <script>

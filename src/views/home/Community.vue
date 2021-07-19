@@ -90,6 +90,7 @@ export default {
 
 <style lang="less" scoped>
 @import "../../assets/css/var.less";
+
 .community {
   width: 100%;
   height: 600px;

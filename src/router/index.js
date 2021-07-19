@@ -52,28 +52,6 @@ const routes = [
   {
     path: "/itemdetail",
     component: () => import("../views/index/ItemDetail.vue"),
-    children: [
-      // 二级重定向
-      {
-        path: "/itemdetail",
-        redirect: "/itemdetail/overview",
-      },
-      // 首页-项目详情页-项目信息
-      {
-        path: "/itemdetail/overview",
-        component: () => import("../views/index/itemdetail/Overview.vue"),
-      },
-      // 首页-项目详情页-安全保障
-      {
-        path: "/itemdetail/security",
-        component: () => import("../views/index/itemdetail/Security.vue"),
-      },
-      // 首页-项目详情页-指导名师
-      {
-        path: "/itemdetail/itemleader",
-        component: () => import("../views/index/itemdetail/Itemleader.vue"),
-      },
-    ],
   },
   // 首页-导师列表页
   {
@@ -134,17 +112,20 @@ const routes = [
   },
   // 登录
   {
-    path: "/legister",
-    component: () => import("../views/Legister.vue"),
+    path: "/register",
+    component: () => import("../views/Register.vue"),
   },
+  // 我的-设置页
   {
     path: "/setup",
     component: () => import("../views/mine/Set.vue"),
   },
+  // 我的-会员中心页
   {
     path: "/membercenter",
     component: () => import("../views/mine/MemberCenter.vue"),
   },
+  // 我的-钱包页
   {
     path: "/wallet",
     component: () => import("../views/mine/Wallet.vue"),
