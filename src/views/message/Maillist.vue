@@ -27,6 +27,7 @@
         "
       />
       <p class="title">新的好友</p>
+      <span class="num">&nbsp;1&nbsp;</span>
     </div>
     <div class="list-card">
       <van-image
@@ -108,5 +109,22 @@ export default {
   a .van-index-bar__index {
     line-height: 20px;
   }
+}
+.num {
+  position: absolute;
+  z-index: 101;
+  display: block;
+  right: 15px;
+  top: 50%;
+  font-size: @xs-font;
+  color: #fff;
+  height: @s-font;
+  min-width: @s-font;
+  background: linear-gradient(-23deg, #ff514b, #ff814e);
+  border-radius: 7px;
+  box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
+  text-align: center;
+  line-height: @s-font;
+  color: #f8f8f8;
 }
 </style>

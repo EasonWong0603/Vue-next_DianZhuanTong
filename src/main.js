@@ -10,24 +10,18 @@ import "./assets/css/reset.less";
 
 // 按需引入vant组件
 import {
-  Toast,
-  NavBar,
-  Cell,
-  CellGroup,
-  SwipeCell,
-  Button,
-  ContactCard,
-  Image as VanImage,
-  NoticeBar,
-  Icon,
-  Popover,
-  ShareSheet,
-  Card,
-  ActionBar,
-  ActionBarIcon,
-  ActionBarButton,
-  Search,
-  // 轻提示
+  // 基础组件
+  Button, //按钮
+  Cell, //单元格
+  CellGroup, //单元格
+  Icon, // 图标
+  Image as VanImage, // 图片
+  Toast, // 轻提示
+
+  // 表单组件
+  Field, //输入框
+  Form, //表单
+  Search, //搜索
 
   // 反馈组件
   ActionSheet, // 动作面板
@@ -44,45 +38,49 @@ import {
   GridItem, //宫格
   IndexBar,
   IndexAnchor,
+  SwipeCell,
+  ContactCard,
+  NoticeBar,
+  Popover,
+  ShareSheet,
+  ActionBar,
+  ActionBarIcon,
+  ActionBarButton,
+  NavBar,
+  Card,
   // 业务组件
 } from "vant";
 
 const app = createApp(App);
-app.use(Toast);
-//导航栏
-app.use(NavBar);
+
 //滑动单元格
 app.use(SwipeCell);
-//单元格
-app.use(Cell);
-app.use(CellGroup);
-//按钮
-app.use(Button);
+
 //联系人卡片
 app.use(ContactCard);
-//图片
-app.use(VanImage);
+
 //通知栏
 app.use(NoticeBar);
-//图标
-app.use(Icon);
+
 //气泡弹出框
 app.use(Popover);
 //
-app.use(Search);
-app.use(VanImage);
-app.use(NavBar);
-app.use(ShareSheet);
-app.use(Card);
-app.use(ActionBar);
-app.use(ActionBarIcon);
-app.use(ActionBarButton);
+
+app.use(IndexBar);
+app.use(IndexAnchor);
 // 基础组件
 
 // 基础组件
-app.use(Toast); // 轻提示
+app.use(Button); //按钮
+app.use(Cell).use(CellGroup); //单元格
 app.use(Icon); // 图标
 app.use(VanImage); // 图片
+app.use(Toast); // 轻提示
+
+// 表单组件
+app.use(Field); //输入框
+app.use(Form); //表单
+app.use(Search); //搜索
 
 // 反馈组件
 app.use(ActionSheet); // 动作面板
@@ -100,8 +98,5 @@ app.use(Tabbar).use(TabbarItem); //标签栏
 
 // 业务组件
 app.use(Card); // 商品卡片
-
-app.use(IndexBar);
-app.use(IndexAnchor);
 
 app.use(store).use(router).mount("#app");
