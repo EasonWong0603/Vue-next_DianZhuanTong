@@ -86,7 +86,6 @@
         title="我的红包"
         is-link
         value="根据红包页得红包数"
-        url="Wallet.vue"
       />
       <!-- 我的积分 -->
       <van-cell
