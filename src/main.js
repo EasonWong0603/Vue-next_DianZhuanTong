@@ -69,7 +69,6 @@ app.use(Popover);
 app.use(IndexBar);
 app.use(IndexAnchor);
 
-
 // 基础组件
 app.use(Button); //按钮
 app.use(Cell).use(CellGroup); //单元格

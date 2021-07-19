@@ -1,13 +1,14 @@
 <template>
   <div>
     <!-- 导航 -->
-    <van-nav-bar title="联系人">
+    <van-nav-bar title="联系人" fixed="true" placeholder="true">
       <template #left>
         <van-icon
           :name="
             require('../../assets/images/index/Message/icon_left_arrow@3x.png')
           "
           size="12"
+          @click="gotoMessage"
         />
       </template>
     </van-nav-bar>
@@ -68,6 +69,134 @@
         />
         <p class="title">这是联系人姓名</p>
       </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <van-index-anchor index="C" />
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <van-index-anchor index="D" />
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
     </van-index-bar>
   </div>
 </template>
@@ -75,15 +204,22 @@
 <script>
 import { Toast } from "vant";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
 export default {
   setup() {
     const value = ref("");
     const onClickLeft = () => {
       Toast("返回");
     };
+    const router = useRouter();
+    function gotoMessage() {
+      router.push("/home/message");
+    }
     return {
       value,
       onClickLeft,
+      gotoMessage,
     };
   },
 };
@@ -93,6 +229,7 @@ export default {
 @import "../../assets/css/var.less";
 
 .list-card {
+  position: relative;
   height: 60px;
   display: flex;
   justify-content: flex-start;
@@ -104,27 +241,29 @@ export default {
   }
   font-weight: bold;
   color: #333333;
-}
-.van-index-bar {
-  a .van-index-bar__index {
-    line-height: 20px;
+  .num {
+    position: absolute;
+    z-index: 101;
+    display: block;
+    right: 48px;
+    top: 50%;
+    font-size: @xs-font;
+    color: #fff;
+    height: @s-font;
+    min-width: @s-font;
+    background: linear-gradient(-23deg, #ff514b, #ff814e);
+    border-radius: 7px;
+    box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
+    text-align: center;
+    line-height: @s-font;
+    color: #f8f8f8;
   }
 }
-.num {
-  position: absolute;
-  z-index: 101;
-  display: block;
-  right: 15px;
-  top: 50%;
-  font-size: @xs-font;
-  color: #fff;
-  height: @s-font;
-  min-width: @s-font;
-  background: linear-gradient(-23deg, #ff514b, #ff814e);
-  border-radius: 7px;
-  box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
-  text-align: center;
-  line-height: @s-font;
-  color: #f8f8f8;
+.van-index-bar {
+  .van-index-bar__sidebar {
+    .van-index-bar__index {
+      line-height: 20px;
+    }
+  }
 }
 </style>

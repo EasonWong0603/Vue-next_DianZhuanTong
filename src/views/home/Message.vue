@@ -1,7 +1,7 @@
 <template>
   <div class="news">
     <!-- bar导航 -->
-    <van-nav-bar title="消息">
+    <van-nav-bar title="消息" fixed="true" placeholder="true">
       <template #right>
         <van-icon
           :name="
