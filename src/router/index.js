@@ -60,22 +60,22 @@ const routes = [
   },
   // 首页-导师详情页
   {
-    path: "/leaderdetail",
+    path: "/leaderdetail/:id",
     component: () => import("../views/index/Leaderdetail.vue"),
     children: [
       // 首页-导师介绍页
       {
-        path: "/leaderdetail/introduction",
+        path: "/leaderdetail/introduction:id",
         component: () => import("../views/index/leaderdetail/Introduction.vue"),
       },
       // 首页-导师详情页-评价
       {
-        path: "/leaderdetail/evaluation",
+        path: "/leaderdetail/evaluation:id",
         component: () => import("../views/index/leaderdetail/Evaluation.vue"),
       },
       // 首页-导师详情页-动态
       {
-        path: "/leaderdetail/news",
+        path: "/leaderdetail/news:id",
         component: () => import("../views/index/leaderdetail/News.vue"),
       },
     ],
