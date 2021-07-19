@@ -115,17 +115,17 @@ const routes = [
     path: "/register",
     component: () => import("../views/Register.vue"),
   },
-  //设置
+  // 我的-设置页
   {
     path: "/setup",
     component: () => import("../views/mine/Set.vue"),
   },
-  //会员中心
+  // 我的-会员中心页
   {
     path: "/membercenter",
     component: () => import("../views/mine/MemberCenter.vue"),
   },
-  //钱包
+  // 我的-钱包页
   {
     path: "/wallet",
     component: () => import("../views/mine/Wallet.vue"),

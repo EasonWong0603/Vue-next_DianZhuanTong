@@ -150,7 +150,6 @@ export default {
 
 <style lang="less">
 //引入样式
-@import "../../assets/css/reset.less";
 @import "../../assets/css/var.less";
 //个人中心的页面大小和背景色
 .mine {
