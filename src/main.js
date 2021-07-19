@@ -16,11 +16,13 @@ import {
   CellGroup, //单元格
   Icon, // 图标
   Image as VanImage, // 图片
+  Popup, //弹出层
   Toast, // 轻提示
 
   // 表单组件
   Field, //输入框
   Form, //表单
+  Picker, //选择器
   Search, //搜索
 
   // 反馈组件
@@ -59,11 +61,13 @@ app.use(Button); //按钮
 app.use(Cell).use(CellGroup); //单元格
 app.use(Icon); // 图标
 app.use(VanImage); // 图片
+app.use(Popup); //弹出层
 app.use(Toast); // 轻提示
 
 // 表单组件
 app.use(Field); //输入框
 app.use(Form); //表单
+app.use(Picker); //选择器
 app.use(Search); //搜索
 
 // 反馈组件
