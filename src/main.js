@@ -40,15 +40,13 @@ import {
   GridItem, //宫格
   // 业务组件
   Card, // 商品卡片
+  DatetimePicker, //时间选择
+  Popup, //弹出框
+  Picker, //选择器
+  Uploader, //文件上传
 } from "vant";
 
 const app = createApp(App);
-app.use(ShareSheet);
-app.use(Cell);
-app.use(CellGroup);
-app.use(Form);
-app.use(Field);
-app.use(Button);
 // 基础组件
 app.use(Toast); // 轻提示
 app.use(VanImage); // 图片
@@ -63,10 +61,14 @@ app.use(Toast); // 轻提示
 // 表单组件
 app.use(Field); //输入框
 app.use(Form); //表单
+app.use(DatetimePicker); //时间选择
+app.use(Picker); //选择器
+app.use(Uploader); //文件上传
 
 // 反馈组件
 app.use(ActionSheet); // 动作面板
 app.use(ShareSheet); // 分享面板
+app.use(Popup); //弹出框
 // 展示组件
 app.use(Lazyload); //懒加载
 // 导航组件
