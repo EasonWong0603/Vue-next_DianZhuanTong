@@ -57,9 +57,7 @@ import {
 } from "vant";
 
 const app = createApp(App);
-// 基础组件
-app.use(Toast); // 轻提示
-app.use(VanImage); // 图片
+
 // 基础组件
 app.use(Button); //按钮
 app.use(Cell).use(CellGroup); //单元格
@@ -99,4 +97,5 @@ app.use(Tabbar).use(TabbarItem); //标签栏
 // 业务组件
 app.use(Card); // 商品卡片
 app.use(ContactCard); //联系人卡片
+
 app.use(store).use(router).mount("#app");
