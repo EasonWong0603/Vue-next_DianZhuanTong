@@ -31,6 +31,7 @@
 <script>
 import MineHeader from "@/components/mine/MineHeader.vue";
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
@@ -38,9 +39,11 @@ export default {
       username: "",
       password: "",
     });
+    const router = useRouter();
     const onSubmit = (values) => {
       localStorage.setItem("username", values.username);
       localStorage.setItem("password", values.password);
+      router.push("/home");
     };
 
     return {
