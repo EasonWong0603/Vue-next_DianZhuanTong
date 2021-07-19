@@ -87,7 +87,8 @@ export default {
   //个人简介的盒子设置，分上下两部分
   .namediv {
     height: 127px;
-    background: #ffffff url(../../assets/images/mine/pic_shading.png) no-repeat;
+    background: #ffffff url(../../assets/images/mine/pic_shading@3x.png)
+      no-repeat;
     background-position: bottom;
     background-size: 100%;
     box-shadow: 0px 4px 16px 0px rgba(255, 76, 71, 0.21);

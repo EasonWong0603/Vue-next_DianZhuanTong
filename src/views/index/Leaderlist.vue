@@ -13,6 +13,7 @@
       :desc="item.simpleIntro"
       :title="item.name"
       thumb="../index/leaderdetail/images/1231@3x.png"
+      @click="gotogotoDetail(item.id)"
     >
       <template #tags>
         <van-tag plain type="danger" class="tag1">{{
@@ -46,6 +47,16 @@ export default {
     const state = reactive({
       preData: "",
     });
+    // const mylogin = () => {
+    //   getLeaderlistDataApi(param).then((res) => {
+    //     setData(res);
+    //   });
+    //   conole
+    //   ksajfksldjf
+
+    // const res = await getLeaderlistDataApi();
+    // setData(res);
+    // };
 
     const login = async () => {
       const res = await getLeaderlistDataApi();
