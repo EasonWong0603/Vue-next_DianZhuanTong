@@ -50,7 +50,9 @@ import {
   TabbarItem, //标签栏
 
   // 业务组件
-  Card, //商品卡片
+  Card, // 商品卡片
+  DatetimePicker, //时间选择
+  Uploader, //文件上传
   ContactCard, //联系人卡片
 } from "vant";
 
@@ -67,12 +69,16 @@ app.use(Toast); // 轻提示
 // 表单组件
 app.use(Field); //输入框
 app.use(Form); //表单
+app.use(DatetimePicker); //时间选择
+app.use(Picker); //选择器
+app.use(Uploader); //文件上传
 app.use(Picker); //选择器
 app.use(Search); //搜索
 
 // 反馈组件
 app.use(ActionSheet); // 动作面板
 app.use(ShareSheet); // 分享面板
+app.use(Popup); //弹出框
 app.use(SwipeCell); //滑动单元格
 
 // 展示组件
