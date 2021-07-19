@@ -64,7 +64,7 @@
           <img src="../../assets/images/index/Home/09.png" />
           <p>最佳导师</p>
         </li>
-        <li>
+        <li @click="leaderlist">
           <img src="../../assets/images/index/Home/10.png" />
           <p>全部导师</p>
         </li>
@@ -75,8 +75,20 @@
       <!-- 内容头部 -->
       <div class="main-top">
         <!-- 提示信息 -->
-        <img class="tips" src="../../assets/images/index/Home/ts.png" />
-        <p>恭喜李某某获在什么时间位置获得了多少积分，导师为...</p>
+        <van-notice-bar
+          left-icon="volume-o"
+          text="恭喜黄某某在积分大爆炸里抽中了 99999 积分，中将序号为 '010-78469118661' "
+          color="#333"
+          background="#FFF"
+          style="
+            box-shadow: 0px 2px 16px 0px rgba(255, 52, 52, 0.4);
+            width: 90%;
+            margin: 10px auto 20px;
+            border-radius: 5px;
+          "
+        />
+        <!-- <img class="tips" src="../../assets/images/index/Home/ts.png" /> -->
+        <!-- <p>恭喜李某某获在什么时间位置获得了多少积分，导师为...</p> -->
         <!-- 积分兑换 -->
         <img
           class="exchange"
@@ -132,9 +144,9 @@
       <div class="main-bot main">
         <!-- 标题 -->
         <div class="title">
-          <img src="../../assets/images/index/Home/火拷贝2@3x.png" /><span
-            >优秀导师</span
-          >
+          <img src="../../assets/images/index/Home/火拷贝2@3x.png" />
+          <span>优秀导师</span>
+          <i @click="leaderlist">更多 &gt;</i>
         </div>
         <!-- 老师列表 -->
         <div class="list">
@@ -143,7 +155,7 @@
             <li
               v-for="(item, index) in state.teacherList"
               :key="index"
-              @click="leaderlist"
+              @click="leaderdetail(item.id)"
             >
               <!-- 头像 -->
               <div class="character">
@@ -213,9 +225,14 @@ export default {
       route.push("/itemdetail");
     };
 
-    // 跳转导师页面
+    // 跳转导师列表页面
     const leaderlist = () => {
       route.push("/leaderlist");
+    };
+
+    // 跳转导师详情页面
+    const leaderdetail = (id) => {
+      route.push("/leaderdetail/" + id);
     };
 
     // 无此页面
@@ -228,9 +245,7 @@ export default {
 
     const login = async () => {
       const res = await getLeaderpartDataApi();
-      console.log(res);
       state.teacherList = res.data.result;
-      console.log(state.teacherList);
     };
 
     onMounted(() => {
@@ -243,6 +258,7 @@ export default {
       leaderlist,
       itemdetail,
       pointsdetail,
+      leaderdetail,
       love,
       login,
     };
@@ -335,28 +351,6 @@ export default {
   main {
     // 内容头部
     .main-top {
-      position: relative;
-
-      // 提示信息
-      .tips {
-        width: 341px;
-        box-shadow: 0px 2px 16px 0px rgba(255, 52, 52, 0.24);
-        border-radius: 5px;
-        margin: 0 auto 15px;
-      }
-
-      p {
-        width: 80%;
-        font-size: 12px;
-        font-family: PingFang;
-        font-weight: 400;
-        color: #5a5a5a;
-        background: #fff;
-        position: absolute;
-        top: 11px;
-        left: 48px;
-      }
-
       // 积分兑换
       .exchange {
         width: 100%;
@@ -389,7 +383,6 @@ export default {
         font-family: PingFang;
         font-weight: 500;
         color: #333333;
-        line-height: 21px;
       }
     }
 
@@ -451,12 +444,17 @@ export default {
       }
 
       span {
-        margin-left: 6px;
+        margin: 0 61% 0 6px;
         font-size: 17px;
         font-family: PingFang;
         font-weight: 500;
         color: #333333;
-        line-height: 21px;
+      }
+
+      i {
+        font-size: 14px;
+        color: #b16031;
+        font-weight: 600;
       }
     }
   }
