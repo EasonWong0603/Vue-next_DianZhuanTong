@@ -208,7 +208,14 @@ export default {
       .van-tabs__nav--line {
         z-index: 1;
       }
-
+      // 移动条
+      .van-tabs__line {
+        width: 34px;
+        height: 5px;
+        background: linear-gradient(-23deg, #ff514b, #ff814e);
+        box-shadow: 0px 4px 7px 0px rgba(253, 73, 38, 0.49);
+        border-radius: 2px;
+      }
       .imagebox {
         padding-bottom: 760px;
       }
