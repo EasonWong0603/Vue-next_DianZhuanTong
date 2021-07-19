@@ -64,7 +64,7 @@
             /></span>
             <span class="manname">白雅晴</span>
           </div>
-          <p class="comment">
+          <p class="coent">
             人民币汇率双向波动增强，外汇市场主体更加适应和理性。8.11汇改以来，人民币汇率弹性不断提高，波动率已接近主要发达国家货币水平。人民币汇率双向波动成为常态
           </p>
           <!-- banner -->
@@ -136,15 +136,16 @@ export default {
     //评价
     const think = async () => {
       const res = await getPersonlistDataApi();
-      console.log(res);
+      // console.log(res);
       state.talk = res.data.result;
-      console.log(state.talk);
+      // console.log(state.talk);
     };
     //老师详情
     const login = async () => {
       // console.log(router);
-      const res = await getLeaderpartDataApi(router.id);
-      // console.log(router.id);
+      const id = router.currentRoute._value.params.id;
+      const res = await getLeaderpartDataApi(id);
+      console.log(router.currentRoute._value.params.id);
       // console.log(res);
       state.detailContent = res.data.result;
       // console.log(state.detailContent);
@@ -387,11 +388,21 @@ export default {
       height: 40px;
       display: inline-block;
       margin-left: 22px;
+      margin-top: 10px;
       .imangs {
         width: 40px;
         height: 40px;
         margin-top: 16px;
       }
+    }
+    .coent {
+      width: 300px;
+      line-height: 18px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #aaaaaa;
+      margin-left: 22px;
+      margin-top: 18px;
     }
     .banner {
       width: 298px;
