@@ -10,6 +10,7 @@
         left-arrow
         placeholder
         @click-left="onClickLeft"
+        :border="false"
         style="background: transparent"
       />
       <!-- 余额 -->
@@ -24,6 +25,8 @@
           <span>提现</span>
         </div>
       </div>
+      <!-- 云背景 -->
+      <img src="../../assets/images/mine/pic_shading@3x.png" />
     </header>
   </div>
 </template>
@@ -40,6 +43,12 @@ export default {
 #wallet {
   // 头部
   header {
+    height: 237px;
+    background: linear-gradient(-23deg, #ff504b, #ff814e);
+    border-radius: 0px 0px 10px 10px;
+    overflow: hidden;
+    position: relative;
+
     // 导航文字颜色
     .van-nav-bar .van-icon,
     .van-nav-bar__title {
@@ -50,6 +59,7 @@ export default {
     .balance {
       .flex-center-col();
       margin-top: 28px;
+      position: relative;
 
       h2 {
         height: 12px;
@@ -77,13 +87,21 @@ export default {
         line-height: 22px;
         border: 1px solid #f4f4f4;
         border-radius: 13px;
-        background: red;
         font-size: 13px;
         font-family: PingFang;
         font-weight: 500;
         color: #fff;
         margin: 0 15px;
       }
+    }
+
+    // 背景云
+    img {
+      width: 100%;
+      position: absolute;
+      bottom: -20px;
+      left: 0;
+      opacity: 0.6;
     }
   }
 }
