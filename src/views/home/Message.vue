@@ -8,18 +8,21 @@
             require('../../assets/images/index/Message/icon_maillist@3x.png')
           "
           @click="gotoMaillist"
+          size="15"
         />&emsp;
         <van-popover
           v-model:show="showPopover"
           :actions="actions"
           overlay="true"
           placement="bottom-end"
+          style="left: 237px"
         >
           <template #reference>
             <van-icon
               :name="
                 require('../../assets/images/index/Message/ic_join_dialing_norm@3x.png')
               "
+              size="15"
             />
           </template>
         </van-popover>
@@ -137,9 +140,7 @@ export default {
     function gotoMaillist() {
       router.push("/maillist");
     }
-    /* const change = () => {
-      this.$router.push("/maillist");
-    }; */
+
     return {
       actions,
       showPopover,
@@ -207,5 +208,16 @@ export default {
 .van-notice-bar {
   height: 32px;
   font-size: @xs-font;
+}
+.van-nav-bar__content
+  .van-nav-bar__right
+  .van-popover__wrapper
+  .van-badge__wrapper {
+  margin-right: 10px;
+  margin-top: 7px;
+  height: 14px;
+}
+.van-popover .van-popover__arrow {
+  right: var(--van-border-radius-sm);
 }
 </style>

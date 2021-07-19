@@ -115,6 +115,11 @@ const routes = [
     path: "/maillist",
     component: () => import("../views/message/Maillist.vue"),
   },
+  //新的朋友
+  {
+    path: "/newfriend",
+    component: () => import("../views/message/newFriend.vue"),
+  },
   // 登录
   {
     path: "/register",

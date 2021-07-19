@@ -1,51 +1,58 @@
 <template>
   <div>
     <!-- 导航 -->
-    <van-nav-bar title="联系人" fixed="true" placeholder="true">
+    <van-nav-bar
+      title="联系人"
+      :fixed="true"
+      :placeholder="true"
+      :z-index="10000"
+    >
       <template #left>
         <van-icon
           :name="
             require('../../assets/images/index/Message/icon_left_arrow@3x.png')
           "
           size="12"
-          @click="gotoMessage"
+          @click="back"
         />
       </template>
     </van-nav-bar>
     <!-- 搜索 -->
     <van-search v-model="value" placeholder="搜索" />
     <!-- 联系人索引 -->
-    <div class="list-card">
-      <van-image
-        class="shadow"
-        radius="7px"
-        width="45px"
-        height="45px"
-        :src="require('../../assets/images/index/Message/icon_new@3x.png')"
-        style="
-          background: linear-gradient(-23deg, #ff514b, #ff814e);
-          box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
-        "
-      />
-      <p class="title">新的好友</p>
-      <span class="num">&nbsp;1&nbsp;</span>
-    </div>
-    <div class="list-card">
-      <van-image
-        class="shadow"
-        radius="7px"
-        width="45px"
-        height="45px"
-        :src="require('../../assets/images/index/Message/icon_create@3x.png')"
-        style="
-          background: linear-gradient(-23deg, #ffb14b, #ffc34e);
-          box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
-        "
-      />
-      <p class="title">创建群聊</p>
-    </div>
 
-    <van-index-bar size="73px">
+    <van-index-bar :sticky="true" :sticky-offset-top="46">
+      <!-- 新的朋友 -->
+      <div class="list-card" @click="newFriend">
+        <van-image
+          class="shadow"
+          radius="7px"
+          width="45px"
+          height="45px"
+          :src="require('../../assets/images/index/Message/icon_new@3x.png')"
+          style="
+            background: linear-gradient(-23deg, #ff514b, #ff814e);
+            box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
+          "
+        />
+        <p class="title">新的好友</p>
+        <span class="num">&nbsp;1&nbsp;</span>
+      </div>
+      <!-- 创建群聊 -->
+      <div class="list-card">
+        <van-image
+          class="shadow"
+          radius="7px"
+          width="45px"
+          height="45px"
+          :src="require('../../assets/images/index/Message/icon_create@3x.png')"
+          style="
+            background: linear-gradient(-23deg, #ffb14b, #ffc34e);
+            box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
+          "
+        />
+        <p class="title">创建群聊</p>
+      </div>
       <!-- A -->
       <van-index-anchor index="A" />
       <div class="list-card">
@@ -106,6 +113,34 @@
         <p class="title">这是联系人姓名</p>
       </div>
       <van-index-anchor index="C" />
+
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
       <div class="list-card">
         <van-image
           radius="7px"
@@ -152,6 +187,7 @@
         <p class="title">这是联系人姓名</p>
       </div>
       <van-index-anchor index="D" />
+
       <div class="list-card">
         <van-image
           radius="7px"
@@ -197,29 +233,58 @@
         />
         <p class="title">这是联系人姓名</p>
       </div>
-    </van-index-bar>
+      <van-index-anchor index="E" />
+
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div>
+      <div class="list-card">
+        <van-image
+          radius="7px"
+          width="45px"
+          height="45px"
+          src="https://img.yzcdn.cn/vant/cat.jpeg"
+        />
+        <p class="title">这是联系人姓名</p>
+      </div></van-index-bar
+    >
   </div>
 </template>
 
 <script>
-import { Toast } from "vant";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const value = ref("");
-    const onClickLeft = () => {
-      Toast("返回");
-    };
+
     const router = useRouter();
-    function gotoMessage() {
-      router.push("/home/message");
+    function back() {
+      router.back();
     }
+    const newFriend = () => {
+      router.push("/newfriend");
+    };
     return {
       value,
-      onClickLeft,
-      gotoMessage,
+      back,
+      newFriend,
     };
   },
 };
@@ -243,10 +308,9 @@ export default {
   color: #333333;
   .num {
     position: absolute;
-    z-index: 101;
     display: block;
-    right: 48px;
-    top: 50%;
+    right: 30px;
+    top: 50%-7px;
     font-size: @xs-font;
     color: #fff;
     height: @s-font;
@@ -257,13 +321,6 @@ export default {
     text-align: center;
     line-height: @s-font;
     color: #f8f8f8;
-  }
-}
-.van-index-bar {
-  .van-index-bar__sidebar {
-    .van-index-bar__index {
-      line-height: 20px;
-    }
   }
 }
 </style>
