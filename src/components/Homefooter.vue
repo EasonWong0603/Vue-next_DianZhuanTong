@@ -1,6 +1,11 @@
 <template>
   <footer>
-    <van-tabbar v-model="active" :placeholder="true" :border="false">
+    <van-tabbar
+      v-model="active"
+      :placeholder="true"
+      :border="false"
+      @change="onChange"
+    >
       <van-tabbar-item to="/home/index">
         <span>首页</span>
         <template #icon="props">
@@ -58,10 +63,12 @@ import { ref } from "vue";
 
 export default {
   setup() {
-    const active = ref(0);
+    const active = ref(+localStorage.getItem("index"));
+    const onChange = (index) => localStorage.setItem("index", index);
 
     return {
       active,
+      onChange,
     };
   },
 };
