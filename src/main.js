@@ -68,7 +68,7 @@ app.use(Popover);
 
 app.use(IndexBar);
 app.use(IndexAnchor);
-// 基础组件
+
 
 // 基础组件
 app.use(Button); //按钮
