@@ -2,6 +2,7 @@
 // @import "../assets/css/var.less";
 // 前面路径根据自己项目路径位置修改
 
+
 // 字体大小变量
 @xxl-font: 22px;
 @xl-font: 20px;
@@ -27,27 +28,35 @@
 }
 
 // 弹性盒-主轴左右对齐，侧轴居中
-.flex-between() {
+.flex-between(){
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 // 弹性盒-主轴平均分配，侧轴居中
-.flex-around() {
+.flex-around(){
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
 // 弹性盒-侧轴居中
-.flex-center-a() {
+.flex-center-a(){
   display: flex;
   align-items: center;
 }
 
 // 弹性盒-主轴居中
-.flex-center-j() {
+.flex-center-j(){
   display: flex;
   justify-content: center;
+}
+
+// 我的样式
+// 3个盒子的定位，和相对页面的left的距离
+.pos-left-width(){
+  position: absolute;
+  left: 14px;
+  width: 346px;
 }

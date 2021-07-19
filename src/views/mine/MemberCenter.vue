@@ -1,5 +1,5 @@
 <template>
-  <div>itemleader</div>
+  <div>会员中心</div>
 </template>
 
 <script>

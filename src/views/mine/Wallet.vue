@@ -1,5 +1,5 @@
 <template>
-  <div>itemheader</div>
+  <div>我的钱包</div>
 </template>
 
 <script>

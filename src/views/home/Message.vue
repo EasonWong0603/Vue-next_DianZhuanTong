@@ -7,7 +7,7 @@
           :name="
             require('../../assets/images/index/Message/icon_maillist@3x.png')
           "
-          @click="change"
+          @click="gotoMaillist"
         />&emsp;
         <van-popover
           v-model:show="showPopover"
@@ -63,6 +63,10 @@
           width="40"
           height="40"
           :src="require('../../assets/images/index/Message/icon_tutor@3x.png')"
+          style="
+            background: linear-gradient(-23deg, #ff514b, #ff814e);
+            box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
+          "
         />
       </div>
       <van-cell :border="false">
@@ -82,17 +86,18 @@
       <span class="num">&nbsp;1&nbsp;</span>
     </van-swipe-cell>
     <!-- 列表项-系统通知-不可见 -->
-    <van-swipe-cell>
-      <div class="icon-left">
-        <span></span>
-        <van-image
-          round
-          width="40"
-          height="40"
-          :src="require('../../assets/images/index/Message/icon_team@3x.png')"
-          style="background: linear-gradient(-46deg, #ea7be1, #ff7f7f)"
-        />
-      </div>
+    <van-swipe-cell
+      ><van-image
+        round
+        width="40"
+        height="40"
+        :src="require('../../assets/images/index/Message/icon_team@3x.png')"
+        style="
+          background: linear-gradient(-46deg, #ea7be1, #ff7f7f);
+          box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
+        "
+      />
+
       <van-cell :border="false">
         <template #title>
           <div class="title">
@@ -114,7 +119,7 @@
 
 <script>
 import { ref } from "vue";
-
+import { useRouter } from "vue-router";
 export default {
   setup() {
     const showPopover = ref(false);
@@ -128,14 +133,18 @@ export default {
         icon: require("../../assets/images/index/Message/icon_popup_create@3x.png"),
       },
     ];
-
-    const change = () => {
+    const router = useRouter();
+    function gotoMaillist() {
+      router.push("/maillist");
+    }
+    /* const change = () => {
       this.$router.push("/maillist");
-    };
+    }; */
     return {
       actions,
       showPopover,
-      change,
+      // change,
+      gotoMaillist,
     };
   },
 };
@@ -150,27 +159,6 @@ export default {
     left: @xs-font;
     top: @s-font;
     z-index: 100;
-  }
-  .icon-left {
-    position: relative;
-    span {
-      display: block;
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(-23deg, #ff514b, #ff814e);
-      box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
-      border-radius: 56px;
-      z-index: 99;
-      left: @xs-font;
-      top: @s-font;
-    }
-    .van-image {
-      position: absolute;
-      left: @xs-font;
-      top: @s-font;
-      z-index: 100;
-    }
   }
 
   .van-cell {

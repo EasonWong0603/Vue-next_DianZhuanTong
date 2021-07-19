@@ -1,5 +1,5 @@
 <template>
-  <div>itemfooter</div>
+  <div>个人资料设置</div>
 </template>
 
 <script>

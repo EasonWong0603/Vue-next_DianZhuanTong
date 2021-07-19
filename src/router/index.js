@@ -52,28 +52,6 @@ const routes = [
   {
     path: "/itemdetail",
     component: () => import("../views/index/ItemDetail.vue"),
-    children: [
-      // 二级重定向
-      {
-        path: "/itemdetail",
-        redirect: "/itemdetail/overview",
-      },
-      // 首页-项目详情页-项目信息
-      {
-        path: "/itemdetail/overview",
-        component: () => import("../views/index/itemdetail/Overview.vue"),
-      },
-      // 首页-项目详情页-安全保障
-      {
-        path: "/itemdetail/security",
-        component: () => import("../views/index/itemdetail/Security.vue"),
-      },
-      // 首页-项目详情页-指导名师
-      {
-        path: "/itemdetail/itemleader",
-        component: () => import("../views/index/itemdetail/Itemleader.vue"),
-      },
-    ],
   },
   // 首页-导师列表页
   {
@@ -141,6 +119,18 @@ const routes = [
   {
     path: "/legister",
     component: () => import("../views/Legister.vue"),
+  },
+  {
+    path: "/setup",
+    component: () => import("../views/mine/Set.vue"),
+  },
+  {
+    path: "/membercenter",
+    component: () => import("../views/mine/MemberCenter.vue"),
+  },
+  {
+    path: "/wallet",
+    component: () => import("../views/mine/Wallet.vue"),
   },
   // 404页面，将匹配所有内容并将其放在 `$route.params.pathMatch` 下
   {
