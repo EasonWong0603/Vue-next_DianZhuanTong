@@ -1,21 +1,31 @@
 <template>
-  <div>个人资料设置</div>
+  <div class="set">
+    <van-nav-bar title="设置" left-arrow @click-left="onClickLeft" />
+    <van-cell title="个人资料设置" is-link />
+  </div>
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 export default {
-  data() {
-    return {};
+  setup() {
+    const router = useRouter();
+    const onClickLeft = () => {
+      router.push("/home/mine");
+    };
+    return {
+      onClickLeft,
+    };
   },
-
-  components: {},
-
-  computed: {},
-
-  mounted() {},
-
-  methods: {},
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+// 引入样式
+@import "../../assets/css/reset.less";
+@import "../../assets/css/var.less";
+.set {
+  .base-width;
+  height: 812px;
+}
+</style>

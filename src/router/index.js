@@ -112,17 +112,20 @@ const routes = [
   },
   // 登录
   {
-    path: "/legister",
-    component: () => import("../views/Legister.vue"),
+    path: "/register",
+    component: () => import("../views/Register.vue"),
   },
+  // 我的-设置页
   {
     path: "/setup",
     component: () => import("../views/mine/Set.vue"),
   },
+  // 我的-会员中心页
   {
     path: "/membercenter",
     component: () => import("../views/mine/MemberCenter.vue"),
   },
+  // 我的-钱包页
   {
     path: "/wallet",
     component: () => import("../views/mine/Wallet.vue"),

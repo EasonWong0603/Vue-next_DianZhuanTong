@@ -72,35 +72,31 @@ export default {
   height: 49px;
   background: #f8f8f8;
   box-shadow: 0px -4px 8px 0px rgba(198, 198, 198, 0.38);
-}
-
-.van-tabbar-item--active {
-  color: #ff574b;
-}
-
-.van-tabbar-item--active {
-  position: relative;
-  background: #f8f8f8;
-
-  &::after {
-    content: "";
-    display: block;
-    width: 50px;
-    height: 50px;
-    background: #f8f8f8;
-    position: absolute;
-    top: -20px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    border-radius: 50%;
-    box-shadow: 0px -8px 8px 0px rgba(198, 198, 198, 0.38);
-  }
-
-  img {
+  .van-tabbar-item--active {
+    color: #ff574b;
     position: relative;
-    transform: translateY(-10px) scale(2);
-    z-index: 10;
+    background: #f8f8f8;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 50px;
+      background: #f8f8f8;
+      position: absolute;
+      top: -20px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      border-radius: 50%;
+      box-shadow: 0px -8px 8px 0px rgba(198, 198, 198, 0.38);
+    }
+
+    img {
+      position: relative;
+      transform: translateY(-10px) scale(2);
+      z-index: 10;
+    }
   }
 }
 </style>

@@ -11,9 +11,16 @@ import "./assets/css/reset.less";
 // 按需引入vant组件
 import {
   // 基础组件
-  Toast, // 轻提示
+  Button, //按钮
+  Cell, //单元格
+  CellGroup, //单元格
   Icon, // 图标
   Image as VanImage, // 图片
+  Toast, // 轻提示
+
+  // 表单组件
+  Field, //输入框
+  Form, //表单
 
   // 反馈组件
   ActionSheet, // 动作面板
@@ -41,9 +48,15 @@ import {
 const app = createApp(App);
 
 // 基础组件
-app.use(Toast); // 轻提示
+app.use(Button); //按钮
+app.use(Cell).use(CellGroup); //单元格
 app.use(Icon); // 图标
 app.use(VanImage); // 图片
+app.use(Toast); // 轻提示
+
+// 表单组件
+app.use(Field); //输入框
+app.use(Form); //表单
 
 // 反馈组件
 app.use(ActionSheet); // 动作面板
