@@ -1,267 +1,418 @@
 <template>
   <div class="bag">
-    <!-- 导航 -->
-    <van-nav-bar title="详情" left-arrow fixed="true">
-      <template #right>
-        <van-icon name="search" size="18" />
-      </template>
-    </van-nav-bar>
-  </div>
-  <router-view />
-  <!-- 介绍 -->
-  <div class="van-bg" v-for="item in state" :key="item.id">
-    <!-- <p>{{ item }}</p> -->
-    <div class="van-card">
-      <div class="pre-bg"></div>
-      <div class="van-content">
-        <span class="name">{{ item.name }}</span>
-        <img src="../../assets/images/index/leader/redu@3x.png" />
-        <span class="count">{{ item.hot }}</span>
+    <div class="bagcon">
+      <!-- 导航 -->
+      <van-nav-bar title="详情" left-arrow :fixed="true" :placeholder="true">
+        <template #right> </template>
+      </van-nav-bar>
+      <router-view />
+      <!-- 介绍 -->
+      <div class="van-bg" v-for="item in state.detailContent" :key="item.id">
+        <!-- <p>{{ item }}</p> -->
+        <div class="van-card">
+          <div class="pre-bg"><img :src="item.headimg" class="touxiang" /></div>
+          <div class="van-content">
+            <span class="name">{{ item.name }}</span>
+            <img
+              src="../../assets/images/index/leader/redu@3x.png"
+              class="icon"
+            />
+            <span class="count">{{ item.hot }}</span>
+          </div>
+          <span class="num1">风险投资</span>
+          <span class="num2">一级导师</span>
+          <p class="battel">{{ item.simpleIntro2 }}</p>
+          <div class="care">
+            <span>关注{{ item.attention }}</span>
+            <span class="moudle">粉丝{{ item.follower }}</span>
+          </div>
+        </div>
       </div>
-      <span class="num1">风险投资</span>
-      <span class="num2">一级导师</span>
-      <p class="battel">{{ item.simpleIntro2 }}</p>
-      <div class="care">
-        <span>关注{{ item.attention }}</span>
-        <span class="moudle">粉丝{{ item.follower }}</span>
-      </div>
+      <!-- 路由 -->
+      <van-tabs v-model:active="active">
+        <!-- 介绍老师 -->
+        <van-tab title="介绍"
+          ><p class="titl">职业经历</p>
+          <p class="content">
+            针对Facebook公司Libra项目的反对之声正此起彼伏。日前，众议院金融服务委员会已经致函Mark
+            Zuckerberg、Sheryl Sandberg以及Calibra公司首席执行官David
+            Marcus，要求暂停开发Libra项目以及Facebook为此设计的数字钱包Calibra。
+            委员会方面指出，“就目前的情况来看，这类产品可能面向以瑞士为基础的全新全球性金融体系，旨在与美国的货币政策以及美元直接对抗。这不仅影响到Facebook公司超过20亿用户，同时也将在隐私、交易、国家安全以及货币政策等多个领域给投资者、消费者乃至更为广泛的全球经济带来新的问题。”针对Facebook公司Libra项目的反对之声正此起彼伏。日前，众议院金融服务委员会已经致函Mark
+            Zuckerberg、Sheryl Sandberg以及Calibra公司首席执行官David
+            Marcus，要求暂停开发Libra项目以及Facebook为此设计的数字钱包Calibra。
+            委员会方面指出，“就目前的情况来看，这类产品可能面向以瑞士为基础的全新全球性金融体系，旨在与美国的货币政策以及美元直接对抗。这不仅影响到Facebook公司超过20亿用户，同时也将在隐私、交易、国家安全以及货币政策等多个领域给投资者、消费者乃至更为广泛的全球经济带来新的问题。”
+          </p></van-tab
+        >
+        <!-- 评价 -->
+        <van-tab title="评价"
+          ><p class="titl">用户评价</p>
+          <div class="imgname" v-for="item in state.talk" :key="item.id">
+            <span class="coimg"
+              ><img :src="item.headimg" class="comag" />
+            </span>
+            <span class="man">{{ item.name }}</span>
+            <p class="comment">{{ item.content }}</p>
+          </div>
+        </van-tab>
+        <!-- 动态 -->
+        <van-tab title="动态">
+          <div>
+            <span class="coimage"
+              ><img
+                src="../../assets/images/index/leader/touxiang.png"
+                class="imangs"
+            /></span>
+            <span class="manname">白雅晴</span>
+          </div>
+          <p class="comment">
+            人民币汇率双向波动增强，外汇市场主体更加适应和理性。8.11汇改以来，人民币汇率弹性不断提高，波动率已接近主要发达国家货币水平。人民币汇率双向波动成为常态
+          </p>
+          <!-- banner -->
+          <img
+            src="../../assets/images/index/leader/323@3x.png"
+            class="banner"
+          />
+          <!-- 3个icon -->
+          <div class="idea">
+            <span>
+              <img
+                src="../../assets/images/index/leader/zhuanfa@3x.png"
+                class="iconimg"
+              /><span class="word">转发</span>
+            </span>
+            <span>
+              <img
+                src="../../assets/images/index/leader/pinglun@3x.png"
+                class="iconimg"
+              /><span class="word">1324</span>
+            </span>
+            <span>
+              <img
+                src="../../assets/images/index/leader/zan@3x.png"
+                class="iconimg"
+              /><span class="word">2133</span>
+            </span>
+          </div></van-tab
+        >
+      </van-tabs>
+      <!-- 立即咨询 -->
+      <van-action-bar>
+        <van-action-bar-icon text="¥0.00" @click="onClickIcon" class="price" />
+        <van-action-bar-icon
+          text="已有1020人咨询"
+          @click="onClickIcon"
+          class="zixun"
+        />
+        <div class="box">
+          <van-action-bar-button
+            id="but"
+            type="danger"
+            text="立即咨询"
+            @click="onClickButton"
+          />
+        </div>
+      </van-action-bar>
     </div>
   </div>
-  <!-- 路由 -->
-  <van-tabs v-model:active="active">
-    <!-- 介绍老师 -->
-    <van-tab title="介绍"
-      ><p class="titl">职业经历</p>
-      <p class="content">
-        针对Facebook公司Libra项目的反对之声正此起彼伏。日前，众议院金融服务委员会已经致函Mark
-        Zuckerberg、Sheryl Sandberg以及Calibra公司首席执行官David
-        Marcus，要求暂停开发Libra项目以及Facebook为此设计的数字钱包Calibra。
-        委员会方面指出，“就目前的情况来看，这类产品可能面向以瑞士为基础的全新全球性金融体系，旨在与美国的货币政策以及美元直接对抗。这不仅影响到Facebook公司超过20亿用户，同时也将在隐私、交易、国家安全以及货币政策等多个领域给投资者、消费者乃至更为广泛的全球经济带来新的问题。”针对Facebook公司Libra项目的反对之声正此起彼伏。日前，众议院金融服务委员会已经致函Mark
-        Zuckerberg、Sheryl Sandberg以及Calibra公司首席执行官David
-        Marcus，要求暂停开发Libra项目以及Facebook为此设计的数字钱包Calibra。
-        委员会方面指出，“就目前的情况来看，这类产品可能面向以瑞士为基础的全新全球性金融体系，旨在与美国的货币政策以及美元直接对抗。这不仅影响到Facebook公司超过20亿用户，同时也将在隐私、交易、国家安全以及货币政策等多个领域给投资者、消费者乃至更为广泛的全球经济带来新的问题。”
-      </p></van-tab
-    >
-    <!-- 评价 -->
-    <van-tab title="评价"><p class="titl">用户评价</p></van-tab>
-    <!-- 动态 -->
-    <van-tab title="动态">内容 3</van-tab>
-  </van-tabs>
-  <!-- 立即咨询 -->
-  <van-action-bar>
-    <van-action-bar-icon text="¥0.00" @click="onClickIcon" class="price" />
-    <van-action-bar-icon
-      text="已有1020人咨询"
-      @click="onClickIcon"
-      class="zixun"
-    />
-    <div class="box">
-      <van-action-bar-button
-        id="but"
-        type="danger"
-        text="立即咨询"
-        @click="onClickButton"
-      />
-    </div>
-  </van-action-bar>
 </template>
 
 <script>
-import { getLeaderlistDataApi, getFriendDataApi } from "../../../src/utils/api";
+import {
+  getLeaderpartDataApi,
+  getPersonlistDataApi,
+} from "../../../src/utils/api";
 import { reactive, onMounted } from "vue";
 import { ref } from "vue";
+// 引入路由
+import router from "@/router/index.js";
 
 export default {
+  props: ["id"],
   setup() {
     const state = reactive({
-      detailContent: "",
-      // proData: "",
+      detailContent: [],
+      talk: [],
     });
     //评价
     const think = async () => {
-      const res = await getFriendDataApi();
+      const res = await getPersonlistDataApi();
       console.log(res);
-      // state.proData=
+      state.talk = res.data.result;
+      console.log(state.talk);
     };
-    //老师名字等
+    //老师详情
     const login = async () => {
-      const res = await getLeaderlistDataApi();
-      console.log(res.data.result);
-      state.detailContent = res.data.result[0];
+      // console.log(router);
+      const res = await getLeaderpartDataApi(router.id);
+      // console.log(router.id);
+      // console.log(res);
+      state.detailContent = res.data.result;
       // console.log(state.detailContent);
     };
     const active = ref(2);
     onMounted(() => {
-      login();
       think();
+      login();
     });
+
+    const onClickIcon = () => {};
+
+    const onClickButton = () => {};
+
     return {
       login,
       state,
       active,
       think,
+      onClickIcon,
+      onClickButton,
     };
   },
 };
 </script>
 
 <style lang="less">
-// 导航
-.bag {
-  height: 46px;
-}
-// 介绍
-.van-bg {
-  background: #f0f0f0;
+@import "../../assets/css/var.less";
 
-  .van-card {
-    width: 341px;
-    background: white;
+.bag {
+  background-color: rgb(238, 238, 238);
+
+  // 介绍
+  .van-bg {
     margin-top: 12px;
 
-    border-radius: 7px;
-    margin: auto;
-    .pre-bg {
-      width: 70px;
-      height: 70px;
-      background-color: rgb(41, 24, 24);
-      border-radius: 70px;
-      display: inline-block;
-    }
-    .van-content {
-      display: flex;
-    }
+    .van-card {
+      width: 341px;
+      background: white;
+      margin-top: 12px;
 
-    .care {
-      height: 11px;
-      font-size: 12px;
-      font-family: PingFang;
-      font-weight: 500;
-      color: #a5a5a5;
-      line-height: 14px;
-      margin-top: 17px;
-      .moudle {
-        margin-left: 13px;
+      border-radius: 7px 7px 0 0;
+      margin: auto;
+      .pre-bg {
+        width: 70px;
+        height: 70px;
+        background-color: rgb(41, 24, 24);
+        border-radius: 70px;
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        .touxiang {
+          width: 70px;
+          height: 70px;
+          position: absolute;
+          left: 0;
+        }
+      }
+      .van-content {
+        display: flex;
+      }
+
+      .care {
+        height: 11px;
+        font-size: 12px;
+        font-family: PingFang;
+        font-weight: 500;
+        color: #a5a5a5;
+        line-height: 14px;
+        margin-top: 17px;
+        .moudle {
+          margin-left: 13px;
+        }
+      }
+      .battel {
+        width: 270px;
+        height: 21px;
+        font-size: 12px;
+        font-family: PingFang;
+        font-weight: 500;
+        color: #a5a5a5;
+        line-height: 21px;
+        margin-top: 14px;
+      }
+      .name {
+        width: 49px;
+        height: 16px;
+        font-size: 16px;
+        font-family: PingFang;
+        font-weight: bold;
+        color: #333333;
+        line-height: 21px;
+      }
+      .icon {
+        width: 12px;
+        height: 16px;
+        margin-left: 10px;
+      }
+      .count {
+        width: 39px;
+        height: 16px;
+        font-size: 13px;
+        font-family: PingFang;
+        font-weight: 500;
+        color: #f79b24;
+        line-height: 16px;
+        margin-left: 6px;
+        margin-top: 2px;
+      }
+      .num1,
+      .num2 {
+        height: 19px;
+        display: inline-block;
+        font-size: 10px;
+        font-family: PingFang;
+        font-weight: 500;
+        color: #ff504b;
+        line-height: 14px;
+        width: 58px;
+        background: #ffdfdb;
+        box-shadow: 0px 5px 10px 0px rgba(236, 236, 236, 0.49);
+        border-radius: 7px;
+        text-align: center;
+        line-height: 19px;
+        margin-top: 10px;
+      }
+      .num2 {
+        margin-left: 10px;
       }
     }
-    .battel {
-      width: 270px;
-      height: 21px;
-      font-size: 12px;
-      font-family: PingFang;
-      font-weight: 500;
-      color: #a5a5a5;
-      line-height: 21px;
-      margin-top: 14px;
-    }
-    .name {
-      width: 49px;
-      height: 16px;
-      font-size: 16px;
-      font-family: PingFang;
-      font-weight: bold;
-      color: #333333;
-      line-height: 21px;
-    }
-    img {
-      width: 12px;
-      height: 16px;
-      margin-left: 10px;
-    }
-    .count {
-      width: 39px;
-      height: 16px;
-      font-size: 13px;
-      font-family: PingFang;
-      font-weight: 500;
-      color: #f79b24;
-      line-height: 16px;
-      margin-left: 6px;
-      margin-top: 2px;
-    }
-    .num1,
-    .num2 {
-      height: 19px;
-      display: inline-block;
+  }
+
+  //  立即咨询
+  .van-action-bar {
+    height: 52px;
+    .price {
+      width: 50px;
+      height: 13px;
       font-size: 10px;
       font-family: PingFang;
-      font-weight: 500;
-      color: #ff504b;
-      line-height: 14px;
-      width: 58px;
-      background: #ffdfdb;
-      box-shadow: 0px 5px 10px 0px rgba(236, 236, 236, 0.49);
-      border-radius: 7px;
-      text-align: center;
-      line-height: 19px;
-      margin-top: 10px;
+      font-weight: bold;
+      color: #ff554b;
+      display: inline;
+      margin-left: 22px;
     }
-    .num2 {
-      margin-left: 10px;
+    .zixun {
+      width: 95px;
+      height: 11px;
+      font-size: 11px;
+      font-family: PingFang;
+      font-weight: bold;
+      color: #aaaaaa;
+      display: inline;
+    }
+    .box {
+      width: 100px;
+      height: 40px;
+      margin-left: 80px;
+      border-radius: 20px;
+    }
+    #but {
+      --van-action-bar-height: 200px;
+      background: linear-gradient(-23deg, #ff514b, #ff814e);
+      box-shadow: 0px 5px 12px 0px rgba(253, 73, 38, 0.49);
+      border-radius: 20px;
     }
   }
-}
+  //  路由
+  .van-tabs {
+    width: 341px;
+    height: 450px;
+    margin: auto;
+    background: white;
+    //评价
+    .imgname {
+      height: 70px;
+      position: relative;
+      background: white;
 
-//  立即咨询
-.van-action-bar {
-  height: 52px;
-  .price {
-    width: 50px;
-    height: 13px;
-    font-size: 10px;
-    font-family: PingFang;
-    font-weight: bold;
-    color: #ff554b;
-    display: inline;
-    margin-left: 22px;
-  }
-  .zixun {
-    width: 95px;
-    height: 11px;
-    font-size: 11px;
-    font-family: PingFang;
-    font-weight: bold;
-    color: #aaaaaa;
-    display: inline;
-  }
-  .box {
-    width: 100px;
-    height: 40px;
-    margin-left: 80px;
-    border-radius: 20px;
-  }
-  #but {
-    --van-action-bar-height: 200px;
-    background: linear-gradient(-23deg, #ff514b, #ff814e);
-    box-shadow: 0px 5px 12px 0px rgba(253, 73, 38, 0.49);
-    border-radius: 20px;
-  }
-}
-//  路由
-.van-tabs {
-  width: 341px;
-  height: 450px;
-  margin: auto;
-  background: white;
-  .titl {
-    width: 70px;
-    height: 30px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #333333;
-    line-height: 30px;
-    margin-left: 22px;
-    margin-top: 22px;
-  }
-  .content {
-    width: 298px;
-    height: 317px;
-    font-size: 14px;
-    font-family: PingFang;
-    font-weight: bold;
-    color: #aaaaaa;
-    margin-left: 22px;
-    margin-top: 16px;
+      .coimg {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+
+        border-radius: 80px;
+        margin-left: 22px;
+        position: relative;
+        .comag {
+          width: 36px;
+          height: 36px;
+          margin: auto;
+          position: absolute;
+        }
+      }
+      .man {
+        position: absolute;
+        width: 59px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 13px;
+        font-weight: bold;
+        color: #333333;
+        margin-left: 10px;
+        display: inline-block;
+        margin-top: 2px;
+      }
+    }
+
+    .comment {
+      width: 300px;
+      line-height: 18px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #aaaaaa;
+      margin-left: 22px;
+      margin-top: 8px;
+    }
+    //介绍老师
+    .titl {
+      width: 70px;
+      height: 30px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333333;
+      line-height: 30px;
+      margin-left: 22px;
+      margin-top: 22px;
+    }
+    .content {
+      width: 298px;
+      font-size: 14px;
+      font-family: PingFang;
+      font-weight: bold;
+      color: #aaaaaa;
+      margin-left: 22px;
+    }
+    //动态
+    .coimage {
+      width: 40px;
+      height: 40px;
+      display: inline-block;
+      margin-left: 22px;
+      .imangs {
+        width: 40px;
+        height: 40px;
+        margin-top: 16px;
+      }
+    }
+    .banner {
+      width: 298px;
+      height: 130px;
+      margin: auto;
+      margin-top: 14px;
+    }
+    .idea {
+      margin-top: 24px;
+      position: relative;
+      .flex-around();
+      .iconimg {
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        margin-right: 6px;
+      }
+      .word {
+        position: absolute;
+      }
+    }
   }
 }
 </style>
