@@ -4,7 +4,7 @@
     <router-link to="/setup">
       <img
         class="setupdiv"
-        src="../../assets/images/mine/icon_setup.png"
+        src="../../assets/images/mine/icon_setup@3x.png"
         alt=""
       />
     </router-link>
@@ -18,7 +18,7 @@
           <div class="name">{{ username }}</div>
           <!-- 个人简介：一个判断 -->
           <div class="introduction">
-            简介,填写个人设置之后填写，如果没有填写就是暂无介绍
+            简介：{{ message ? message : "暂无介绍" }}
           </div>
         </div>
         <!-- 会员等级 -->
@@ -51,13 +51,13 @@
         class="membercenter"
         :border="false"
         :column-num="3"
-        icon-size="50px"
+        icon-size="30px"
       >
         <!-- 会员 -->
         <van-grid-item
           class="membercenterin"
           to="/membercenter"
-          :icon="require('../../assets/images/mine/icon_vip.png')"
+          :icon="require('../../assets/images/mine/icon_vip@3x.png')"
           text="会员"
         >
         </van-grid-item>
@@ -65,13 +65,13 @@
         <van-grid-item
           class="membercenterin"
           to="/wallet"
-          :icon="require('../../assets/images/mine/icon_wallet.png')"
+          :icon="require('../../assets/images/mine/icon_wallet@3x.png')"
           text="我的钱包"
         />
         <!-- 关注的文章 -->
         <van-grid-item
           class="membercenterin"
-          :icon="require('../../assets/images/mine/icon_article.png')"
+          :icon="require('../../assets/images/mine/icon_article@3x.png')"
           text="关注文章"
         />
       </van-grid>
@@ -82,7 +82,7 @@
       <van-cell
         :center="true"
         :border="false"
-        :icon="require('../../assets/images/mine/icon_honhbao.png')"
+        :icon="require('../../assets/images/mine/icon_honhbao@3x.png')"
         title="我的红包"
         is-link
         value="根据红包页得红包数"
@@ -91,7 +91,7 @@
       <!-- 我的积分 -->
       <van-cell
         :border="false"
-        :icon="require('../../assets/images/mine/icon_wdejifrn.png')"
+        :icon="require('../../assets/images/mine/icon_wdejifrn@3x.png')"
         title="我的积分"
         is-link
         value=""
@@ -99,7 +99,7 @@
       <!-- 邀请好友 -->
       <van-cell
         :border="false"
-        :icon="require('../../assets/images/mine/icon_haoyou.png')"
+        :icon="require('../../assets/images/mine/icon_haoyou@3x.png')"
         title="邀请好友"
         is-link
         value=""
@@ -107,7 +107,7 @@
       <!-- 我的银行卡 -->
       <van-cell
         :border="false"
-        :icon="require('../../assets/images/mine/icon_yinhangka.png')"
+        :icon="require('../../assets/images/mine/icon_yinhangka@3x.png')"
         title="我的银行卡"
         is-link
         value=""
@@ -115,12 +115,11 @@
       <!-- 帮助中心 -->
       <van-cell
         :border="false"
-        :icon="require('../../assets/images/mine/icon_help.png')"
+        :icon="require('../../assets/images/mine/icon_help@3x.png')"
         title="帮助中心"
         is-link
         value=""
       />
-      <button @click="loadComments">btn</button>
     </div>
   </div>
 </template>
@@ -130,16 +129,12 @@ import { ref } from "vue";
 import MineHeader from "@/components/mine/MineHeader.vue";
 export default {
   setup() {
-    let username = ref();
-    const loadComments = () => {
-      username = localStorage.getItem("username");
-      console.log(localStorage.getItem("username"));
-      console.log(username);
-    };
+    let username = ref(localStorage.getItem("username")); //获取名字
+    let message = ref(localStorage.getItem("message")); //获取个性签名
 
     return {
-      loadComments,
       username,
+      message,
     };
   },
   components: {
@@ -150,10 +145,11 @@ export default {
 
 <style lang="less">
 //引入样式
+@import "../../assets/css/reset.less";
 @import "../../assets/css/var.less";
 //个人中心的页面大小和背景色
 .mine {
-  width: 375px;
+  .base-width();
   height: 812px;
   background: #ffffff;
   position: relative;
@@ -168,7 +164,8 @@ export default {
   //个人简介的盒子设置，分上下两部分
   .namediv {
     height: 171px;
-    background: #ffffff url(../../assets/images/mine/pic_shading.png) no-repeat;
+    background: #ffffff url(../../assets/images/mine/pic_shading@3x.png)
+      no-repeat;
     background-position: bottom;
     background-size: 100%;
     box-shadow: 0px 4px 16px 0px rgba(255, 76, 71, 0.21);

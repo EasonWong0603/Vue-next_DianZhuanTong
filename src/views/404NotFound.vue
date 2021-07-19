@@ -48,5 +48,9 @@ export default {
     margin-top: 40px;
     margin-bottom: 100px;
   }
+  .van-button--large {
+    width: 80%;
+    border-radius: 25px;
+  }
 }
 </style>

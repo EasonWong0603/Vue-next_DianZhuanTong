@@ -1,7 +1,13 @@
 <template>
   <div class="set">
     <van-nav-bar title="设置" left-arrow @click-left="onClickLeft" />
-    <van-cell class="selfset" :center="true" title="个人资料设置" is-link />
+    <van-cell
+      class="selfset"
+      :center="true"
+      title="个人资料设置"
+      to="/SetSelfInformation"
+      is-link
+    />
     <div class="setother">
       <van-cell :center="true" @click="clean" title="清除缓存" is-link />
       <van-cell :center="true" title="关于我们" is-link />
