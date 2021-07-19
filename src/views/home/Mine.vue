@@ -15,7 +15,7 @@
         <!-- 介绍的盒子 -->
         <div class="information">
           <!-- 名字，获取注册时的名字 -->
-          <div class="name">本地储存，获取名字</div>
+          <div class="name">{{ username }}</div>
           <!-- 个人简介：一个判断 -->
           <div class="introduction">
             简介,填写个人设置之后填写，如果没有填写就是暂无介绍
@@ -80,12 +80,13 @@
     <div class="memberwelfare">
       <!-- 我的红包 -->
       <van-cell
+        :center="true"
         :border="false"
         :icon="require('../../assets/images/mine/icon_honhbao.png')"
         title="我的红包"
         is-link
         value="根据红包页得红包数"
-        url="index.vue"
+        url="Wallet.vue"
       />
       <!-- 我的积分 -->
       <van-cell
@@ -119,17 +120,28 @@
         is-link
         value=""
       />
+      <button @click="loadComments">btn</button>
     </div>
   </div>
 </template>
 
 <script>
+import { ref } from "vue";
 import MineHeader from "@/components/mine/MineHeader.vue";
 export default {
-  data() {
-    return {};
-  },
+  setup() {
+    let username = ref();
+    const loadComments = () => {
+      username = localStorage.getItem("username");
+      console.log(localStorage.getItem("username"));
+      console.log(username);
+    };
 
+    return {
+      loadComments,
+      username,
+    };
+  },
   components: {
     MineHeader,
   },
@@ -256,7 +268,6 @@ export default {
     // 会员中心
     .pos-left-width;
     height: 82px;
-    background: #c70606;
     box-shadow: 0px 0px 16px 0px rgba(235, 195, 194, 0.48);
     border-radius: 10px;
     top: 286px;

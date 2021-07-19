@@ -18,14 +18,11 @@ import {
   Toast, // 轻提示
   Icon, // 图标
   Image as VanImage, // 图片
-
   // 反馈组件
   ActionSheet, // 动作面板
   ShareSheet, // 分享面板
-
   // 展示组件
   Lazyload, //懒加载
-
   // 导航组件
   ActionBar, // 动作栏
   ActionBarIcon, // 动作栏
@@ -37,41 +34,26 @@ import {
   TabbarItem, //标签栏
   Grid, //宫格
   GridItem, //宫格
-
   // 业务组件
   Card, // 商品卡片
 } from "vant";
 
 const app = createApp(App);
-app.use(Grid);
-app.use(GridItem);
-app.use(Toast);
-app.use(Icon);
-app.use(NavBar);
 app.use(ShareSheet);
-app.use(Card);
-app.use(ActionBar);
-app.use(ActionBarIcon);
-app.use(ActionBarButton);
 app.use(Cell);
 app.use(CellGroup);
 app.use(Form);
 app.use(Field);
 app.use(Button);
 // 基础组件
-
-// 基础组件
 app.use(Toast); // 轻提示
 app.use(Icon); // 图标
 app.use(VanImage); // 图片
-
 // 反馈组件
 app.use(ActionSheet); // 动作面板
 app.use(ShareSheet); // 分享面板
-
 // 展示组件
 app.use(Lazyload); //懒加载
-
 // 导航组件
 app.use(ActionBar).use(ActionBarIcon).use(ActionBarButton); // 动作栏
 app.use(Grid).use(GridItem); //宫格
