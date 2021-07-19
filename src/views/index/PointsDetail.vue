@@ -105,8 +105,8 @@ export default {
         duration: 0,
       });
       setTimeout(() => {
-        Toast.fail("网络错误");
-      }, 4000);
+        Toast.fail("网络不太好 检查下网络吧");
+      }, 3000);
     };
 
     // 点击后退上个页面

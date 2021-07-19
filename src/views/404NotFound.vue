@@ -1,28 +1,52 @@
 <template>
   <div id="NotFound">
-    <img
-      src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fhbimg.huabanimg.com%2F820debe8b6be1c8b143500696694685b9d17e26e48749-2x6FOf_fw658&refer=http%3A%2F%2Fhbimg.huabanimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1629198364&t=6c81303b777ea70f2332f650948630aa"
-    />
+    <img src="../assets/images/404page.png" />
+    <h2>404</h2>
+    <p>抱歉，页面不见了</p>
+    <van-button
+      type="warning"
+      size="large"
+      color="linear-gradient(to right, #ff6034, #ee0a24)"
+      @click="goback"
+      >返回</van-button
+    >
   </div>
 </template>
+<script>
+// 引入路由
+import router from "@/router/index.js";
 
-<style lang="less">
-// 引入自定义样式
-@import "../assets/css/var.less";
+export default {
+  setup() {
+    // 点击后退上个页面
+    const goback = () => {
+      router.go(-1);
+    };
 
-html,
-body {
-  height: 100%;
-}
+    return { goback };
+  },
+};
+</script>
 
+<style lang="less" scoped>
 #NotFound {
   height: 100%;
-  .flex-center();
-  background: #7ebeed;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   img {
     width: 100%;
-    // height: 100%;
+  }
+  h2 {
+    font-size: 30px;
+    margin-top: 20px;
+  }
+  p {
+    font-size: 22px;
+    color: grey;
+    margin-top: 40px;
+    margin-bottom: 100px;
   }
 }
 </style>

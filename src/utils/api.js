@@ -8,6 +8,7 @@ export const getLeaderlistDataApi = (data) =>
   //request                        //params
   http.post("/index/leaderlist", data);
 //const { data,code=='200' } = res
+
 // 首页导师列表切片接口
 export const getLeaderpartDataApi = (data) =>
   http.post("/index/leaderpart", data);

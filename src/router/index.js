@@ -110,6 +110,11 @@ const routes = [
       },
     ],
   },
+  //联系人列表
+  {
+    path: "/maillist",
+    component: () => import("../views/message/Maillist.vue"),
+  },
   // 登录
   {
     path: "/register",
