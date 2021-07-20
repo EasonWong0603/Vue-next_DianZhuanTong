@@ -55,11 +55,15 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p>导师消息</p>
-              <span class="time">5月14日</span>
+              <p style="font-size: 14px; color: #282828">导师消息</p>
+              <span class="time" style="color: #6b6b6b">5月14日</span>
             </div>
           </template>
-          <template #value> <p>欢迎李三加入点赚通导师行列中</p></template>
+          <template #value>
+            <p style="font-size: 12px; color: #6b6b6b">
+              欢迎李三加入点赚通导师行列中
+            </p></template
+          >
           <i></i>
         </van-cell>
         <template #right>
@@ -84,11 +88,15 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p>团队消息</p>
-              <span class="time">5月14日</span>
+              <p style="font-size: 14px; color: #282828">团队消息</p>
+              <span class="time" style="color: #6b6b6b">5月14日</span>
             </div>
           </template>
-          <template #value> <p>新人入列，欢迎交流</p></template>
+          <template #value>
+            <p style="font-size: 12px; color: #6b6b6b">
+              新人入列，欢迎交流
+            </p></template
+          >
           <i></i>
         </van-cell>
         <template #right>
@@ -98,24 +106,21 @@
         <span class="num">1</span>
       </van-swipe-cell>
       <!-- 渲染列表项 -->
-      <van-swipe-cell
-        v-for="(item, index) in state.listData"
-        :key="index"
-        @click="onClose"
-        :stop-propagation="true"
-      >
+      <van-swipe-cell v-for="(item, index) in state.listData" :key="index">
         <div class="zhezhao" @click="gotoChatroom(item.id)"></div>
         <div class="zhezhao2" @click="dellist(item, index)"></div>
         <van-image round width="40" height="40" :src="item.headimg" />
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p>{{ item.name }}</p>
-              <span class="time">{{ item.time }}</span>
+              <p style="font-size: 14px; color: #282828">{{ item.name }}</p>
+              <span class="time" style="color: #6b6b6b">{{ item.time }}</span>
             </div>
           </template>
           <template #value>
-            <p>{{ item.content }}</p></template
+            <p style="font-size: 12px; color: #6b6b6b">
+              {{ item.content }}
+            </p></template
           >
           <i></i>
         </van-cell>

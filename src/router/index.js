@@ -118,7 +118,7 @@ const routes = [
   //消息-新的朋友
   {
     path: "/newfriend",
-    component: () => import("../views/message/newFriend.vue"),
+    component: () => import("../views/message/Newfriend.vue"),
   },
   //消息-聊天室
   {
@@ -128,8 +128,9 @@ const routes = [
   },
   //消息-聊天详情
   {
-    path: "/chatdetails",
+    path: "/chatdetails/:id",
     component: () => import("../views/message/Chatdetails.vue"),
+    props: true,
   },
 
   // 登录
