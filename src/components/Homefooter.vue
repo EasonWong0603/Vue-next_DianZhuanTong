@@ -4,7 +4,7 @@
       v-model="active"
       :placeholder="true"
       :border="false"
-      @change="onChange"
+      :route="true"
     >
       <!-- 首页图标 -->
       <van-tabbar-item to="/home/index">
@@ -58,8 +58,7 @@ import { ref } from "vue";
 export default {
   setup() {
     // 激活当前页面图标，通过存取index，使其在4个不同路由页面正确激活
-    const active = ref(+localStorage.getItem("index"));
-    const onChange = (index) => localStorage.setItem("index", index);
+    const active = ref(0);
 
     // 自定义图标路径
     const homeicon = {
@@ -75,7 +74,6 @@ export default {
 
     return {
       active,
-      onChange,
       homeicon,
     };
   },

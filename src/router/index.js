@@ -20,37 +20,21 @@ const routes = [
       {
         path: "/home/index",
         component: () => import("../views/home/Index.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 0);
-          next();
-        },
       },
       // 社区
       {
         path: "/home/community",
         component: () => import("../views/home/Community.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 1);
-          next();
-        },
       },
       // 消息
       {
         path: "/home/message",
         component: () => import("../views/home/Message.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 2);
-          next();
-        },
       },
       // 我的
       {
         path: "/home/mine",
         component: () => import("../views/home/Mine.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 3);
-          next();
-        },
       },
     ],
   },
