@@ -175,6 +175,11 @@ const routes = [
     path: "/feedback",
     component: () => import("../views/mine/Feedback.vue"),
   },
+  // 我的-银行卡
+  {
+    path: "/bankcard",
+    component: () => import("../views/mine/Bankcard.vue"),
+  },
   // 404页面，将匹配所有内容并将其放在 `$route.params.pathMatch` 下
   {
     path: "/:pathMatch(.*)*",
