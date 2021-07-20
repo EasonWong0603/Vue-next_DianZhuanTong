@@ -25,7 +25,7 @@
           <span @click="withdrawal">提现</span>
         </div>
         <!-- 充值 -->
-        <van-popup v-model:show="show">
+        <van-popup v-model:show="shows">
           <h3>要充值多少呢</h3>
           <input type="number" placeholder="请输入金额" v-model="money" />
           <van-button round type="primary" color="#07C160" @click="click"
@@ -42,7 +42,7 @@
       <van-cell
         title="银行卡"
         :icon="require('../../assets/images/mine/1.png')"
-        @click="noserve"
+        @click="bankcard"
       >
         <!-- 使用 right-icon 插槽来自定义右侧图标 -->
         <template #right-icon>
@@ -64,13 +64,16 @@
       <van-cell
         title="二维码"
         :icon="require('../../assets/images/mine/3.png')"
-        @click="noserve"
+        @click="showPopup"
       >
         <!-- 使用 right-icon 插槽来自定义右侧图标 -->
         <template #right-icon>
           <van-icon name="arrow" />
         </template>
       </van-cell>
+      <van-popup v-model:show="show"
+        ><img class="ewm" src="../../assets/images/mine/ewm.png"
+      /></van-popup>
     </main>
   </div>
 </template>
@@ -89,11 +92,12 @@ export default {
     };
 
     // 显示隐藏
+    const shows = ref(false);
     const show = ref(false);
 
     // 弹出
     const recharge = () => {
-      show.value = true;
+      shows.value = true;
     };
 
     // 钱
@@ -110,12 +114,15 @@ export default {
         obtain.value = (+obtain.value + +moneys).toFixed(2);
         money.value = "";
         show.value = false;
+        Toast.success("充值成功");
+      } else {
+        Toast.fail("请输入金额");
       }
     };
 
     // 提现
     const withdrawal = () => {
-      Toast.fail("设备不支持");
+      Toast.fail("设备正在升级敬请期待");
     };
 
     // 服务停用
@@ -123,15 +130,28 @@ export default {
       Toast.fail("服务已停用");
     };
 
+    // 二维码
+    const showPopup = () => {
+      show.value = true;
+    };
+
+    // 银行卡
+    const bankcard = () => {
+      router.push("/bankcard");
+    };
+
     return {
       onClickLeft, // 导航左箭头
       show, // 显示隐藏
+      shows, // 显示隐藏
+      showPopup, // 二维码
       recharge, // 弹出
       click, // 充值
       money, // 钱
       obtain, // 取钱
       withdrawal, // 体现
       noserve, // 服务停用
+      bankcard, // 银行卡
     };
   },
 };
@@ -269,6 +289,15 @@ export default {
     // 左图标右边距
     .van-cell__left-icon {
       margin-right: 8px;
+    }
+
+    // 二维码
+    .ewm {
+      width: 101%;
+    }
+
+    .van-popup--center {
+      width: 80%;
     }
   }
 }

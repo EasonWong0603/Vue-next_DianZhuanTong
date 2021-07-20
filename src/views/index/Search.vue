@@ -2,18 +2,18 @@
   <!-- 搜索栏 -->
   <div class="inpu">
     <img
-      src="../../../assets/images/index/leader/矢量智能对象@3x.png"
+      src="../../assets/images/index/leader/矢量智能对象@3x.png"
       @click="goLast"
     />
     <input type="text" v-model="state.textValue" />
     <button @click="handleClick">搜索</button>
   </div>
   <!-- 搜索记录 -->
-  <div class="listcont">
+  <div class="listcfont">
     <p class="searc">搜索记录</p>
     <div class="remove">
       <img
-        src="../../../assets/images/index/leader/shanchu.png"
+        src="../../assets/images/index/leader/shanchu.png"
         class="delet"
       />删除
     </div>
@@ -102,7 +102,16 @@ export default {
     position: absolute;
   }
 }
+.app {
+  width: 100%;
+}
 //搜索记录
+.listcfont {
+  width: 100%;
+  padding: 0 21px;
+  position: relative;
+  margin-top: 24px;
+}
 p {
   width: 60px;
   height: 14px;
@@ -110,9 +119,12 @@ p {
   font-family: PingFang;
   font-weight: bold;
   color: #333333;
-  line-height: 14px;
-  margin-left: 22px;
-  margin-top: 24px;
+  display: inline-block;
+}
+.remove {
+  position: absolute;
+  right: 21px;
+  display: inline-block;
 }
 .liconet {
   width: 66px;
@@ -130,16 +142,12 @@ p {
   .searc {
     display: inline-block;
   }
-  .remove {
-    position: absolute;
-    margin-left: 400px;
-    display: inline-block;
-  }
 }
 .delet {
   width: 11px;
   height: 13px;
   display: inline-block;
+  margin: 4px 4px 0 0;
 }
 //热门搜索
 .hotlist {
@@ -157,6 +165,9 @@ p {
     margin-left: 20px;
     color: white;
     font-weight: 500;
+  }
+  p {
+    margin-left: 21px;
   }
 }
 </style>

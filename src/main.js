@@ -24,6 +24,8 @@ import {
   Form, //表单
   Picker, //选择器
   Search, //搜索
+  Checkbox, //复选框
+  CheckboxGroup, //复选框
 
   // 反馈组件
   ActionSheet, // 动作面板
@@ -35,6 +37,7 @@ import {
   Lazyload, //懒加载
   NoticeBar, //通知栏
   Popover, //气泡弹出框
+  Progress, //进度条
 
   // 导航组件
   ActionBar, //动作栏
@@ -75,6 +78,7 @@ app.use(Picker); //选择器
 app.use(Uploader); //文件上传
 app.use(Picker); //选择器
 app.use(Search); //搜索
+app.use(Checkbox).use(CheckboxGroup); //复选框
 
 // 反馈组件
 app.use(ActionSheet); // 动作面板
@@ -87,6 +91,7 @@ app.use(Overlay); //遮罩层
 app.use(Lazyload); //懒加载
 app.use(NoticeBar); //通知栏
 app.use(Popover); //气泡弹出框
+app.use(Progress); //进度条
 
 // 导航组件
 app.use(ActionBar).use(ActionBarIcon).use(ActionBarButton); // 动作栏

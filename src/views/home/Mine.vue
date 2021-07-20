@@ -10,8 +10,16 @@
     </router-link>
     <div class="namediv">
       <div class="namedivtop">
-        <!-- 头像 判断，如果设置了头像就是设置的头像，没有就放自定义图片-->
-        <div class="photo"></div>
+        <!-- 头像的盒子 判断，如果设置了头像就是设置的头像，没有就放自定义图片-->
+        <div class="photo">
+          <!-- 头像 -->
+          <van-image
+            round
+            width="57px"
+            height="57px"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          />
+        </div>
         <!-- 介绍的盒子 -->
         <div class="information">
           <!-- 名字，获取注册时的名字 -->
@@ -29,17 +37,17 @@
       <div class="namedivbottom">
         <!-- 收藏  -->
         <div class="collect">
-          <h3 class="num">12</h3>
+          <h3 class="num">0</h3>
           <span>收藏</span>
         </div>
         <!-- 关注 -->
         <div class="attention">
-          <h3 class="num">06</h3>
+          <h3 class="num">{{ follower ? follower : "0" }}</h3>
           <span>关注</span>
         </div>
         <!-- 粉丝 -->
         <div class="fans">
-          <h3 class="num">88</h3>
+          <h3 class="num">0</h3>
           <span>粉丝</span>
         </div>
       </div>
@@ -102,6 +110,14 @@
         title="邀请好友"
         is-link
         value=""
+        @click="showShare = true"
+      />
+      <!-- 邀请好友的分享面板 -->
+      <van-share-sheet
+        v-model:show="showShare"
+        title="立即分享给好友"
+        :options="options"
+        @select="onSelect"
       />
       <!-- 我的银行卡 -->
       <van-cell
@@ -118,6 +134,7 @@
         title="帮助中心"
         is-link
         value=""
+        to="/feedback"
       />
     </div>
   </div>
@@ -125,15 +142,37 @@
 
 <script>
 import { ref } from "vue";
+// 引入所需的组件
+import { Toast } from "vant";
 import MineHeader from "@/components/mine/MineHeader.vue";
 export default {
   setup() {
-    let username = ref(localStorage.getItem("username")); //获取名字
-    let message = ref(localStorage.getItem("message")); //获取个性签名
+    const username = ref(localStorage.getItem("username")); //获取名字
+    const message = ref(localStorage.getItem("message")); //获取个性签名
+    const follower = ref(localStorage.getItem("follower")); //获取关注数
+    const showShare = ref(false);
+    const options = [
+      { name: "微信", icon: "wechat" },
+      { name: "微博", icon: "weibo" },
+      { name: "复制链接", icon: "link" },
+      { name: "分享海报", icon: "poster" },
+      { name: "二维码", icon: "qrcode" },
+    ];
+
+    const onSelect = (option) => {
+      Toast(option.name);
+      showShare.value = false;
+    };
 
     return {
-      username,
-      message,
+      username, //名字
+      message, //个签
+      follower, //关注
+
+      //ShareSheet 分享面板-3个
+      options,
+      onSelect,
+      showShare,
     };
   },
   components: {
@@ -219,7 +258,7 @@ export default {
         position: absolute;
         left: 257px;
         top: 22px;
-        font-size: 12px;
+        font-size: @xs-font;
         font-family: PingFang;
         font-weight: 400;
         color: #ffffff;
@@ -250,7 +289,7 @@ export default {
         display: inline-block;
         width: 25px;
         height: 12px;
-        font-size: 12px;
+        font-size: @xs-font;
         font-family: PingFang;
         font-weight: 400;
         color: #8a8a8a;
@@ -275,7 +314,7 @@ export default {
       // 会员中心标题的颜色
       // width: 24px;
       height: 12px;
-      font-size: 12px;
+      font-size: @xs-font;
       font-family: PingFang;
       font-weight: 500;
       color: #333333;

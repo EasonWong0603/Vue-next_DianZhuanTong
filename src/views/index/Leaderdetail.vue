@@ -5,7 +5,7 @@
       <!-- 导航 -->
       <div class="nav">
         <img
-          src="../../assets/images/index/leader/矢量智能对象@3x.png"
+          src="../../assets/images/index/leader/tuceng1.png"
           @click="onClickLeft"
           class="last"
         />
@@ -34,8 +34,8 @@
           <span class="num2">一级导师</span>
           <p class="battel">{{ state.detailContent.simpleIntro2 }}</p>
           <div class="care">
-            <span>关注{{ state.detailContent.attention }}</span>
-            <span class="moudle">粉丝{{ state.detailContent.follower }}</span>
+            <span>关注 {{ state.detailContent.attention }}</span>
+            <span class="moudle">粉丝 {{ state.detailContent.follower }}</span>
           </div>
         </div>
       </div>
@@ -194,8 +194,7 @@ export default {
 .bag {
   .bagimg {
     width: 100%;
-    display: inline;
-    display: ansolute;
+    position: absolute;
   }
   //导航栏
   .nav {
@@ -209,17 +208,18 @@ export default {
       margin-top: 15px;
     }
     .money {
-      width: 68px;
       height: 16px;
       font-size: 16px;
       font-family: PingFang;
       font-weight: 500;
-      color: #323232;
       margin-left: 144px;
       position: absolute;
       top: 13px;
+      width: 34px;
+      color: #ffffff;
     }
     .search {
+      height: 3px;
       display: inline-block;
       left: 342px;
       margin-top: 15px;
@@ -228,15 +228,16 @@ export default {
   }
   // 介绍
   .van-bg {
-    margin-top: 12px;
+    margin-top: 90px;
 
     .van-card {
       width: 341px;
+      height: 170px;
       background: white;
       margin-top: 12px;
-
       border-radius: 7px 7px 0 0;
       margin: auto;
+      position: relative;
       .pre-bg {
         width: 70px;
         height: 70px;
@@ -244,17 +245,20 @@ export default {
         border-radius: 70px;
         display: inline-block;
         overflow: hidden;
-        position: relative;
+        position: absolute;
+        top: -40px;
+        border: 1px solid rgb(255, 255, 255);
+        // position: relative;
         box-shadow: 0px 6px 7px 0px rgba(255, 84, 68, 0.26);
         .touxiang {
           width: 70px;
           height: 70px;
           position: absolute;
-          left: 0;
         }
       }
       .van-content {
         display: flex;
+        margin-top: 32px;
       }
 
       .care {
@@ -264,7 +268,7 @@ export default {
         font-weight: 500;
         color: #a5a5a5;
         line-height: 14px;
-        margin-top: 17px;
+        margin-top: 16px;
         .moudle {
           margin-left: 13px;
         }
@@ -316,7 +320,7 @@ export default {
         width: 58px;
         background: #ffdfdb;
         box-shadow: 0px 5px 10px 0px rgba(236, 236, 236, 0.49);
-        border-radius: 7px;
+        border-radius: 20px;
         text-align: center;
         line-height: 19px;
         margin-top: 10px;
@@ -368,6 +372,7 @@ export default {
     height: 450px;
     margin: auto;
     background: white;
+
     //评价
     .imgname {
       height: 70px;
@@ -424,12 +429,13 @@ export default {
       margin-top: 22px;
     }
     .content {
-      width: 298px;
-      font-size: 14px;
+      width: 300px;
       font-family: PingFang;
       font-weight: bold;
       color: #aaaaaa;
       margin-left: 22px;
+      height: 370px;
+      font-size: 13px;
     }
     //动态
     .coimage {

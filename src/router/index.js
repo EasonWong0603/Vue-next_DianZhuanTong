@@ -20,37 +20,21 @@ const routes = [
       {
         path: "/home/index",
         component: () => import("../views/home/Index.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 0);
-          next();
-        },
       },
       // 社区
       {
         path: "/home/community",
         component: () => import("../views/home/Community.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 1);
-          next();
-        },
       },
       // 消息
       {
         path: "/home/message",
         component: () => import("../views/home/Message.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 2);
-          next();
-        },
       },
       // 我的
       {
         path: "/home/mine",
         component: () => import("../views/home/Mine.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 3);
-          next();
-        },
       },
     ],
   },
@@ -74,27 +58,15 @@ const routes = [
     path: "/leaderlist",
     component: () => import("../views/index/Leaderlist.vue"),
   },
+  // 首页-导师列表-搜索
+  {
+    path: "/search",
+    component: () => import("../views/index/Search.vue"),
+  },
   // 首页-导师详情页
   {
     path: "/leaderdetail/:id",
     component: () => import("../views/index/Leaderdetail.vue"),
-    children: [
-      // 首页-导师介绍页
-      {
-        path: "/leaderdetail/introduction:id",
-        component: () => import("../views/index/leaderdetail/Introduction.vue"),
-      },
-      // 首页-导师详情页-评价
-      {
-        path: "/leaderdetail/evaluation:id",
-        component: () => import("../views/index/leaderdetail/Search.vue"),
-      },
-      // 首页-导师详情页-动态
-      {
-        path: "/leaderdetail/news:id",
-        component: () => import("../views/index/leaderdetail/News.vue"),
-      },
-    ],
   },
 
   // 社区-社区详情页
@@ -126,21 +98,32 @@ const routes = [
       },
     ],
   },
-  // 联系人列表
+  // 消息-联系人列表
   {
     path: "/maillist",
     component: () => import("../views/message/Maillist.vue"),
   },
-  // 登录
-  {
-    path: "/search",
-    component: () => import("../views/index/leaderdetail/Search.vue"),
-  },
-  //新的朋友
   // 新的朋友
   {
     path: "/newfriend",
-    component: () => import("../views/message/newFriend.vue"),
+    component: () => import("../views/message/Newfriend.vue"),
+  },
+  // 消息-聊天室
+  {
+    path: "/chatroom/:id",
+    component: () => import("../views/message/Chatroom.vue"),
+    props: true,
+  },
+  // 消息-聊天详情
+  {
+    path: "/chatdetails/:id",
+    component: () => import("../views/message/Chatdetails.vue"),
+    props: true,
+  },
+  // 消息-群聊
+  {
+    path: "/groupchat",
+    component: () => import("../views/message/Groupchat.vue"),
   },
   // 登录
   {
@@ -171,6 +154,16 @@ const routes = [
   {
     path: "/wallet",
     component: () => import("../views/mine/Wallet.vue"),
+  },
+  // 我的-意见反馈
+  {
+    path: "/feedback",
+    component: () => import("../views/mine/Feedback.vue"),
+  },
+  // 我的-银行卡
+  {
+    path: "/bankcard",
+    component: () => import("../views/mine/Bankcard.vue"),
   },
   // 404页面，将匹配所有内容并将其放在 `$route.params.pathMatch` 下
   {

@@ -117,7 +117,7 @@ export default {
       });
       setTimeout(() => {
         if (!already.value) {
-          localStorage.setItem("follower", -1);
+          localStorage.setItem("follower", 0);
         }
 
         already.value = !already.value;

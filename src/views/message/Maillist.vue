@@ -36,7 +36,7 @@
           "
         />
         <p class="title">新的好友</p>
-        <span class="num">&nbsp;1&nbsp;</span>
+        <span class="num">2</span>
       </div>
       <!-- 创建群聊 -->
       <div class="list-card">
@@ -275,9 +275,9 @@ export default {
     const value = ref("");
 
     const router = useRouter();
-    function back() {
+    const back = () => {
       router.back();
-    }
+    };
     const newFriend = () => {
       router.push("/newfriend");
     };
@@ -307,11 +307,15 @@ export default {
   font-weight: bold;
   color: #333333;
   .num {
+    line-height: @s-font;
+    padding: 0 3px 0 3px;
     position: absolute;
+    z-index: 101;
     display: block;
-    right: 30px;
-    top: 50%-7px;
-    font-size: @xs-font;
+    right: 15px;
+    top: 50%;
+    font-size: @xxs-font;
+    font-weight: 100;
     color: #fff;
     height: @s-font;
     min-width: @s-font;
@@ -319,7 +323,6 @@ export default {
     border-radius: 7px;
     box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
     text-align: center;
-    line-height: @s-font;
     color: #f8f8f8;
   }
 }

@@ -10,8 +10,9 @@
     <van-cell-group inset border="true">
       <van-field
         v-model="state.value"
-        right-icon="clear"
-        placeholder="显示图标"
+        placeholder="更改昵称"
+        :clearable="true"
+        :maxlength="7"
       />
     </van-cell-group>
   </div>
@@ -34,7 +35,6 @@ export default {
     const onClickRight = () => {
       router.push("/SetSelfInformation");
       username = localStorage.setItem("username", state.value);
-      console.log(state.value);
     };
 
     // 姓名的文本输入
@@ -58,6 +58,9 @@ export default {
   .base-width();
   height: 812px;
   position: relative;
+  .van-nav-bar__text {
+    color: #494949;
+  }
   .van-cell-group {
     .base-width();
     margin: 16px 0 0 0;
