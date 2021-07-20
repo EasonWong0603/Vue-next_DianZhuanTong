@@ -197,7 +197,7 @@
 
 <script>
 import { getLeaderpartDataApi } from "../../../src/utils/api";
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, onBeforeMount } from "vue";
 import route from "../../router/index";
 // 引入所需的组件
 import { Toast } from "vant";
@@ -249,6 +249,10 @@ export default {
 
     onMounted(() => {
       login();
+    });
+
+    onBeforeMount(() => {
+      localStorage.setItem("index", 0);
     });
 
     return {

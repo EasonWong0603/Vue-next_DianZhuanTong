@@ -57,7 +57,7 @@ import { ref } from "vue";
 
 export default {
   setup() {
-    // 激活当前页面图标，通过存取index，使其在4个不同路由页面正确激活
+    // 激活首页面图标
     const active = ref(0);
 
     // 自定义图标路径

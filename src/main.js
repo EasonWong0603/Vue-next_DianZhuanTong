@@ -24,6 +24,8 @@ import {
   Form, //表单
   Picker, //选择器
   Search, //搜索
+  Checkbox, //复选框
+  CheckboxGroup, //复选框
 
   // 反馈组件
   ActionSheet, // 动作面板
@@ -75,6 +77,7 @@ app.use(Picker); //选择器
 app.use(Uploader); //文件上传
 app.use(Picker); //选择器
 app.use(Search); //搜索
+app.use(Checkbox).use(CheckboxGroup); //复选框
 
 // 反馈组件
 app.use(ActionSheet); // 动作面板

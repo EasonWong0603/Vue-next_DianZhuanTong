@@ -120,6 +120,10 @@ const routes = [
     path: "/newfriend",
     component: () => import("../views/message/newFriend.vue"),
   },
+  {
+    path: "/groupchat",
+    component: () => import("../views/message/Groupchat.vue"),
+  },
   // 登录
   {
     path: "/register",
@@ -149,6 +153,16 @@ const routes = [
   {
     path: "/wallet",
     component: () => import("../views/mine/Wallet.vue"),
+  },
+  // 我的-意见反馈
+  {
+    path: "/feedback",
+    component: () => import("../views/mine/Feedback.vue"),
+  },
+  // 我的-银行卡
+  {
+    path: "/bankcard",
+    component: () => import("../views/mine/Bankcard.vue"),
   },
   // 404页面，将匹配所有内容并将其放在 `$route.params.pathMatch` 下
   {

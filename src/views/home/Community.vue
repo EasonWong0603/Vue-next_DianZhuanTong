@@ -68,6 +68,7 @@
 
 <script>
 import { getPersonlistDataApi } from "@/utils/api";
+
 export default {
   name: "community",
   data() {
@@ -77,6 +78,10 @@ export default {
   },
   mounted() {
     this.getRatedData();
+  },
+  // 别删，底部导航需要用到
+  beforeMount() {
+    localStorage.setItem("index", 1);
   },
   methods: {
     async getRatedData() {
