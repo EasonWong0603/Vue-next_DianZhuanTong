@@ -202,15 +202,12 @@ export default {
       showPopover,
       // change,
       gotoMaillist,
-<<<<<<< HEAD
       gotoChatroom,
       dellist,
       randerList,
       state,
       onSelect,
-=======
       onBeforeMount,
->>>>>>> 2624e1857ff5e3aef7506eb922b3b0ba37ab0fe6
     };
   },
 };
