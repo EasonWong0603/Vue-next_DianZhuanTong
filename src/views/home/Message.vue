@@ -1,7 +1,7 @@
 <template>
   <div class="news">
     <!-- bar导航 -->
-    <van-nav-bar title="消息" fixed="true" placeholder="true">
+    <van-nav-bar title="消息" :fixed="true" :placeholder="true">
       <template #right>
         <van-icon
           :name="
@@ -33,96 +33,99 @@
     <van-notice-bar mode="closeable" color="#FF504B;"
       >技术是开发它的人的共同灵魂。</van-notice-bar
     >
-    <!-- 列表项 -->
-    <van-swipe-cell>
-      <van-image
-        round
-        width="40"
-        height="40"
-        src="https://img.yzcdn.cn/vant/cat.jpeg"
-      />
-      <van-cell :border="false">
-        <template #title>
-          <div class="title">
-            <p>这是标题这是标题</p>
-            <span class="time">时间</span>
-          </div>
-        </template>
-        <template #value> <p>这是内容</p></template>
-        <i></i>
-      </van-cell>
-      <template #right>
-        <van-button square type="danger" text="删除" />
-      </template>
-      <!-- 未读消息提醒 -->
-      <span class="num">&nbsp;1&nbsp;</span>
-    </van-swipe-cell>
     <!-- 列表项-系统通知-不可见 -->
-    <van-swipe-cell>
-      <div class="icon-left">
-        <span></span>
-        <van-image
+    <div class="list">
+      <van-swipe-cell>
+        <div class="icon-left">
+          <span></span>
+          <van-image
+            round
+            width="40"
+            height="40"
+            :src="
+              require('../../assets/images/index/Message/icon_tutor@3x.png')
+            "
+            style="
+              background: linear-gradient(-23deg, #ff514b, #ff814e);
+              box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
+            "
+          />
+        </div>
+        <van-cell :border="false">
+          <template #title>
+            <div class="title">
+              <p>这是标题这是标题</p>
+              <span class="time">时间</span>
+            </div>
+          </template>
+          <template #value> <p>这是内容</p></template>
+          <i></i>
+        </van-cell>
+        <template #right>
+          <van-button square type="danger" text="删除" />
+        </template>
+        <!-- 未读消息提醒 -->
+        <!-- <span class="num">&nbsp;1&nbsp;</span> -->
+      </van-swipe-cell>
+      <!-- 列表项-系统通知-不可见 -->
+      <van-swipe-cell
+        ><van-image
           round
           width="40"
           height="40"
-          :src="require('../../assets/images/index/Message/icon_tutor@3x.png')"
+          :src="require('../../assets/images/index/Message/icon_team@3x.png')"
           style="
-            background: linear-gradient(-23deg, #ff514b, #ff814e);
+            background: linear-gradient(-46deg, #ea7be1, #ff7f7f);
             box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
           "
         />
-      </div>
-      <van-cell :border="false">
-        <template #title>
-          <div class="title">
-            <p>这是标题这是标题</p>
-            <span class="time">时间</span>
-          </div>
-        </template>
-        <template #value> <p>这是内容</p></template>
-        <i></i>
-      </van-cell>
-      <template #right>
-        <van-button square type="danger" text="删除" />
-      </template>
-      <!-- 未读消息提醒 -->
-      <span class="num">&nbsp;1&nbsp;</span>
-    </van-swipe-cell>
-    <!-- 列表项-系统通知-不可见 -->
-    <van-swipe-cell
-      ><van-image
-        round
-        width="40"
-        height="40"
-        :src="require('../../assets/images/index/Message/icon_team@3x.png')"
-        style="
-          background: linear-gradient(-46deg, #ea7be1, #ff7f7f);
-          box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
-        "
-      />
 
-      <van-cell :border="false">
-        <template #title>
-          <div class="title">
-            <p>这是标题这是标题</p>
-            <span class="time">时间</span>
-          </div>
+        <van-cell :border="false">
+          <template #title>
+            <div class="title">
+              <p>这是标题这是标题</p>
+              <span class="time">时间</span>
+            </div>
+          </template>
+          <template #value> <p>这是内容</p></template>
+          <i></i>
+        </van-cell>
+        <template #right>
+          <van-button square type="danger" text="删除" />
         </template>
-        <template #value> <p>这是内容</p></template>
-        <i></i>
-      </van-cell>
-      <template #right>
-        <van-button square type="danger" text="删除" />
-      </template>
-      <!-- 未读消息提醒 -->
-      <span class="num">&nbsp;1&nbsp;</span>
-    </van-swipe-cell>
+        <!-- 未读消息提醒 -->
+        <!-- <span class="num">&nbsp;1&nbsp;</span> -->
+      </van-swipe-cell>
+      <!-- 列表项 -->
+      <van-swipe-cell @click="onClose" v-for="item in mesList" :key="item.id">
+        <van-image round width="40" height="40" :src="item.headimg" />
+        <van-cell :border="false">
+          <template #title>
+            <div class="title">
+              <p @click="gotoChatroom">{{ item.name }}</p>
+              <span class="time">时间</span>
+            </div>
+          </template>
+          <template #value> <p>这是内容</p></template>
+          <i></i>
+        </van-cell>
+        <template #right>
+          <van-button square type="danger" text="删除" />
+        </template>
+        <!-- 未读消息提醒 -->
+        <span class="num">&nbsp;99+&nbsp;</span>
+      </van-swipe-cell>
+    </div>
   </div>
 </template>
 
 <script>
+import { getFriendDataApi } from "../../utils/api";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+
+import { reactive, onMounted } from "vue";
+
 export default {
   setup() {
     const showPopover = ref(false);
@@ -130,6 +133,7 @@ export default {
       {
         text: "添加朋友",
         icon: require("../../assets/images/index/Message/icon_popup_add@3x.png"),
+        /* select: router.push("/maillist"), */
       },
       {
         text: "创建群聊",
@@ -137,15 +141,47 @@ export default {
       },
     ];
     const router = useRouter();
-    function gotoMaillist() {
-      router.push("/maillist");
-    }
 
+    //跳转联系人列表
+    const gotoMaillist = () => {
+      router.push("/maillist");
+    };
+    //跳转聊天室
+    const gotoChatroom = () => {
+      router.push("/chatroom");
+    };
+
+    //点击删除
+    const onClose = (event) => {
+      if (event === "right") {
+        console.log(1);
+      }
+    };
+    //渲染消息数据
+    /*    const listData = () => {
+      const res = getFriendDataApi(1);
+      console.log(res);
+    }; */
+    const state = reactive({
+      mesList: "",
+    });
+
+    const listData = async () => {
+      const res = await getFriendDataApi();
+      state.mesList = res.data.result;
+      console.log(res.data.result);
+    };
+    onMounted(() => {
+      listData();
+    });
     return {
       actions,
       showPopover,
       // change,
       gotoMaillist,
+      gotoChatroom,
+      onClose,
+      listData,
     };
   },
 };

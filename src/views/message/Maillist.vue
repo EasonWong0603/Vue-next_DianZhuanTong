@@ -275,9 +275,9 @@ export default {
     const value = ref("");
 
     const router = useRouter();
-    function back() {
+    const back = () => {
       router.back();
-    }
+    };
     const newFriend = () => {
       router.push("/newfriend");
     };
