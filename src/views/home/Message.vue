@@ -9,13 +9,14 @@
           "
           @click="gotoMaillist"
           size="15"
-        />&emsp;
+        />&emsp;<!-- 气泡弹出框 -->
         <van-popover
           v-model:show="showPopover"
           :actions="actions"
-          overlay="true"
+          :overlay="true"
           placement="bottom-end"
           style="left: 237px"
+          @select="onSelect"
         >
           <template #reference>
             <van-icon
@@ -54,18 +55,18 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p>这是标题这是标题</p>
-              <span class="time">时间</span>
+              <p>导师消息</p>
+              <span class="time">5月14日</span>
             </div>
           </template>
-          <template #value> <p>这是内容</p></template>
+          <template #value> <p>欢迎李三加入点赚通导师行列中</p></template>
           <i></i>
         </van-cell>
         <template #right>
           <van-button square type="danger" text="删除" />
         </template>
         <!-- 未读消息提醒 -->
-        <!-- <span class="num">&nbsp;1&nbsp;</span> -->
+        <!-- <span class="num"></span> -->
       </van-swipe-cell>
       <!-- 列表项-系统通知-不可见 -->
       <van-swipe-cell
@@ -83,44 +84,53 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p>这是标题这是标题</p>
-              <span class="time">时间</span>
+              <p>团队消息</p>
+              <span class="time">5月14日</span>
             </div>
           </template>
-          <template #value> <p>这是内容</p></template>
+          <template #value> <p>新人入列，欢迎交流</p></template>
           <i></i>
         </van-cell>
         <template #right>
           <van-button square type="danger" text="删除" />
         </template>
         <!-- 未读消息提醒 -->
-        <!-- <span class="num">&nbsp;1&nbsp;</span> -->
+        <span class="num">1</span>
       </van-swipe-cell>
-      <!-- 列表项 -->
-      <van-swipe-cell @click="onClose" v-for="item in mesList" :key="item.id">
+      <!-- 渲染列表项 -->
+      <van-swipe-cell
+        v-for="(item, index) in state.listData"
+        :key="index"
+        @click="onClose"
+        :stop-propagation="true"
+      >
+        <div class="zhezhao" @click="gotoChatroom(item.id)"></div>
+        <div class="zhezhao2" @click="dellist(item, index)"></div>
         <van-image round width="40" height="40" :src="item.headimg" />
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p @click="gotoChatroom">{{ item.name }}</p>
-              <span class="time">时间</span>
+              <p>{{ item.name }}</p>
+              <span class="time">{{ item.time }}</span>
             </div>
           </template>
-          <template #value> <p>这是内容</p></template>
+          <template #value>
+            <p>{{ item.content }}</p></template
+          >
           <i></i>
         </van-cell>
         <template #right>
           <van-button square type="danger" text="删除" />
         </template>
         <!-- 未读消息提醒 -->
-        <span class="num">&nbsp;99+&nbsp;</span>
+        <span class="num">99+</span>
       </van-swipe-cell>
     </div>
   </div>
 </template>
 
 <script>
-import { getFriendDataApi } from "../../utils/api";
+import { getPersonlistDataApi } from "../../utils/api";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 
@@ -141,47 +151,52 @@ export default {
       },
     ];
     const router = useRouter();
+    //渲染消息数据
+    const state = reactive({
+      listData: "",
+    });
+
+    const randerList = async () => {
+      const res = await getPersonlistDataApi();
+      state.listData = res.data.result;
+    };
+    onMounted(() => {
+      randerList();
+    });
 
     //跳转联系人列表
     const gotoMaillist = () => {
       router.push("/maillist");
     };
     //跳转聊天室
-    const gotoChatroom = () => {
-      router.push("/chatroom");
+    const gotoChatroom = (id) => {
+      router.push("/chatroom/" + id);
     };
 
-    //点击删除
-    const onClose = (event) => {
-      if (event === "right") {
-        console.log(1);
+    //滑动点击删除
+
+    const dellist = (item, index) => {
+      state.listData.splice(index, 1);
+    };
+    //气泡弹出框跳转
+    const onSelect = (action) => {
+      if (action.text === "添加朋友") {
+        router.push("/newfriend");
+      } else {
+        router.push("/groupchat");
       }
     };
-    //渲染消息数据
-    /*    const listData = () => {
-      const res = getFriendDataApi(1);
-      console.log(res);
-    }; */
-    const state = reactive({
-      mesList: "",
-    });
 
-    const listData = async () => {
-      const res = await getFriendDataApi();
-      state.mesList = res.data.result;
-      console.log(res.data.result);
-    };
-    onMounted(() => {
-      listData();
-    });
     return {
       actions,
       showPopover,
       // change,
       gotoMaillist,
       gotoChatroom,
-      onClose,
-      listData,
+      dellist,
+      randerList,
+      state,
+      onSelect,
     };
   },
 };
@@ -191,6 +206,23 @@ export default {
 @import "../../assets/css/var.less";
 .van-swipe-cell {
   display: flex;
+  position: relative;
+  .zhezhao {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10000;
+    top: 0px;
+    left: 0px;
+  }
+  .zhezhao2 {
+    width: 80px;
+    height: 100%;
+    position: absolute;
+    z-index: 10000;
+    top: 0px;
+    right: -80px;
+  }
   .van-image {
     position: absolute;
     left: @xs-font;
@@ -224,12 +256,15 @@ export default {
     background: linear-gradient(-23deg, #ff514b, #ff814e);
   }
   .num {
+    line-height: @s-font;
+    padding: 0 3px 0 3px;
     position: absolute;
     z-index: 101;
     display: block;
     right: 15px;
     top: 50%;
-    font-size: @xs-font;
+    font-size: @xxs-font;
+    font-weight: 100;
     color: #fff;
     height: @s-font;
     min-width: @s-font;
@@ -237,7 +272,6 @@ export default {
     border-radius: 7px;
     box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
     text-align: center;
-    line-height: @s-font;
     color: #f8f8f8;
   }
 }
