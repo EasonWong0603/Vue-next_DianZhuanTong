@@ -3,7 +3,7 @@
     <!-- 导航栏 -->
     <van-nav-bar title="投资理财" left-arrow>
       <template #right>
-        <van-icon name="search" size="18" />
+        <van-icon name="search" size="18" @click="gotosearch" />
       </template>
     </van-nav-bar>
     <!-- 导师详情 -->
@@ -70,6 +70,9 @@ export default {
     const gotoDetail = (id) => {
       router.push("/leaderdetail/" + id);
     };
+    const gotosearch = () => {
+      router.push("/search");
+    };
 
     onMounted(() => {
       login();
@@ -79,6 +82,7 @@ export default {
       login,
       state,
       gotoDetail,
+      gotosearch,
     };
   },
 };
@@ -94,6 +98,21 @@ export default {
     border-radius: 4px;
     margin: auto;
     margin-top: 20px !important;
+    .van-image__img {
+      width: 100px;
+      height: 113px;
+      margin-top: 7px;
+      margin-right: 8px;
+      display: inline-block;
+    }
+    .van-card__title,
+    .tag1,
+    .van-card__desc {
+      margin-left: 16px;
+    }
+    .van-card__title {
+      margin-top: 8px;
+    }
     .van-card__content {
       position: relative;
     }
@@ -112,10 +131,10 @@ export default {
       height: 30px;
       white-space: normal;
       overflow: initial;
-      margin-top: 36px;
+      margin-top: 20px;
     }
     .van-card__desc {
-      height: 31px;
+      height: 21px;
       font-size: 12px;
       font-family: PingFang;
       font-weight: 500;
@@ -128,21 +147,22 @@ export default {
       background: linear-gradient(#ff814e, #ff504b);
       display: inline-block;
       width: 60px;
-      height: 21px;
+      height: 18px;
       position: absolute;
       bottom: 40px;
       color: white;
       border-radius: 50px;
-      line-height: 21px;
+      line-height: 18px;
       text-align: center;
+      margin-top: 8px;
     }
 
     .tag2 {
-      margin-left: 70px;
+      margin-left: 80px;
     }
     .image {
       position: absolute;
-      margin-left: 54px;
+      margin-left: 74px;
       margin-top: 18px;
       display: flex;
 
@@ -153,6 +173,7 @@ export default {
       }
       span {
         margin-left: 10px;
+        margin-top: 2px;
       }
       .van-image__img {
         width: 100%;

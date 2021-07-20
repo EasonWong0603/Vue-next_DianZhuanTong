@@ -144,11 +144,11 @@ export default {
     const login = async () => {
       // console.log(router);
       const id = router.currentRoute._value.params.id;
-      const res = await getLeaderpartDataApi(id);
+      const res = await getLeaderpartDataApi({ id });
       console.log(router.currentRoute._value.params.id);
-      // console.log(res);
+      console.log(res);
       state.detailContent = res.data.result;
-      // console.log(state.detailContent);
+      console.log(state.detailContent);
     };
     const active = ref(2);
     onMounted(() => {
@@ -394,6 +394,14 @@ export default {
         height: 40px;
         margin-top: 16px;
       }
+    }
+    .manname {
+      width: 38px;
+      height: 13px;
+      font-size: 13px;
+      font-family: PingFang;
+      font-weight: bold;
+      color: #333333;
     }
     .coent {
       width: 300px;
