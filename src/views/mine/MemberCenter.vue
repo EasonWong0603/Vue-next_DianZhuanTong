@@ -64,7 +64,7 @@
           </div>
           <div class="growthdiv">
             <div class="growthvalue">
-              <h3 class="num">{{ growthvalue }}</h3>
+              <h3 class="num" @v-model="growthvalue">{{ growthvalue }}</h3>
               <span>成长值</span>
             </div>
             <!-- 积分 -->
@@ -89,6 +89,7 @@
           <span>{{ growthvalue + "/" }}</span>
           <i>1000</i>
         </div>
+        <!-- 进度条 -->
         <van-progress
           color="#FF504B"
           :percentage="growthvalue / 10"
@@ -97,6 +98,7 @@
           :show-pivot="false"
         />
         <ul>
+          <!-- 根据成长值调整钻的点亮 -->
           <li>
             <img
               class="orange"
@@ -176,10 +178,38 @@
             />
           </li>
         </ul>
+        <!-- 距离下个级别的提示 -->
         <div class="next">
           距离下一等级换需要 <span>{{ 1000 - growthvalue }}</span> 成长值
         </div>
       </div>
+    </div>
+    <!-- 我的特权 -->
+    <van-cell
+      class="privilege"
+      :center="true"
+      title="我的特权"
+      is-link
+      @click="showPopup"
+    />
+    <van-popup v-model:show="show">我的特权</van-popup>
+    <!-- 成长任务 -->
+    <div class="growthtask">
+      <van-cell value="成长任务" />
+      <van-cell>
+        初次绑定账号
+        <span>+15成长值</span>
+        <van-button
+          round
+          type="primary"
+          size="small"
+          icon-position="right"
+          text="领取15成长值"
+          @click="getvalue"
+        ></van-button>
+      </van-cell>
+      <van-cell value="上传头像" />
+      <van-cell value="特别感谢" />
     </div>
   </div>
 </template>
@@ -192,17 +222,32 @@ export default {
   setup() {
     let username = ref(localStorage.getItem("username")); //获取本地姓名
     const message = ref(localStorage.getItem("message")); //获取个性签名
-    const growthvalue = ref(300); //成长值的值
+    let growthvalue = ref(300); //成长值的值
     const router = useRouter();
+    // 返回上个界面
     const onClickLeft = () => {
       router.push("/home/mine");
+    };
+    // 我的特权的弹出层
+    const show = ref(false);
+    const showPopup = () => {
+      show.value = true;
+    };
+    // 绑定账号,获取成长值
+    const getvalue = () => {
+      router.push("/SetSelfInformation");
+      growthvalue.value += 15;
+      console.log(growthvalue);
     };
 
     return {
       username,
       message,
-      growthvalue,
+      growthvalue, //成长值的值
       onClickLeft, //返回
+      showPopup, //弹出
+      show,
+      getvalue, //
     };
   },
   components: {
@@ -433,6 +478,22 @@ export default {
         }
       }
     }
+  }
+  .privilege {
+    //我的特权
+    width: 346px;
+    height: 56px;
+    background: #ffffff;
+    box-shadow: 0px 0px 16px 0px rgba(221, 207, 199, 0.57);
+    border-radius: 10px;
+    margin: 16px 14px 0 15px;
+  }
+  .van-popup {
+    //我的特权弹出层大小
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
   }
 }
 </style>
