@@ -29,6 +29,7 @@ import {
   ActionSheet, // 动作面板
   ShareSheet, //分享面板
   SwipeCell, //滑动单元格
+  Overlay, //遮罩层
 
   // 展示组件
   Lazyload, //懒加载
@@ -80,6 +81,7 @@ app.use(ActionSheet); // 动作面板
 app.use(ShareSheet); // 分享面板
 app.use(Popup); //弹出框
 app.use(SwipeCell); //滑动单元格
+app.use(Overlay); //遮罩层
 
 // 展示组件
 app.use(Lazyload); //懒加载
