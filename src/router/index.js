@@ -60,22 +60,22 @@ const routes = [
   },
   // 首页-导师详情页
   {
-    path: "/leaderdetail",
+    path: "/leaderdetail/:id",
     component: () => import("../views/index/Leaderdetail.vue"),
     children: [
       // 首页-导师介绍页
       {
-        path: "/leaderdetail/introduction",
+        path: "/leaderdetail/introduction:id",
         component: () => import("../views/index/leaderdetail/Introduction.vue"),
       },
       // 首页-导师详情页-评价
       {
-        path: "/leaderdetail/evaluation",
+        path: "/leaderdetail/evaluation:id",
         component: () => import("../views/index/leaderdetail/Evaluation.vue"),
       },
       // 首页-导师详情页-动态
       {
-        path: "/leaderdetail/news",
+        path: "/leaderdetail/news:id",
         component: () => import("../views/index/leaderdetail/News.vue"),
       },
     ],
@@ -110,6 +110,16 @@ const routes = [
       },
     ],
   },
+  // 联系人列表
+  {
+    path: "/maillist",
+    component: () => import("../views/message/Maillist.vue"),
+  },
+  // 新的朋友
+  {
+    path: "/newfriend",
+    component: () => import("../views/message/newFriend.vue"),
+  },
   // 登录
   {
     path: "/register",
@@ -119,6 +129,16 @@ const routes = [
   {
     path: "/setup",
     component: () => import("../views/mine/Set.vue"),
+  },
+  // 我的-设置-个人信息设置
+  {
+    path: "/SetSelfInformation",
+    component: () => import("../views/mine/SetSelfInformation.vue"),
+  },
+  // 我的-设置-个人信息设置-昵称
+  {
+    path: "/setname",
+    component: () => import("../views/mine/SetName.vue"),
   },
   // 我的-会员中心页
   {

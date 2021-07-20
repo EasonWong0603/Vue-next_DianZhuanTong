@@ -21,7 +21,13 @@
       />
     </van-cell-group>
     <div style="margin: 16px">
-      <van-button round block type="primary" native-type="submit">
+      <van-button
+        round
+        block
+        type="primary"
+        native-type="submit"
+        color="linear-gradient(-23deg, #ff514b, #ff814e)"
+      >
         提交
       </van-button>
     </div>
@@ -43,6 +49,7 @@ export default {
     const onSubmit = (values) => {
       localStorage.setItem("username", values.username);
       localStorage.setItem("password", values.password);
+      localStorage.setItem("index", 0);
       router.push("/home");
     };
 
