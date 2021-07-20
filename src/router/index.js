@@ -110,16 +110,29 @@ const routes = [
       },
     ],
   },
-  // 联系人列表
+  //消息-联系人列表
   {
     path: "/maillist",
     component: () => import("../views/message/Maillist.vue"),
   },
-  // 新的朋友
+  //消息-新的朋友
   {
     path: "/newfriend",
-    component: () => import("../views/message/newFriend.vue"),
+    component: () => import("../views/message/Newfriend.vue"),
   },
+  //消息-聊天室
+  {
+    path: "/chatroom/:id",
+    component: () => import("../views/message/Chatroom.vue"),
+    props: true,
+  },
+  //消息-聊天详情
+  {
+    path: "/chatdetails/:id",
+    component: () => import("../views/message/Chatdetails.vue"),
+    props: true,
+  },
+
   {
     path: "/groupchat",
     component: () => import("../views/message/Groupchat.vue"),
