@@ -31,14 +31,16 @@
         <li class="chart4">
           你还在纠结大盘不放量吗？其实你知道A股已经开始裂变了吗？美股化顿，港股化已是不争的事实，A股不需要全面上涨，全面放量，现在就是精准打击、精准放量阶段，只有集中力量把科技、金融撬动，才能有效刺激放量。多方位的刺激与地域性的差异导致全面放量现在就是精准打击
         </li>
-        <li class="chart5"></li>
+        <li class="chart5">
+          <img src="../../assets/images/community/323@3x.png" />
+        </li>
         <li class="chart6">
           <span>转发</span>
           <span>1234</span>
           <span>2345</span>
         </li>
       </ul>
-      <ul class="chart">
+      <ul class="chart charts">
         <li class="chart1"></li>
         <li class="chart2">
           <p>阳光的阳光</p>
@@ -46,15 +48,15 @@
         </li>
         <li class="chart3">+ 关注</li>
         <li class="chart4">
-          你还在纠结大盘不放量吗？其实你知道A股已经开始裂变了吗？美股化顿，港股化已是不争的事实，A股不需要全面上涨，全面放量，现在就是精准打击、精准放量阶段，只有集中力量把科技、金融撬动，才能有效刺激放量。多方位的刺激与地域性的差异导致全面放量现在就是精准打击
+          人民币汇率双向波动增强，外汇市场主体更加适应和理性。8.11汇改以来，人民币汇率弹性不断提高，波动率已接近主要发达国家货币水平。人民币汇率双向波动成为常态，贬值压力得到及时释放。当前个人购汇更加平稳，企业对外直接投资更加理性有序.....
         </li>
-        <li class="chart5">
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
+        <li class="chart5 chart5s">
+          <img src="../../assets/images/community/timg@1.png" alt="" style="" />
+          <img src="../../assets/images/community/timg@2.png" alt="" />
+          <img src="../../assets/images/community/timg@3.png" alt="" />
+          <img src="../../assets/images/community/timg@4.png" alt="" />
+          <img src="../../assets/images/community/timg@5.png" alt="" />
+          <img src="../../assets/images/community/timg@6.png" alt="" />
         </li>
         <li class="chart6">
           <span>转发</span>
@@ -63,6 +65,10 @@
         </li>
       </ul>
     </div>
+    <div class="foot">
+      <img src="../../assets/images/community/dzt@3x.png" alt="" />
+    </div>
+    <div>到底了哟</div>
   </div>
 </template>
 
@@ -82,7 +88,7 @@ export default {
     async getRatedData() {
       const res = await getPersonlistDataApi();
       // this.portList =
-      console.log(res);
+      console.log(res.data.result);
     },
   },
 };
@@ -93,7 +99,6 @@ export default {
 
 .community {
   width: 100%;
-  height: 600px;
 
   //顶部
   .head {
@@ -147,10 +152,26 @@ export default {
   //个人消息
   .detailed {
     width: 100%;
+    height: 900px;
+    .charts {
+      width: 100%;
+      height: 451px !important;
+      margin-bottom: 100px;
+      .chart5s {
+        height: 240px;
+        img {
+          float: left;
+          margin: 1px 1px 1px 1px;
+          width: 109px !important;
+          height: 109px !important;
+          border-radius: 3px;
+        }
+      }
+    }
+
     .chart {
       width: 100%;
-      height: 370px;
-      height: 370px;
+      height: 371px;
       background: #ffffff;
       box-shadow: 0px 0px 9px 0px rgba(182, 182, 182, 0.42);
       border-radius: 17px 17px 0px 0px;
@@ -233,9 +254,13 @@ export default {
         height: 147px;
         background: #f8f8f8;
         border-radius: 3px;
-        background: red;
         float: left;
         margin-top: 10px;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
       .chart6 {
         display: flex;
@@ -248,6 +273,18 @@ export default {
         bottom: -15px;
         .flex-between();
       }
+    }
+  }
+  //底部
+  .foot {
+    width: 336px;
+    height: 88px;
+    border-radius: 3px;
+    margin: 0 auto;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
   }
 }
