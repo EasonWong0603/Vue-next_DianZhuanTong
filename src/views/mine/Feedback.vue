@@ -11,9 +11,13 @@
     <main>
       <!-- 按钮 -->
       <div class="btns">
-        <span class="active">账号问题</span>
-        <span>支付问题</span>
-        <span>其他问题</span>
+        <span
+          v-for="(item, index) in state.list"
+          :key="index"
+          :class="{ active: index === state.num }"
+          @click="fn(index)"
+          >{{ item }}</span
+        >
       </div>
       <!-- 输入内容 -->
       <van-cell-group inset>
@@ -25,6 +29,7 @@
           maxlength="200"
           placeholder="简要描述你要反馈的意见和建议"
           show-word-limit
+          autofocus
         />
       </van-cell-group>
       <!-- 拍照上传 -->
@@ -33,29 +38,58 @@
     <!-- 底部 -->
     <footer>
       <!-- 按钮 -->
-      <div class="btn">提交意见</div>
+      <div class="btn" @click="handleclick">提交意见</div>
     </footer>
   </div>
 </template>
 
 <script>
+import rotuer from "../../router/index";
 import { reactive } from "vue";
-// import { Field, CellGroup } from "vant";
+import { Toast } from "vant";
 
 export default {
   setup() {
     const state = reactive({
       message: "",
+      list: ["账号问题", "支付问题", "其他问题"],
+      num: 0,
     });
 
+    // 导航后退
+    const onClickLeft = () => {
+      rotuer.go(-1);
+    };
+
+    // 此时可以自行将文件上传至服务器
     const afterRead = (file) => {
-      // 此时可以自行将文件上传至服务器
       console.log(file);
+    };
+
+    // tap
+    const fn = (i) => {
+      state.num = i;
+    };
+
+    // 提交反馈
+    const handleclick = () => {
+      Toast.loading({
+        message: "正在发送...",
+        forbidClick: true,
+        duration: 2000,
+      });
+      setTimeout(() => {
+        state.message = "";
+        Toast.success("反馈成功");
+      }, 2500);
     };
 
     return {
       state,
+      onClickLeft,
       afterRead,
+      fn,
+      handleclick,
     };
   },
 };
@@ -155,12 +189,13 @@ export default {
       height: 41px;
       line-height: 41px;
       text-align: center;
-      background: #dcdcdc;
       border-radius: 21px;
       font-size: 13px;
       font-family: PingFang;
       font-weight: bold;
       color: #ffffff;
+      background: linear-gradient(-23deg, #ff514b, #ff814e);
+      box-shadow: 0px 3px 6px 0px rgba(253, 73, 38, 0.61);
     }
   }
 }
