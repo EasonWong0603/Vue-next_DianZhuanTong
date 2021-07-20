@@ -140,6 +140,11 @@ const routes = [
     path: "/wallet",
     component: () => import("../views/mine/Wallet.vue"),
   },
+  // 我的-意见反馈
+  {
+    path: "/feedback",
+    component: () => import("../views/mine/Feedback.vue"),
+  },
   //我的-设置-个人信息设置
   {
     path: "/SetSelfInformation",
