@@ -71,7 +71,7 @@ const routes = [
       // 首页-导师详情页-评价
       {
         path: "/leaderdetail/evaluation:id",
-        component: () => import("../views/index/leaderdetail/Evaluation.vue"),
+        component: () => import("../views/index/leaderdetail/Search.vue"),
       },
       // 首页-导师详情页-动态
       {
@@ -115,7 +115,12 @@ const routes = [
     path: "/maillist",
     component: () => import("../views/message/Maillist.vue"),
   },
-  //消息-新的朋友
+  // 登录
+  {
+    path: "/search",
+    component: () => import("../views/index/leaderdetail/Search.vue"),
+  },
+  // 新的朋友
   {
     path: "/newfriend",
     component: () => import("../views/message/Newfriend.vue"),
