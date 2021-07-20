@@ -121,7 +121,7 @@
 </template>
 
 <script>
-import { ref, onBeforeMount } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 export default {
   setup() {
@@ -141,17 +141,11 @@ export default {
       router.push("/maillist");
     }
 
-    // 别删，这个是底部导航需要的
-    onBeforeMount(() => {
-      localStorage.setItem("index", 2);
-    });
-
     return {
       actions,
       showPopover,
       // change,
       gotoMaillist,
-      onBeforeMount,
     };
   },
 };

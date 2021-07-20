@@ -56,7 +56,6 @@ export default {
     const onSubmit = (values) => {
       localStorage.setItem("username", values.username);
       localStorage.setItem("password", values.password);
-      localStorage.setItem("index", 0);
       router.push("/home");
     };
 
