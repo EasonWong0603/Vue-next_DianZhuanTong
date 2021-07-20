@@ -1,5 +1,6 @@
 <template>
-  <div class="bag">
+  <div class="bag" style="background: url(state.detailContent.headbg)">
+    <img :src="state.detailContent.headbg" class="bagimg" />
     <div class="bagcon">
       <!-- 导航 -->
       <div class="nav">
@@ -10,8 +11,7 @@
         />
         <span class="money">详情</span>
         <img
-          src="../../assets/images/index/leader/放大镜.png"
-          @click="gotosearch"
+          src="../../assets/images/index/leader/sandian.png"
           class="search"
         />
       </div>
@@ -159,7 +159,7 @@ export default {
       // console.log(router.currentRoute._value.params.id);
       // console.log(res);
       state.detailContent = res.data.backid;
-      // console.log(state.detailContent);
+      console.log(state.detailContent);
     };
     //跳转上一级
     const onClickLeft = () => {
@@ -192,11 +192,14 @@ export default {
 @import "../../assets/css/var.less";
 
 .bag {
-  background-color: rgb(238, 238, 238);
+  .bagimg {
+    width: 100%;
+    display: inline;
+    display: ansolute;
+  }
   //导航栏
   .nav {
     height: 44px;
-    background-color: white;
     position: relative;
     .last {
       width: 9px;
@@ -217,8 +220,6 @@ export default {
       top: 13px;
     }
     .search {
-      width: 17px;
-      height: 16px;
       display: inline-block;
       left: 342px;
       margin-top: 15px;
