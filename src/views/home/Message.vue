@@ -136,10 +136,10 @@
 
 <script>
 import { getPersonlistDataApi } from "../../utils/api";
-import { ref } from "vue";
+import { ref, onBeforeMount, reactive, onMounted} from "vue";
 import { useRouter } from "vue-router";
 
-import { reactive, onMounted } from "vue";
+import { } from "vue";
 
 export default {
   setup() {
@@ -192,16 +192,25 @@ export default {
       }
     };
 
+    // 别删，这个是底部导航需要的
+    onBeforeMount(() => {
+      localStorage.setItem("index", 2);
+    });
+
     return {
       actions,
       showPopover,
       // change,
       gotoMaillist,
+<<<<<<< HEAD
       gotoChatroom,
       dellist,
       randerList,
       state,
       onSelect,
+=======
+      onBeforeMount,
+>>>>>>> 2624e1857ff5e3aef7506eb922b3b0ba37ab0fe6
     };
   },
 };

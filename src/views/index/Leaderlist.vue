@@ -49,16 +49,6 @@ export default {
     const state = reactive({
       preData: "",
     });
-    // const mylogin = () => {
-    //   getLeaderlistDataApi(param).then((res) => {
-    //     setData(res);
-    //   });
-    //   conole
-    //   ksajfksldjf
-
-    // const res = await getLeaderlistDataApi();
-    // setData(res);
-    // };
 
     const login = async () => {
       const res = await getLeaderlistDataApi();
