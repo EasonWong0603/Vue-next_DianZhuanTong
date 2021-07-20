@@ -4,25 +4,23 @@
     <div class="head">
       <span class="hot">热门动态</span>
       <span class="newest">最新动态</span>
-      <span class="camera">相机</span>
+      <span class="camera"
+        ><img src="../../assets/images/community/camera-s@3x.png" alt=""
+      /></span>
     </div>
     <ul class="portrait">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li v-for="item in detailContent" :key="item.id">
+        <img :src="item.headimg" alt="" />
+      </li>
     </ul>
     <div class="detailed">
       <ul class="chart">
-        <li class="chart1"></li>
+        <li class="chart1">
+          <img
+            src="../../assets/images/community/20180513224039_tgfwu@3x.png"
+            alt=""
+          />
+        </li>
         <li class="chart2">
           <p>Rose</p>
           <span>31分钟</span>
@@ -31,60 +29,100 @@
         <li class="chart4">
           你还在纠结大盘不放量吗？其实你知道A股已经开始裂变了吗？美股化顿，港股化已是不争的事实，A股不需要全面上涨，全面放量，现在就是精准打击、精准放量阶段，只有集中力量把科技、金融撬动，才能有效刺激放量。多方位的刺激与地域性的差异导致全面放量现在就是精准打击
         </li>
-        <li class="chart5"></li>
+        <li class="chart5">
+          <img src="../../assets/images/community/323@3x.png" />
+        </li>
         <li class="chart6">
-          <span>转发</span>
-          <span>1234</span>
-          <span>2345</span>
+          <span>
+            <img src="../../assets/images/community/zhuanfa@3x.png" alt="" />
+            转发
+          </span>
+          <span
+            ><img
+              src="../../assets/images/community/pinglun@3x.png"
+              alt=""
+            />1234</span
+          >
+          <span
+            ><img
+              src="../../assets/images/community/zan@3x.png"
+              alt=""
+            />2345</span
+          >
         </li>
       </ul>
-      <ul class="chart">
-        <li class="chart1"></li>
+      <ul class="chart charts">
+        <li class="chart1">
+          <img
+            src="../../assets/images/community/20151216132026_3iCHk@3x.png"
+            alt=""
+          />
+        </li>
         <li class="chart2">
           <p>阳光的阳光</p>
           <span>40分钟</span>
         </li>
         <li class="chart3">+ 关注</li>
         <li class="chart4">
-          你还在纠结大盘不放量吗？其实你知道A股已经开始裂变了吗？美股化顿，港股化已是不争的事实，A股不需要全面上涨，全面放量，现在就是精准打击、精准放量阶段，只有集中力量把科技、金融撬动，才能有效刺激放量。多方位的刺激与地域性的差异导致全面放量现在就是精准打击
+          人民币汇率双向波动增强，外汇市场主体更加适应和理性。8.11汇改以来，人民币汇率弹性不断提高，波动率已接近主要发达国家货币水平。人民币汇率双向波动成为常态，贬值压力得到及时释放。当前个人购汇更加平稳，企业对外直接投资更加理性有序.....
         </li>
-        <li class="chart5">
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
-          <img src="" alt="" />
+        <li class="chart5 chart5s">
+          <img src="../../assets/images/community/timg@1.png" alt="" style="" />
+          <img src="../../assets/images/community/timg@2.png" alt="" />
+          <img src="../../assets/images/community/timg@3.png" alt="" />
+          <img src="../../assets/images/community/timg@4.png" alt="" />
+          <img src="../../assets/images/community/timg@5.png" alt="" />
+          <img src="../../assets/images/community/timg@6.png" alt="" />
         </li>
         <li class="chart6">
-          <span>转发</span>
-          <span>1234</span>
-          <span>2345</span>
+          <span>
+            <img src="../../assets/images/community/zhuanfa@3x.png" alt="" />
+            转发
+          </span>
+          <span
+            ><img
+              src="../../assets/images/community/pinglun@3x.png"
+              alt=""
+            />1234</span
+          >
+          <span
+            ><img
+              src="../../assets/images/community/zan@3x.png"
+              alt=""
+            />2345</span
+          >
         </li>
       </ul>
     </div>
+    <div class="foot">
+      <img src="../../assets/images/community/dzt@3x.png" alt="" />
+    </div>
+    <div class="footer">————— 到底了呦 —————</div>
   </div>
 </template>
 
 <script>
-import { getPersonlistDataApi } from "@/utils/api";
-
+import { getPersonlistDataApi } from "../../utils/api";
+import { onMounted, ref } from "vue";
 export default {
-  name: "community",
-  data() {
-    return {
-      portList: [],
-    };
-  },
-  mounted() {
-    this.getRatedData();
-  },
-  methods: {
-    async getRatedData() {
+  setup() {
+    const detailContent = ref("");
+    // const state = reactive({
+    //   detailContent: "",
+    // });
+    const getPerson = async () => {
       const res = await getPersonlistDataApi();
-      // this.portList =
-      console.log(res);
-    },
+      console.log(res.data.result);
+      detailContent.value = res.data.result;
+      console.log(detailContent.value);
+    };
+    onMounted(() => {
+      getPerson();
+    });
+    return {
+      detailContent,
+      getPerson,
+    };
   },
 };
 </script>
@@ -94,7 +132,6 @@ export default {
 
 .community {
   width: 100%;
-  height: 600px;
 
   //顶部
   .head {
@@ -123,6 +160,13 @@ export default {
     }
     .camera {
       margin-top: 5px;
+      width: 26px;
+      height: 21px;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
   //头像
@@ -132,26 +176,47 @@ export default {
     display: flex;
     font-size: @s-font;
     overflow: auto;
+    margin-bottom: 10px;
     li {
       display: flex;
       float: left;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: red;
       flex-shrink: 0;
-      margin-left: 20px;
+      margin-left: 14px;
       margin-top: 20px;
+      img {
+        margin-top: 1px;
+        width: 52px;
+        height: 52px;
+        border: 1px solid #ff504b;
+        box-shadow: 0px 2px 3px 0px #ff8878;
+        border-radius: 50%;
+      }
     }
   }
 
   //个人消息
   .detailed {
     width: 100%;
+    height: 900px;
+    .charts {
+      width: 100%;
+      height: 450px !important;
+      margin-bottom: 100px;
+      .chart5s {
+        height: 240px;
+        img {
+          float: left;
+          margin: 1px 1px 1px 1px;
+          width: 109px !important;
+          height: 109px !important;
+          border-radius: 3px;
+        }
+      }
+    }
+
     .chart {
       width: 100%;
-      height: 370px;
-      height: 370px;
+      height: 390px;
       background: #ffffff;
       box-shadow: 0px 0px 9px 0px rgba(182, 182, 182, 0.42);
       border-radius: 17px 17px 0px 0px;
@@ -162,11 +227,14 @@ export default {
         display: block;
       }
       .chart1 {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: red;
+        width: 60px;
+        height: 60px;
         float: left;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
       .chart2 {
         margin-left: 5px;
@@ -234,9 +302,13 @@ export default {
         height: 147px;
         background: #f8f8f8;
         border-radius: 3px;
-        background: red;
         float: left;
         margin-top: 10px;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
       }
       .chart6 {
         display: flex;
@@ -247,9 +319,37 @@ export default {
         box-shadow: 0px 0px 9px 0px rgba(203, 185, 177, 0.42);
         border-radius: 3px;
         bottom: -15px;
+        padding: 0 20px 0 20px;
         .flex-between();
+        img {
+          float: left;
+          display: block;
+          width: 12px;
+          height: 12px;
+        }
       }
     }
+  }
+  //底部
+  .foot {
+    margin-top: 20px;
+    width: 336px;
+    height: 88px;
+    border-radius: 3px;
+    margin: 0 auto;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .footer {
+    height: 40px;
+    font-size: 12px;
+    font-family: PingFang;
+    font-weight: 500;
+    color: #a0a0a0;
+    text-align: center;
   }
 }
 </style>
