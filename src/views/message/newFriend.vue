@@ -16,7 +16,7 @@
     <van-swipe-cell v-for="(item, index) in state.listData" :key="index">
       <div class="zhezhao" @click="gotoChatroom(item.id)"></div>
       <div class="zhezhao2" @click="gotoChatdetails(item.id)"></div>
-      <span class="show">同意</span>
+      <span class="show">同意1</span>
       <van-image
         class="left"
         radius="7px"
