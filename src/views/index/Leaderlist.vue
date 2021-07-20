@@ -1,11 +1,19 @@
 <template>
   <div id="leaderdetail">
     <!-- 导航栏 -->
-    <van-nav-bar title="投资理财" left-arrow>
-      <template #right>
-        <van-icon name="search" size="18" @click="gotosearch" />
-      </template>
-    </van-nav-bar>
+    <div class="nav">
+      <img
+        src="../../assets/images/index/leader/矢量智能对象@3x.png"
+        @click="onClickLeft"
+        class="last"
+      />
+      <span class="money">投资理财</span>
+      <img
+        src="../../assets/images/index/leader/放大镜.png"
+        @click="gotosearch"
+        class="search"
+      />
+    </div>
     <!-- 导师详情 -->
     <van-card
       v-for="item in state.preData"
@@ -25,12 +33,12 @@
       </template>
       <template #footer>
         <div class="image">
-          <img src="../../assets/images/index/leader/redu@3x.png" /><span
-            >2322</span
-          >
-          <img src="../../assets/images/index/leader/yonghu2@3x.png" /><span
-            >2322</span
-          >
+          <img src="../../assets/images/index/leader/redu@3x.png" /><span>{{
+            item.hot
+          }}</span>
+          <img src="../../assets/images/index/leader/yonghu2@3x.png" /><span>{{
+            item.follower
+          }}</span>
         </div></template
       >
     </van-card>
@@ -49,27 +57,22 @@ export default {
     const state = reactive({
       preData: "",
     });
-    // const mylogin = () => {
-    //   getLeaderlistDataApi(param).then((res) => {
-    //     setData(res);
-    //   });
-    //   conole
-    //   ksajfksldjf
-
-    // const res = await getLeaderlistDataApi();
-    // setData(res);
-    // };
-
+    //返回上一级
+    const onClickLeft = () => {
+      router.go(-1);
+    };
+    //获取到时列表数据
     const login = async () => {
       const res = await getLeaderlistDataApi();
       console.log(res);
       state.preData = res.data.result;
       console.log(res.data.result);
     };
-
+    //传id 去详情页面
     const gotoDetail = (id) => {
       router.push("/leaderdetail/" + id);
     };
+    //跳转搜索页面
     const gotosearch = () => {
       router.push("/search");
     };
@@ -83,6 +86,7 @@ export default {
       state,
       gotoDetail,
       gotosearch,
+      onClickLeft,
     };
   },
 };
@@ -90,6 +94,38 @@ export default {
 
 <style lang="less">
 #leaderdetail {
+  //导航栏
+  .nav {
+    height: 44px;
+    background-color: white;
+    position: relative;
+    .last {
+      width: 9px;
+      height: 16px;
+      display: inline-block;
+      margin-left: 17px;
+      margin-top: 15px;
+    }
+    .money {
+      width: 68px;
+      height: 16px;
+      font-size: 16px;
+      font-family: PingFang;
+      font-weight: 500;
+      color: #323232;
+      margin-left: 127px;
+      position: absolute;
+      top: 13px;
+    }
+    .search {
+      width: 17px;
+      height: 16px;
+      display: inline-block;
+      left: 342px;
+      margin-top: 15px;
+      position: absolute;
+    }
+  }
   .van-card {
     width: 341px;
     height: 144px;
@@ -131,7 +167,7 @@ export default {
       height: 30px;
       white-space: normal;
       overflow: initial;
-      margin-top: 20px;
+      margin-top: 32px;
     }
     .van-card__desc {
       height: 21px;
@@ -139,7 +175,7 @@ export default {
       font-family: PingFang;
       font-weight: 500;
       color: #a5a5a5;
-      line-height: 21px;
+      line-height: 18px;
     }
 
     .tag1,
@@ -151,14 +187,15 @@ export default {
       position: absolute;
       bottom: 40px;
       color: white;
+      top: 36px;
       border-radius: 50px;
       line-height: 18px;
       text-align: center;
-      margin-top: 8px;
+      box-shadow: 0px 1px 2px 0px rgba(253, 73, 38, 0.61);
     }
 
     .tag2 {
-      margin-left: 80px;
+      margin-left: 84px;
     }
     .image {
       position: absolute;
@@ -172,7 +209,7 @@ export default {
         margin-left: 40px;
       }
       span {
-        margin-left: 10px;
+        margin-left: 8px;
         margin-top: 2px;
       }
       .van-image__img {

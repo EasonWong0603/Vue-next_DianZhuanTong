@@ -2,29 +2,40 @@
   <div class="bag">
     <div class="bagcon">
       <!-- 导航 -->
-      <van-nav-bar title="详情" left-arrow :fixed="true" :placeholder="true">
-        <template #right> </template>
-      </van-nav-bar>
+      <div class="nav">
+        <img
+          src="../../assets/images/index/leader/矢量智能对象@3x.png"
+          @click="onClickLeft"
+          class="last"
+        />
+        <span class="money">详情</span>
+        <img
+          src="../../assets/images/index/leader/放大镜.png"
+          @click="gotosearch"
+          class="search"
+        />
+      </div>
       <router-view />
       <!-- 介绍 -->
-      <div class="van-bg" v-for="item in state.detailContent" :key="item.id">
-        <!-- <p>{{ item }}</p> -->
+      <div class="van-bg">
         <div class="van-card">
-          <div class="pre-bg"><img :src="item.headimg" class="touxiang" /></div>
+          <div class="pre-bg">
+            <img :src="state.detailContent.headimg" class="touxiang" />
+          </div>
           <div class="van-content">
-            <span class="name">{{ item.name }}</span>
+            <span class="name">{{ state.detailContent.name }}</span>
             <img
               src="../../assets/images/index/leader/redu@3x.png"
               class="icon"
             />
-            <span class="count">{{ item.hot }}</span>
+            <span class="count">{{ state.detailContent.hot }}</span>
           </div>
           <span class="num1">风险投资</span>
           <span class="num2">一级导师</span>
-          <p class="battel">{{ item.simpleIntro2 }}</p>
+          <p class="battel">{{ state.detailContent.simpleIntro2 }}</p>
           <div class="care">
-            <span>关注{{ item.attention }}</span>
-            <span class="moudle">粉丝{{ item.follower }}</span>
+            <span>关注{{ state.detailContent.attention }}</span>
+            <span class="moudle">粉丝{{ state.detailContent.follower }}</span>
           </div>
         </div>
       </div>
@@ -118,7 +129,7 @@
 
 <script>
 import {
-  getLeaderpartDataApi,
+  getLeaderbackDataApi,
   getPersonlistDataApi,
 } from "../../../src/utils/api";
 import { reactive, onMounted } from "vue";
@@ -127,8 +138,8 @@ import { ref } from "vue";
 import router from "@/router/index.js";
 
 export default {
-  props: ["id"],
-  setup() {
+  props: { id: String },
+  setup(props) {
     const state = reactive({
       detailContent: [],
       talk: [],
@@ -142,13 +153,17 @@ export default {
     };
     //老师详情
     const login = async () => {
-      // console.log(router);
+      console.log(props.id);
       const id = router.currentRoute._value.params.id;
-      const res = await getLeaderpartDataApi({ id });
-      console.log(router.currentRoute._value.params.id);
-      console.log(res);
-      state.detailContent = res.data.result;
-      console.log(state.detailContent);
+      const res = await getLeaderbackDataApi({ id });
+      // console.log(router.currentRoute._value.params.id);
+      // console.log(res);
+      state.detailContent = res.data.backid;
+      // console.log(state.detailContent);
+    };
+    //跳转上一级
+    const onClickLeft = () => {
+      router.go(-1);
     };
     const active = ref(2);
     onMounted(() => {
@@ -167,6 +182,7 @@ export default {
       think,
       onClickIcon,
       onClickButton,
+      onClickLeft,
     };
   },
 };
@@ -177,7 +193,38 @@ export default {
 
 .bag {
   background-color: rgb(238, 238, 238);
-
+  //导航栏
+  .nav {
+    height: 44px;
+    background-color: white;
+    position: relative;
+    .last {
+      width: 9px;
+      height: 16px;
+      display: inline-block;
+      margin-left: 17px;
+      margin-top: 15px;
+    }
+    .money {
+      width: 68px;
+      height: 16px;
+      font-size: 16px;
+      font-family: PingFang;
+      font-weight: 500;
+      color: #323232;
+      margin-left: 144px;
+      position: absolute;
+      top: 13px;
+    }
+    .search {
+      width: 17px;
+      height: 16px;
+      display: inline-block;
+      left: 342px;
+      margin-top: 15px;
+      position: absolute;
+    }
+  }
   // 介绍
   .van-bg {
     margin-top: 12px;
@@ -197,6 +244,7 @@ export default {
         display: inline-block;
         overflow: hidden;
         position: relative;
+        box-shadow: 0px 6px 7px 0px rgba(255, 84, 68, 0.26);
         .touxiang {
           width: 70px;
           height: 70px;
