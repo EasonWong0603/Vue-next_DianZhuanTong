@@ -120,6 +120,10 @@ const routes = [
     path: "/newfriend",
     component: () => import("../views/message/newFriend.vue"),
   },
+  {
+    path: "/groupchat",
+    component: () => import("../views/message/Groupchat.vue"),
+  },
   // 登录
   {
     path: "/register",

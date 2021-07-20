@@ -252,7 +252,7 @@ export default {
     });
 
     onBeforeMount(() => {
-      console.log(123);
+      localStorage.setItem("index", 0);
     });
 
     return {

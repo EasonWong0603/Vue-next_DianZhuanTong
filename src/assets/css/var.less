@@ -19,6 +19,11 @@
   white-space: nowrap;
 }
 
+// 弹性盒-超出长度不压缩(加给子元素)
+.flex-shr() {
+  flex-shrink: 0;
+}
+
 // 弹性盒-可换行
 .flex-wrap() {
   display: flex;
@@ -32,25 +37,32 @@
   align-items: center;
 }
 
-// 弹性盒-主轴左右对齐，侧轴居中
+// 弹性盒-主轴左右对齐(侧轴居中)
 .flex-between() {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-// 弹性盒-主轴平均分配，侧轴居中
+// 弹性盒-主轴平均分配(侧轴居中)
 .flex-around() {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-// 弹性盒-侧轴平均分配，主轴居中
+// 弹性盒-侧轴平均分配(主轴居中)
 .flex-y-around() {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
+}
+
+// 弹性盒-垂直排序(侧轴居中)
+.flex-center-col() {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -63,13 +75,6 @@
 // 弹性盒-侧轴居中
 .flex-center-a() {
   display: flex;
-  align-items: center;
-}
-
-// 弹性盒-垂直排序-侧轴居中
-.flex-center-col() {
-  display: flex;
-  flex-direction: column;
   align-items: center;
 }
 

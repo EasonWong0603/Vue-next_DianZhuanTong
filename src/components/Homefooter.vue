@@ -63,7 +63,7 @@ import { ref } from "vue";
 
 export default {
   setup() {
-    const active = ref(+localStorage.getItem("index"));
+    let active = ref(+localStorage.getItem("index"));
     const onChange = (index) => localStorage.setItem("index", index);
 
     return {

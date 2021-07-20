@@ -124,16 +124,22 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onBeforeMount } from "vue";
 import MineHeader from "@/components/mine/MineHeader.vue";
 export default {
   setup() {
     let username = ref(localStorage.getItem("username")); //获取名字
     let message = ref(localStorage.getItem("message")); //获取个性签名
 
+    // 别删，这个是底部导航需要的
+    onBeforeMount(() => {
+      localStorage.setItem("index", 3);
+    });
+
     return {
       username,
       message,
+      onBeforeMount,
     };
   },
   components: {
