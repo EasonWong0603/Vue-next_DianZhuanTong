@@ -20,37 +20,21 @@ const routes = [
       {
         path: "/home/index",
         component: () => import("../views/home/Index.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 0);
-          next();
-        },
       },
       // 社区
       {
         path: "/home/community",
         component: () => import("../views/home/Community.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 1);
-          next();
-        },
       },
       // 消息
       {
         path: "/home/message",
         component: () => import("../views/home/Message.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 2);
-          next();
-        },
       },
       // 我的
       {
         path: "/home/mine",
         component: () => import("../views/home/Mine.vue"),
-        beforeEnter: (to, from, next) => {
-          localStorage.setItem("index", 3);
-          next();
-        },
       },
     ],
   },
@@ -136,6 +120,10 @@ const routes = [
     path: "/newfriend",
     component: () => import("../views/message/newFriend.vue"),
   },
+  {
+    path: "/groupchat",
+    component: () => import("../views/message/Groupchat.vue"),
+  },
   // 登录
   {
     path: "/register",
@@ -165,6 +153,16 @@ const routes = [
   {
     path: "/wallet",
     component: () => import("../views/mine/Wallet.vue"),
+  },
+  // 我的-意见反馈
+  {
+    path: "/feedback",
+    component: () => import("../views/mine/Feedback.vue"),
+  },
+  // 我的-银行卡
+  {
+    path: "/bankcard",
+    component: () => import("../views/mine/Bankcard.vue"),
   },
   // 404页面，将匹配所有内容并将其放在 `$route.params.pathMatch` 下
   {

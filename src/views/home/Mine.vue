@@ -141,7 +141,8 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onBeforeMount } from "vue";
+// 引入所需的组件
 import { Toast } from "vant";
 import MineHeader from "@/components/mine/MineHeader.vue";
 export default {
@@ -163,6 +164,11 @@ export default {
       showShare.value = false;
     };
 
+    // 别删，这个是底部导航需要的
+    onBeforeMount(() => {
+      localStorage.setItem("index", 3);
+    });
+
     return {
       username, //名字
       message, //个签
@@ -172,6 +178,7 @@ export default {
       options,
       onSelect,
       showShare,
+      onBeforeMount,
     };
   },
   components: {
