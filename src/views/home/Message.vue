@@ -143,7 +143,7 @@
 
 <script>
 import { getPersonlistDataApi } from "../../utils/api";
-import { ref, onBeforeMount, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 export default {
@@ -197,11 +197,6 @@ export default {
       }
     };
 
-    // 别删，这个是底部导航需要的
-    onBeforeMount(() => {
-      localStorage.setItem("index", 2);
-    });
-
     return {
       actions,
       showPopover,
@@ -212,7 +207,6 @@ export default {
       randerList,
       state,
       onSelect,
-      onBeforeMount,
     };
   },
 };

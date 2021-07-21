@@ -10,8 +10,16 @@
     </router-link>
     <div class="namediv">
       <div class="namedivtop">
-        <!-- 头像 判断，如果设置了头像就是设置的头像，没有就放自定义图片-->
-        <div class="photo"></div>
+        <!-- 头像的盒子 判断，如果设置了头像就是设置的头像，没有就放自定义图片-->
+        <div class="photo">
+          <!-- 头像 -->
+          <van-image
+            round
+            width="57px"
+            height="57px"
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+          />
+        </div>
         <!-- 介绍的盒子 -->
         <div class="information">
           <!-- 名字，获取注册时的名字 -->
@@ -29,17 +37,17 @@
       <div class="namedivbottom">
         <!-- 收藏  -->
         <div class="collect">
-          <h3 class="num">12</h3>
+          <h3 class="num">0</h3>
           <span>收藏</span>
         </div>
         <!-- 关注 -->
         <div class="attention">
-          <h3 class="num">06</h3>
+          <h3 class="num">{{ follower ? follower : "0" }}</h3>
           <span>关注</span>
         </div>
         <!-- 粉丝 -->
         <div class="fans">
-          <h3 class="num">88</h3>
+          <h3 class="num">0</h3>
           <span>粉丝</span>
         </div>
       </div>
@@ -73,6 +81,7 @@
           class="membercenterin"
           :icon="require('../../assets/images/mine/icon_article@3x.png')"
           text="关注文章"
+          @click="openarticle"
         />
       </van-grid>
     </div>
@@ -85,7 +94,8 @@
         :icon="require('../../assets/images/mine/icon_honhbao@3x.png')"
         title="我的红包"
         is-link
-        value="根据红包页得红包数"
+        value="0个"
+        @click="getwallet"
       />
       <!-- 我的积分 -->
       <van-cell
@@ -94,7 +104,9 @@
         title="我的积分"
         is-link
         value=""
+        @click="getintegral"
       />
+
       <!-- 邀请好友 -->
       <van-cell
         :border="false"
@@ -102,6 +114,14 @@
         title="邀请好友"
         is-link
         value=""
+        @click="showShare = true"
+      />
+      <!-- 邀请好友的分享面板 -->
+      <van-share-sheet
+        v-model:show="showShare"
+        title="立即分享给好友"
+        :options="options"
+        @select="onSelect"
       />
       <!-- 我的银行卡 -->
       <van-cell
@@ -110,6 +130,7 @@
         title="我的银行卡"
         is-link
         value=""
+        to="/bankcard"
       />
       <!-- 帮助中心 -->
       <van-cell
@@ -118,28 +139,62 @@
         title="帮助中心"
         is-link
         value=""
+        to="/feedback"
       />
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onBeforeMount } from "vue";
-import MineHeader from "@/components/mine/MineHeader.vue";
+import { ref } from "vue";
+// 引入所需的组件
+import { Toast } from "vant";
+import MineHeader from "@/components/MineHeader.vue";
 export default {
   setup() {
-    let username = ref(localStorage.getItem("username")); //获取名字
-    let message = ref(localStorage.getItem("message")); //获取个性签名
+    const username = ref(localStorage.getItem("username")); //获取名字
+    const message = ref(localStorage.getItem("message")); //获取个性签名
+    const follower = ref(localStorage.getItem("follower")); //获取关注数
 
-    // 别删，这个是底部导航需要的
-    onBeforeMount(() => {
-      localStorage.setItem("index", 3);
-    });
+    // 邀请好友-分享页面
+    const showShare = ref(false);
+    const options = [
+      { name: "微信", icon: "wechat" },
+      { name: "微博", icon: "weibo" },
+      { name: "复制链接", icon: "link" },
+      { name: "分享海报", icon: "poster" },
+      { name: "二维码", icon: "qrcode" },
+    ];
+    const onSelect = (option) => {
+      Toast(option.name);
+      showShare.value = false;
+    };
+
+    //我的积分的轻提示
+    const getintegral = () => {
+      Toast("您现在的积分为0，加油赚取积分吧！");
+    };
+    //关注文章的轻提示
+    const openarticle = () => {
+      Toast("我们正在抓紧开发，敬请期待");
+    };
+    //我的红包-轻提醒
+    const getwallet = () => {
+      Toast("还没有红包哦，快去领取吧");
+    };
 
     return {
-      username,
-      message,
-      onBeforeMount,
+      username, //名字
+      message, //个签
+      follower, //关注
+
+      //ShareSheet 分享面板-3个
+      options,
+      onSelect,
+      showShare,
+      getintegral, //我的积分-轻提示
+      openarticle, //关注文章-轻提示
+      getwallet, //我的红包
     };
   },
   components: {
@@ -155,9 +210,10 @@ export default {
 //个人中心的页面大小和背景色
 .mine {
   .base-width();
-  height: 812px;
+  height: 100%;
   background: #ffffff;
-  position: relative;
+  position: fixed;
+  top: -35px;
   //右上角设置的按钮
   .setupdiv {
     width: 19px;
@@ -225,7 +281,7 @@ export default {
         position: absolute;
         left: 257px;
         top: 22px;
-        font-size: 12px;
+        font-size: @xs-font;
         font-family: PingFang;
         font-weight: 400;
         color: #ffffff;
@@ -241,6 +297,7 @@ export default {
       border-radius: 10px;
       position: absolute;
       bottom: 0px;
+
       .flex-around;
       .num {
         //收藏关注等等的数量的样式
@@ -256,12 +313,12 @@ export default {
         display: inline-block;
         width: 25px;
         height: 12px;
-        font-size: 12px;
+        font-size: @xs-font;
         font-family: PingFang;
         font-weight: 400;
         color: #8a8a8a;
         line-height: 18px;
-        margin-top: 13px;
+        margin: 13px 0 0 -5px;
       }
     }
   }
@@ -281,7 +338,7 @@ export default {
       // 会员中心标题的颜色
       // width: 24px;
       height: 12px;
-      font-size: 12px;
+      font-size: @xs-font;
       font-family: PingFang;
       font-weight: 500;
       color: #333333;
@@ -305,7 +362,7 @@ export default {
     flex-direction: column;
     justify-content: space-around;
     .van-cell__value {
-      height: 12px;
+      height: 18px;
       font-size: 13px;
       font-family: PingFang;
       font-weight: 500;

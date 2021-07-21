@@ -1,11 +1,19 @@
 <template>
   <div id="leaderdetail">
     <!-- 导航栏 -->
-    <van-nav-bar title="投资理财" left-arrow>
-      <template #right>
-        <van-icon name="search" size="18" />
-      </template>
-    </van-nav-bar>
+    <div class="nav">
+      <img
+        src="../../assets/images/index/leader/矢量智能对象@3x.png"
+        @click="onClickLeft"
+        class="last"
+      />
+      <span class="money">投资理财</span>
+      <img
+        src="../../assets/images/index/leader/放大镜.png"
+        @click="gotosearch"
+        class="search"
+      />
+    </div>
     <!-- 导师详情 -->
     <van-card
       v-for="item in state.preData"
@@ -25,12 +33,12 @@
       </template>
       <template #footer>
         <div class="image">
-          <img src="../../assets/images/index/leader/redu@3x.png" /><span
-            >2322</span
-          >
-          <img src="../../assets/images/index/leader/yonghu2@3x.png" /><span
-            >2322</span
-          >
+          <img src="../../assets/images/index/leader/redu@3x.png" /><span>{{
+            item.hot
+          }}</span>
+          <img src="../../assets/images/index/leader/yonghu2@3x.png" /><span>{{
+            item.follower
+          }}</span>
         </div></template
       >
     </van-card>
@@ -49,16 +57,24 @@ export default {
     const state = reactive({
       preData: "",
     });
-
+    //返回上一级
+    const onClickLeft = () => {
+      router.go(-1);
+    };
+    //获取到时列表数据
     const login = async () => {
       const res = await getLeaderlistDataApi();
       console.log(res);
       state.preData = res.data.result;
       console.log(res.data.result);
     };
-
+    //传id 去详情页面
     const gotoDetail = (id) => {
       router.push("/leaderdetail/" + id);
+    };
+    //跳转搜索页面
+    const gotosearch = () => {
+      router.push("/search");
     };
 
     onMounted(() => {
@@ -69,6 +85,8 @@ export default {
       login,
       state,
       gotoDetail,
+      gotosearch,
+      onClickLeft,
     };
   },
 };
@@ -76,6 +94,38 @@ export default {
 
 <style lang="less">
 #leaderdetail {
+  //导航栏
+  .nav {
+    height: 44px;
+    background-color: white;
+    position: relative;
+    .last {
+      width: 9px;
+      height: 16px;
+      display: inline-block;
+      margin-left: 17px;
+      margin-top: 15px;
+    }
+    .money {
+      width: 68px;
+      height: 16px;
+      font-size: 16px;
+      font-family: PingFang;
+      font-weight: 500;
+      color: #323232;
+      margin-left: 127px;
+      position: absolute;
+      top: 13px;
+    }
+    .search {
+      width: 17px;
+      height: 16px;
+      display: inline-block;
+      left: 342px;
+      margin-top: 15px;
+      position: absolute;
+    }
+  }
   .van-card {
     width: 341px;
     height: 144px;
@@ -84,6 +134,21 @@ export default {
     border-radius: 4px;
     margin: auto;
     margin-top: 20px !important;
+    .van-image__img {
+      width: 100px;
+      height: 113px;
+      margin-top: 7px;
+      margin-right: 8px;
+      display: inline-block;
+    }
+    .van-card__title,
+    .tag1,
+    .van-card__desc {
+      margin-left: 16px;
+    }
+    .van-card__title {
+      margin-top: 8px;
+    }
     .van-card__content {
       position: relative;
     }
@@ -102,15 +167,15 @@ export default {
       height: 30px;
       white-space: normal;
       overflow: initial;
-      margin-top: 36px;
+      margin-top: 32px;
     }
     .van-card__desc {
-      height: 31px;
+      height: 21px;
       font-size: 12px;
       font-family: PingFang;
       font-weight: 500;
       color: #a5a5a5;
-      line-height: 21px;
+      line-height: 18px;
     }
 
     .tag1,
@@ -118,21 +183,23 @@ export default {
       background: linear-gradient(#ff814e, #ff504b);
       display: inline-block;
       width: 60px;
-      height: 21px;
+      height: 18px;
       position: absolute;
       bottom: 40px;
       color: white;
+      top: 36px;
       border-radius: 50px;
-      line-height: 21px;
+      line-height: 18px;
       text-align: center;
+      box-shadow: 0px 1px 2px 0px rgba(253, 73, 38, 0.61);
     }
 
     .tag2 {
-      margin-left: 70px;
+      margin-left: 84px;
     }
     .image {
       position: absolute;
-      margin-left: 54px;
+      margin-left: 74px;
       margin-top: 18px;
       display: flex;
 
@@ -142,7 +209,8 @@ export default {
         margin-left: 40px;
       }
       span {
-        margin-left: 10px;
+        margin-left: 8px;
+        margin-top: 2px;
       }
       .van-image__img {
         width: 100%;

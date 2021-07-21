@@ -38,6 +38,7 @@ import {
   Lazyload, //懒加载
   NoticeBar, //通知栏
   Popover, //气泡弹出框
+  Progress, //进度条
 
   // 导航组件
   ActionBar, //动作栏
@@ -92,6 +93,7 @@ app.use(Overlay); //遮罩层
 app.use(Lazyload); //懒加载
 app.use(NoticeBar); //通知栏
 app.use(Popover); //气泡弹出框
+app.use(Progress); //进度条
 
 // 导航组件
 app.use(ActionBar).use(ActionBarIcon).use(ActionBarButton); // 动作栏

@@ -7,11 +7,12 @@
       @click-left="onClickLeft"
       @click-right="onClickRight"
     />
-    <van-cell-group inset border="true">
+    <van-cell-group inset :border="true">
       <van-field
         v-model="state.value"
-        right-icon="clear"
-        placeholder="显示图标"
+        placeholder="更改昵称"
+        :clearable="true"
+        :maxlength="7"
       />
     </van-cell-group>
   </div>
@@ -28,13 +29,13 @@ export default {
     const router = useRouter();
     //点击取消返回上一级
     const onClickLeft = () => {
-      router.push("/SetSelfInformation");
+      // router.push("/SetSelfInformation");
+      router.go(-1);
     };
     //点击完成返回上一级，并且把数据重新存入本地
     const onClickRight = () => {
       router.push("/SetSelfInformation");
       username = localStorage.setItem("username", state.value);
-      console.log(state.value);
     };
 
     // 姓名的文本输入
@@ -56,8 +57,11 @@ export default {
 @import "../../assets/css/var.less";
 .setname {
   .base-width();
-  height: 812px;
-  position: relative;
+  height: 100%;
+  position: fixed;
+  .van-nav-bar__text {
+    color: #494949;
+  }
   .van-cell-group {
     .base-width();
     margin: 16px 0 0 0;
