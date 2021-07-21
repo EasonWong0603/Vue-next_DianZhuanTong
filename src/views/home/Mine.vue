@@ -126,6 +126,7 @@
         title="我的银行卡"
         is-link
         value=""
+        @click="handleclick"
       />
       <!-- 帮助中心 -->
       <van-cell
@@ -145,6 +146,8 @@ import { ref } from "vue";
 // 引入所需的组件
 import { Toast } from "vant";
 import MineHeader from "@/components/mine/MineHeader.vue";
+import router from "../../router/index";
+
 export default {
   setup() {
     const username = ref(localStorage.getItem("username")); //获取名字
@@ -164,10 +167,16 @@ export default {
       showShare.value = false;
     };
 
+    // 点击跳转银行卡页面
+    const handleclick = () => {
+      router.push("/bankcard");
+    };
+
     return {
       username, //名字
       message, //个签
       follower, //关注
+      handleclick, // 跳转银行卡
 
       //ShareSheet 分享面板-3个
       options,
@@ -346,6 +355,13 @@ export default {
       color: #fc5d26;
       line-height: 18px;
     }
+  }
+
+  .van-cell,
+  .van-cell__left-icon,
+  .van-cell__right-icon {
+    line-height: normal;
+    height: initial;
   }
 }
 </style>
