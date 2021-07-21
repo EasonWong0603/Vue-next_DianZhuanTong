@@ -3,24 +3,33 @@
     <van-nav-bar title="详情" left-arrow @click-left="out" />
     <div class="detailed">
       <div class="chart">
-        <div class="chart1">
+        <!--头像-->
+        <div class="portrait">
           <img
             src="../../assets/images/community/20180513224039_tgfwu@3x.png"
             alt=""
           />
         </div>
-        <div class="chart2">
+        <!--姓名和发表时间-->
+        <div class="nametime">
           <p>Rose</p>
           <span>31分钟</span>
         </div>
-        <div class="chart3">+ 关注</div>
-        <div class="chart4">
+        <!--关注-->
+        <div class="like" @click="follow" v-if="already">+ 关注</div>
+        <div class="like likes" v-else>
+          <p class="btn no" @click="cancel">已关注</p>
+        </div>
+        <!--发表文字-->
+        <div class="content">
           你还在纠结大盘不放量吗？其实你知道A股已经开始裂变了吗？美股化顿，港股化已是不争的事实，A股不需要全面上涨，全面放量，现在就是精准打击、精准放量阶段，只有集中力量把科技、金融撬动，才能有效刺激放量。多方位的刺激与地域性的差异导致全面放量现在就是精准打击
         </div>
-        <div class="chart5">
+        <!--分享图片-->
+        <div class="Share">
           <img src="../../assets/images/community/323@3x.png" />
         </div>
-        <div class="chart6">
+        <!--互动功能-->
+        <div class="interaction">
           <span>分享到</span>
           <span
             class="shareicon"
@@ -33,9 +42,11 @@
         </div>
       </div>
     </div>
+    <!--tab选项卡-->
     <div class="nav">
       <div class="navhead">
         <van-tabs v-model="active">
+          <!--评论页-->
           <van-tab title="评论123">
             <ul class="navul">
               <li v-for="item in detailContent" :key="item.id">
@@ -63,6 +74,7 @@
               </li>
             </ul>
           </van-tab>
+          <!--转发页-->
           <van-tab title="转发20">
             <ul class="relay">
               <li v-for="item in detailContent" :key="item.id">
@@ -74,6 +86,7 @@
                 <span class="relayline"></span>
               </li></ul
           ></van-tab>
+          <!--点赞页-->
           <van-tab title="赞2345">
             <ul class="relay">
               <li v-for="item in detailContent" :key="item.id">
@@ -86,12 +99,13 @@
         </van-tabs>
       </div>
     </div>
+    <!--底部-->
     <div class="foot">
       <span>
         <img src="../../assets/images/community/zhuanfa@3x.png" alt="" />
         转发
       </span>
-      <span
+      <span @click="comment"
         ><img
           src="../../assets/images/community/pinglun@3x.png"
           alt=""
@@ -159,12 +173,57 @@ export default {
       Toast(item.name);
     };
 
+    // 点击关注
+    const already = ref(!localStorage.getItem("follower"));
+
+    const follow = () => {
+      Toast.loading({
+        message: "关注中...",
+        forbidClick: true,
+        duration: 500,
+      });
+      setTimeout(() => {
+        if (already.value) {
+          localStorage.setItem("follower", 1);
+        }
+
+        already.value = !already.value;
+
+        Toast.success("关注成功");
+      }, 800);
+    };
+
+    const cancel = () => {
+      Toast.loading({
+        message: "取消中...",
+        forbidClick: true,
+        duration: 500,
+      });
+      setTimeout(() => {
+        if (!already.value) {
+          localStorage.setItem("follower", 0);
+        }
+
+        already.value = !already.value;
+
+        Toast.success("取消成功");
+      }, 800);
+    };
+
+    const comment = () => {
+      router.push("/comment");
+    };
+
     return {
       detailContent,
       getPerson,
       out,
       state,
       handleClick,
+      follow,
+      already,
+      cancel,
+      comment,
     };
   },
 };
@@ -198,7 +257,9 @@ export default {
       li {
         display: block;
       }
-      .chart1 {
+
+      //头像
+      .portrait {
         width: 60px;
         height: 60px;
         float: left;
@@ -208,7 +269,8 @@ export default {
           height: 100%;
         }
       }
-      .chart2 {
+      //姓名和时间
+      .nametime {
         margin-left: 5px;
         margin-top: 5px;
         float: left;
@@ -230,7 +292,8 @@ export default {
           color: #cacaca;
         }
       }
-      .chart3 {
+      //关注
+      .like {
         float: right;
         width: 73px;
         height: 27px;
@@ -245,7 +308,14 @@ export default {
         color: #ffffff;
         text-shadow: 0px 1px 0px rgba(248, 84, 27, 0.48);
       }
-      .chart4 {
+      .likes {
+        text-shadow: 0px 1px 0px rgb(212 206 204 / 48%);
+        background: linear-gradient(-23deg, #857d7d, #e0dddc);
+        // box-shadow: 0px 1.6vw 3.2vw 0px rgb(122 117 115 / 49%);
+        box-shadow: 0px 3px 6px 0px rgba(73, 68, 67, 0.61);
+      }
+      //发表文字
+      .content {
         float: left;
         width: 340px;
         height: 98px;
@@ -268,7 +338,8 @@ export default {
           line-height: 20px;
         }
       }
-      .chart5 {
+      //分享图片
+      .Share {
         width: 338px;
         height: 147px;
         background: #f8f8f8;
@@ -281,7 +352,8 @@ export default {
           height: 100%;
         }
       }
-      .chart6 {
+      //互动功能
+      .interaction {
         width: 100%;
         height: 40px;
         display: flex;
@@ -416,6 +488,11 @@ export default {
       width: 12px;
       height: 12px;
     }
+  }
+  .van-ellipsis {
+    height: 20px;
+    // z-index: 1 !important;
+    font-weight: bold;
   }
 }
 </style>

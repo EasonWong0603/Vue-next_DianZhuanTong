@@ -8,31 +8,44 @@
         ><img src="../../assets/images/community/camera-s@3x.png" alt=""
       /></span>
     </div>
+
+    <!--所有头像-->
     <ul class="portrait">
       <li v-for="item in detailContent" :key="item.id">
         <img :src="item.headimg" alt="" />
       </li>
     </ul>
     <div class="detailed">
+      <!--个人发表-->
       <ul class="chart">
-        <li class="chart1" @click="community">
+        <!--头像-->
+        <li class="portrait" @click="community">
           <img
             src="../../assets/images/community/20180513224039_tgfwu@3x.png"
             alt=""
           />
         </li>
-        <li class="chart2" @click="community">
+        <!--姓名和发表时间-->
+        <li class="nametime" @click="community">
           <p>Rose</p>
           <span>31分钟</span>
         </li>
-        <li class="chart3">+ 关注</li>
-        <li class="chart4">
+        <!--关注-->
+        <div class="like" @click="follow" v-if="already">+ 关注</div>
+        <div class="like likes" v-else>
+          <p class="btn no" @click="cancel">已关注</p>
+        </div>
+        <!--发表信息-->
+        <li class="content">
           你还在纠结大盘不放量吗？其实你知道A股已经开始裂变了吗？美股化顿，港股化已是不争的事实，A股不需要全面上涨，全面放量，现在就是精准打击、精准放量阶段，只有集中力量把科技、金融撬动，才能有效刺激放量。多方位的刺激与地域性的差异导致全面放量现在就是精准打击
         </li>
-        <li class="chart5">
+        <!--分享图片-->
+        <li class="Share">
           <img src="../../assets/images/community/323@3x.png" />
         </li>
-        <li class="chart6">
+
+        <!--互动功能-->
+        <li class="interaction">
           <span>
             <img src="../../assets/images/community/zhuanfa@3x.png" alt="" />
             转发
@@ -52,21 +65,25 @@
         </li>
       </ul>
       <ul class="chart charts">
-        <li class="chart1" @click="community">
+        <!--头像-->
+        <li class="portrait" @click="community">
           <img
             src="../../assets/images/community/20151216132026_3iCHk@3x.png"
             alt=""
           />
         </li>
-        <li class="chart2">
+        <!--姓名和时间-->
+        <li class="nametime">
           <p>阳光的阳光</p>
           <span>40分钟</span>
         </li>
-        <li class="chart3">+ 关注</li>
-        <li class="chart4">
+        <li class="like">+ 关注</li>
+        <!--发表信息-->
+        <li class="content">
           人民币汇率双向波动增强，外汇市场主体更加适应和理性。8.11汇改以来，人民币汇率弹性不断提高，波动率已接近主要发达国家货币水平。人民币汇率双向波动成为常态，贬值压力得到及时释放。当前个人购汇更加平稳，企业对外直接投资更加理性有序.....
         </li>
-        <li class="chart5 chart5s">
+        <!--分享图片-->
+        <li class="Share Shares">
           <img src="../../assets/images/community/timg@1.png" alt="" style="" />
           <img src="../../assets/images/community/timg@2.png" alt="" />
           <img src="../../assets/images/community/timg@3.png" alt="" />
@@ -74,7 +91,8 @@
           <img src="../../assets/images/community/timg@5.png" alt="" />
           <img src="../../assets/images/community/timg@6.png" alt="" />
         </li>
-        <li class="chart6">
+        <!--互动功能-->
+        <li class="interaction">
           <span>
             <img src="../../assets/images/community/zhuanfa@3x.png" alt="" />
             转发
@@ -102,22 +120,21 @@
 </template>
 
 <script>
-import { getPersonlistDataApi } from "../../utils/api";
-import { onMounted, ref } from "vue";
-import route from "../../router/index";
+import { getPersonlistDataApi } from "../../utils/api"; //人物卡
+import { onMounted, ref } from "vue"; //人物数据
+import route from "../../router/index"; //引入路由
+import { Toast } from "vant";
 export default {
   setup() {
     const detailContent = ref("");
-    // const state = reactive({
-    //   detailContent: "",
-    // });
+
     const getPerson = async () => {
       const res = await getPersonlistDataApi();
       console.log(res.data.result);
       detailContent.value = res.data.result;
       console.log(detailContent.value);
     };
-
+    //路由跳转
     const community = () => {
       route.push("/communitydetail");
     };
@@ -125,10 +142,50 @@ export default {
     onMounted(() => {
       getPerson();
     });
+
+    // 点击关注
+    const already = ref(!localStorage.getItem("follower"));
+
+    const follow = () => {
+      Toast.loading({
+        message: "关注中...",
+        forbidClick: true,
+        duration: 500,
+      });
+      setTimeout(() => {
+        if (already.value) {
+          localStorage.setItem("follower", 1);
+        }
+
+        already.value = !already.value;
+
+        Toast.success("关注成功");
+      }, 800);
+    };
+
+    const cancel = () => {
+      Toast.loading({
+        message: "取消中...",
+        forbidClick: true,
+        duration: 500,
+      });
+      setTimeout(() => {
+        if (!already.value) {
+          localStorage.setItem("follower", 0);
+        }
+
+        already.value = !already.value;
+
+        Toast.success("取消成功");
+      }, 800);
+    };
     return {
       detailContent,
       getPerson,
       community,
+      follow,
+      already,
+      cancel,
     };
   },
 };
@@ -146,6 +203,7 @@ export default {
     height: 44px;
     background: #f8f8f8;
     .flex-center-a();
+    //热门动态
     .hot {
       width: 100px;
       height: 17px;
@@ -155,6 +213,7 @@ export default {
       color: #ff504b;
       margin-left: 19px;
     }
+    //最新动态
     .newest {
       width: 52px;
       height: 13px;
@@ -165,6 +224,7 @@ export default {
       margin-right: 160px;
       margin-top: 5px;
     }
+    //相机
     .camera {
       margin-top: 5px;
       width: 26px;
@@ -209,7 +269,7 @@ export default {
       width: 100%;
       height: 450px !important;
       margin-bottom: 100px;
-      .chart5s {
+      .Shares {
         height: 240px;
         img {
           float: left;
@@ -233,7 +293,8 @@ export default {
       li {
         display: block;
       }
-      .chart1 {
+      //头像
+      .portrait {
         width: 60px;
         height: 60px;
         float: left;
@@ -243,7 +304,8 @@ export default {
           height: 100%;
         }
       }
-      .chart2 {
+      //姓名和时间
+      .nametime {
         margin-left: 5px;
         margin-top: 5px;
         float: left;
@@ -265,7 +327,8 @@ export default {
           color: #cacaca;
         }
       }
-      .chart3 {
+      //点赞
+      .like {
         float: right;
         width: 73px;
         height: 27px;
@@ -280,7 +343,14 @@ export default {
         color: #ffffff;
         text-shadow: 0px 1px 0px rgba(248, 84, 27, 0.48);
       }
-      .chart4 {
+      .likes {
+        text-shadow: 0px 1px 0px rgb(212 206 204 / 48%);
+        background: linear-gradient(-23deg, #857d7d, #e0dddc);
+        // box-shadow: 0px 1.6vw 3.2vw 0px rgb(122 117 115 / 49%);
+        box-shadow: 0px 3px 6px 0px rgba(73, 68, 67, 0.61);
+      }
+      //发表文字
+      .content {
         margin-top: 16px;
         float: left;
         width: 340px;
@@ -304,7 +374,8 @@ export default {
           line-height: 20px;
         }
       }
-      .chart5 {
+      //分享的图片
+      .Share {
         width: 338px;
         height: 147px;
         background: #f8f8f8;
@@ -317,7 +388,8 @@ export default {
           height: 100%;
         }
       }
-      .chart6 {
+      //互动功能
+      .interaction {
         display: flex;
         position: absolute;
         width: 336px;
