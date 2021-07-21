@@ -188,9 +188,10 @@ export default {
 //个人中心的页面大小和背景色
 .mine {
   .base-width();
-  height: 812px;
+  height: 100%;
   background: #ffffff;
-  position: relative;
+  position: fixed;
+  top: -35px;
   //右上角设置的按钮
   .setupdiv {
     width: 19px;
