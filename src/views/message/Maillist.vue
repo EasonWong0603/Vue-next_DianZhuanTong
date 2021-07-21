@@ -1,12 +1,8 @@
 <template>
   <div>
     <!-- 导航 -->
-    <van-nav-bar
-      title="联系人"
-      :fixed="true"
-      :placeholder="true"
-      :z-index="10000"
-    >
+    <van-nav-bar :fixed="true" :placeholder="true" :z-index="10000"
+      ><template #title><p style="font-weight: 800">联系人</p></template>
       <template #left>
         <van-icon
           :name="

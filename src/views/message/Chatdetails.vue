@@ -2,12 +2,8 @@
   <div>
     <!-- 导航 -->
     <div class="rander" v-for="item in state.listData" :key="item">
-      <van-nav-bar
-        title="聊天详情"
-        :fixed="true"
-        :placeholder="true"
-        :z-index="10000"
-      >
+      <van-nav-bar :fixed="true" :placeholder="true" :z-index="10000"
+        ><template #title><p style="font-weight: 800">聊天详情</p></template>
         <template #left>
           <van-icon
             :name="
@@ -116,5 +112,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 12px;
+}
+.van-switch__node {
+  box-shadow: none;
 }
 </style>

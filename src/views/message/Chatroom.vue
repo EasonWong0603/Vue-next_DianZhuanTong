@@ -2,8 +2,10 @@
   <div>
     <!-- 导航 -->
     <div class="rander" v-for="item in state.listData" :key="item">
-      <van-nav-bar :fixed="true" :placeholder="true" :z-index="10000"
-        ><template #title> {{ item.name }}</template>
+      <van-nav-bar :fixed="true" :placeholder="true" :z-index="10000">
+        <template #title
+          ><p style="font-weight: 800">{{ item.name }}</p></template
+        >
         <template #left>
           <van-icon
             :name="
@@ -24,22 +26,7 @@
       </van-nav-bar>
 
       <!-- 聊天 -->
-      <div class="show">
-        <div class="time">05/22 06:30</div>
-        <div class="msg">
-          <img
-            style="
-              border: 1px solid #ddd;
-              height: 36px;
-              width: 36px;
-              border-radius: 18px;
-            "
-            src=""
-            alt=""
-          />
-          <p>你好你好你好</p>
-        </div>
-      </div>
+
       <div class="message">
         <div class="send">
           <div class="time">05/22 06:30</div>
@@ -59,16 +46,37 @@
           </div>
         </div>
       </div>
+      <div class="show" v-for="item1 in textlist" :key="item1">
+        <!-- <div class="time">05/22 06:30</div> -->
+        <div class="msg">
+          <img
+            style="
+              border: 1px solid #ddd;
+              height: 36px;
+              width: 36px;
+              border-radius: 18px;
+            "
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+            alt=""
+          />
+          <p>{{ item1 }}</p>
+          <!-- <ul>
+            <li>
+             
+            </li>
+          </ul> -->
+        </div>
+      </div>
       <div class="footer">
-        <input type="text" />
-        <p>发送</p>
+        <input type="text" v-model="textValue" />
+        <p @click="handleClick">发送</p>
         <img src="../../assets/images/index/Message/footer.png" alt="" />
       </div>
     </div>
   </div>
 </template>
 <script>
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import { getFriendbackApi } from "../../utils/api";
 
@@ -96,11 +104,25 @@ export default {
     const gotoChatdetails = () => {
       router.push("/chatdetails/" + props.id);
     };
+
+    //点击发送
+    const textValue = ref("");
+    const textlist = ["你好", "请问现在有时间吗"];
+
+    const handleClick = () => {
+      if (textValue.value !== "") {
+        textlist.push(textValue.value);
+        textValue.value = "";
+      }
+    };
     return {
       back,
       gotoChatdetails,
       state,
       randerList,
+      textValue,
+      textlist,
+      handleClick,
     };
   },
 };
@@ -144,7 +166,7 @@ export default {
     color: #fff;
     line-height: 35px;
     text-align: center;
-    background-color: #ddd;
+    background: linear-gradient(-23deg, #ff514b, #ff814e);
     border-radius: 17px;
     float: right;
     margin-top: 8px;

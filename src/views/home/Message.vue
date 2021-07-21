@@ -1,7 +1,8 @@
 <template>
   <div class="news">
     <!-- bar导航 -->
-    <van-nav-bar title="消息" :fixed="true" :placeholder="true">
+    <van-nav-bar :fixed="true" :placeholder="true">
+      <template #title><p style="font-weight: 800">消息</p></template>
       <template #right>
         <van-icon
           :name="
@@ -31,7 +32,7 @@
 
     <!-- 通知栏 -->
     <van-notice-bar mode="closeable" color="#FF504B;"
-      >技术是开发它的人的共同灵魂。</van-notice-bar
+      >有未读消息，点击可查看消息</van-notice-bar
     >
     <!-- 列表项-系统通知-不可见 -->
     <div class="list">
@@ -302,5 +303,8 @@ export default {
 }
 .none {
   display: none;
+}
+.van-nav-bar__placeholder {
+  height: 100px;
 }
 </style>

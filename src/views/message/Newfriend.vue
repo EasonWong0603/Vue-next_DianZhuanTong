@@ -1,7 +1,8 @@
 <template>
   <div>
     <!-- 导航 -->
-    <van-nav-bar title="新的好友" :fixed="true" :placeholder="true">
+    <van-nav-bar :fixed="true" :placeholder="true">
+      <template #title><p style="font-weight: 800">新的好友</p></template>
       <template #left>
         <van-icon
           :name="
