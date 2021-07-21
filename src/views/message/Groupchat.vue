@@ -52,7 +52,7 @@
 import rotuer from "../../router/index";
 import { reactive, onMounted } from "vue";
 
-import { getFriendDataApi } from "../../utils/api";
+import { getGroupchatDataApi } from "../../utils/api";
 
 export default {
   setup() {
@@ -72,20 +72,17 @@ export default {
       if (!state.actives[i]) {
         state.actives[i] = true;
         state.selectList.push(state.list[i].img);
-        console.log(1 + "---" + state.selectList);
       } else {
         state.actives[i] = false;
         state.selectList = state.selectList.filter(
           (item) => item !== state.list[i].img
         );
-        console.log(2 + "---" + state.selectList);
       }
     };
 
     // 获取数据
     const getlist = async () => {
-      const { data } = await getFriendDataApi();
-      console.log(data);
+      const { data } = await getGroupchatDataApi();
       state.list = data.result;
     };
 
@@ -157,10 +154,13 @@ export default {
 
     // 人物列表
     .itemlist {
+      padding-right: 16px;
+
       // 每块
       .each {
         height: 73px;
         .flex-center-a();
+        border-bottom: 1px solid #dadada;
       }
 
       // 复选框
