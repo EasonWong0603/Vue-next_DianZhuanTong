@@ -93,6 +93,7 @@ export default {
     const already = ref(!localStorage.getItem("follower"));
 
     const follow = () => {
+      console.log(already);
       Toast.loading({
         message: "关注中...",
         forbidClick: true,
@@ -104,7 +105,7 @@ export default {
         }
 
         already.value = !already.value;
-
+        console.log(already);
         Toast.success("关注成功");
       }, 800);
     };

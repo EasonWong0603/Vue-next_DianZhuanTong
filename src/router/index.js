@@ -67,6 +67,7 @@ const routes = [
   {
     path: "/leaderdetail/:id",
     component: () => import("../views/index/Leaderdetail.vue"),
+    props: true,
   },
 
   // 社区-社区详情页
