@@ -12,14 +12,23 @@
         maxlength="7"
         :rules="[{ required: true, message: '请填写正确格式用户名' }]"
       />
+      <!-- <van-field
+        v-model="state.password"
+        type="password"
+        name="validatorMessage"
+        label="密码"
+        placeholder="请填写6-12位的密码"
+        maxlength="12"
+        :rules="[{ required: true, validator: validatorMessage }]" -->
+      <!-- /> -->
       <van-field
         v-model="state.password"
         type="password"
-        name="password"
         label="密码"
+        name="validatorMessage"
         placeholder="请填写6-12位的密码"
-        :rules="[{ required: true, message: '请填写正确格式的密码' }]"
-        @input="inputpw"
+        maxlength="12"
+        :rules="[{ validator: validatorMessage }]"
       />
     </van-cell-group>
     <div style="margin: 50px">
@@ -30,7 +39,7 @@
         native-type="submit"
         color="linear-gradient(-23deg, #ff514b, #ff814e)"
       >
-        提交
+        登录/自动注册
       </van-button>
     </div>
   </van-form>
@@ -49,20 +58,32 @@ export default {
     });
     const router = useRouter();
 
-    //判断密码
-    //input时检查密码难度
+    //判断密码长度
+    // const validatorMessage = (val) => {
+    //   if (val.length < 6) {
+    //     `密码少于6位`;
+    //   }
+    // };
+    //const validatorMessage = (val) => `${val} 不合法，请重新输入`;
+    const validatorMessage = (val) => {
+      console.log(val.length);
+      if (val.length < 6) {
+        return `密码少于6位`;
+      }
+    };
 
     //提交按钮-本地储存密码，用户名，跳转到首页
     const onSubmit = (values) => {
       localStorage.setItem("username", values.username);
       localStorage.setItem("password", values.password);
+      sessionStorage.setItem("token", values.username + values.password);
       router.push("/home");
     };
 
     return {
       state,
       onSubmit, //提交按钮
-      //input时检查密码难度
+      validatorMessage, //检查密码长度
     };
   },
   components: {

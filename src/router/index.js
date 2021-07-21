@@ -30,11 +30,21 @@ const routes = [
       {
         path: "/home/message",
         component: () => import("../views/home/Message.vue"),
+        beforeEnter: (to, from, next) => {
+          if (!sessionStorage.getItem("token")) {
+            next("/register");
+          }
+        },
       },
       // 我的
       {
         path: "/home/mine",
         component: () => import("../views/home/Mine.vue"),
+        beforeEnter: (to, from, next) => {
+          if (!sessionStorage.getItem("token")) {
+            next("/register");
+          }
+        },
       },
     ],
   },
