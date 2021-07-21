@@ -64,7 +64,7 @@
           </div>
           <div class="growthdiv">
             <div class="growthvalue">
-              <h3 class="num" @v-model="growthvalue">{{ growthvalue }}</h3>
+              <h3 class="num">{{ growthvalue }}</h3>
               <span>成长值</span>
             </div>
             <!-- 积分 -->
@@ -195,21 +195,35 @@
     <van-popup v-model:show="show">我的特权</van-popup>
     <!-- 成长任务 -->
     <div class="growthtask">
-      <van-cell value="成长任务" />
-      <van-cell>
+      <van-cell :center="true">成长任务</van-cell>
+      <van-cell :center="true">
         初次绑定账号
-        <span>+15成长值</span>
+        <span class="add">+15成长值</span>
         <van-button
+          v-if="!growthvalue"
           round
           type="primary"
           size="small"
           icon-position="right"
-          text="领取15成长值"
+          hairline="false"
+          @click="getvalue"
+          >领取15成长值</van-button
+        >
+        <van-button
+          :center="true"
+          v-if="growthvalue"
+          round
+          type="primary"
+          size="small"
+          icon-position="right"
+          text="已领取"
+          :disabled="true"
+          color="#E2E2E2"
           @click="getvalue"
         ></van-button>
       </van-cell>
-      <van-cell value="上传头像" />
-      <van-cell value="特别感谢" />
+      <van-cell :center="true" to="/SetSelfInformation">上传头像</van-cell>
+      <van-cell :center="true" to="/feedback">特别感谢</van-cell>
     </div>
   </div>
 </template>
@@ -222,7 +236,11 @@ export default {
   setup() {
     let username = ref(localStorage.getItem("username")); //获取本地姓名
     const message = ref(localStorage.getItem("message")); //获取个性签名
-    let growthvalue = ref(300); //成长值的值
+    let growthvalue = ref(
+      localStorage.getItem("growthvalue")
+        ? localStorage.getItem("growthvalue")
+        : 0
+    ); //成长值的值
     const router = useRouter();
     // 返回上个界面
     const onClickLeft = () => {
@@ -233,11 +251,9 @@ export default {
     const showPopup = () => {
       show.value = true;
     };
-    // 绑定账号,获取成长值
+    // 之前未绑定账号转到绑定账号页面
     const getvalue = () => {
       router.push("/SetSelfInformation");
-      growthvalue.value += 15;
-      console.log(growthvalue);
     };
 
     return {
@@ -263,8 +279,9 @@ export default {
 //个人中心的页面大小和背景色
 .membercenter {
   .base-width();
-  height: 812px;
-  position: relative;
+  height: 100%;
+  position: fixed;
+  top: -35px;
   .van-nav-bar {
     .base-width();
     position: absolute;
@@ -465,7 +482,7 @@ export default {
         position: absolute;
         top: 360px;
         left: 24px;
-        width: 176px;
+        width: 180px;
         height: 13px;
         font-size: @xs-font;
         font-family: PingFang SC;
@@ -494,6 +511,52 @@ export default {
     height: 100px;
     line-height: 100px;
     text-align: center;
+  }
+  .growthtask {
+    width: 345px;
+    height: 222px;
+    background: #ffffff;
+    box-shadow: 0px 4px 16px 0px rgba(222, 222, 222, 0.21);
+    border-radius: 10px;
+    position: absolute;
+    margin: 15px 14px 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .van-cell {
+    border-radius: 10px;
+  }
+
+  .van-cell__value {
+    font-size: 12px;
+    font-family: PingFang SC;
+    font-weight: 500;
+    color: #323232 !important;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 10px;
+    .add {
+      font-size: 8px;
+      font-family: PingFang SC;
+      font-weight: 500;
+      color: #fd504b;
+      line-height: 12px;
+      position: absolute;
+      top: 38px;
+      left: 0;
+    }
+    .van-button {
+      height: 21px;
+      background: #ed5f5f;
+      border-radius: 32px;
+      position: absolute;
+      top: 15px;
+      right: 13px;
+      span {
+        color: white;
+      }
+    }
   }
 }
 </style>
