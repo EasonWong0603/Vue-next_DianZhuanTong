@@ -26,12 +26,16 @@
       <!-- 列表信息 -->
       <ul class="itemlist">
         <!-- 每个 -->
-        <li class="each" v-for="(item, index) in state.list" :key="index">
+        <li
+          class="each"
+          v-for="(item, index) in state.list"
+          :key="index"
+          @click="handleclick(index)"
+        >
           <!-- 复选框 -->
           <div
             class="checkbox"
             :class="{ active: state.actives[index] === true }"
-            @click="handleclick(index)"
           ></div>
           <!-- 头像 -->
           <img :src="item.img" />
@@ -48,7 +52,7 @@
 import rotuer from "../../router/index";
 import { reactive, onMounted } from "vue";
 
-import { getFriendDataApi } from "../../utils/api";
+import { getGroupchatDataApi } from "../../utils/api";
 
 export default {
   setup() {
@@ -78,7 +82,7 @@ export default {
 
     // 获取数据
     const getlist = async () => {
-      const { data } = await getFriendDataApi();
+      const { data } = await getGroupchatDataApi();
       state.list = data.result;
     };
 
@@ -150,10 +154,13 @@ export default {
 
     // 人物列表
     .itemlist {
+      padding-right: 16px;
+
       // 每块
       .each {
         height: 73px;
         .flex-center-a();
+        border-bottom: 1px solid #dadada;
       }
 
       // 复选框

@@ -30,11 +30,25 @@ const routes = [
       {
         path: "/home/message",
         component: () => import("../views/home/Message.vue"),
+        beforeEnter: (to, from, next) => {
+          if (!sessionStorage.getItem("token")) {
+            next("/register");
+          } else {
+            next();
+          }
+        },
       },
       // 我的
       {
         path: "/home/mine",
         component: () => import("../views/home/Mine.vue"),
+        beforeEnter: (to, from, next) => {
+          if (!sessionStorage.getItem("token")) {
+            next("/register");
+          } else {
+            next();
+          }
+        },
       },
     ],
   },
@@ -80,23 +94,11 @@ const routes = [
       },
     ],
   },
-
   // 社区-社区详情页
   {
     path: "/communitydetail",
     component: () => import("../views/community/Communitydetail.vue"),
     children: [
-      // 二级重定向
-      {
-        path: "/communitydetail",
-        redirect: "/communitydetail/comment",
-      },
-      // 社区-社区详情页-评论
-      {
-        path: "/communitydetail/comment",
-        component: () =>
-          import("../views/community/communitydetail/Comment.vue"),
-      },
       // 社区-社区详情页-转发
       {
         path: "/communitydetail/forward",
@@ -109,6 +111,16 @@ const routes = [
         component: () => import("../views/community/communitydetail/Like.vue"),
       },
     ],
+  },
+  // 社区-评论
+  {
+    path: "/comment",
+    component: () => import("../views/community/communitydetail/Comment.vue"),
+  },
+  // 社区-发布信息
+  {
+    path: "/upload",
+    component: () => import("../views/community/communitydetail/Upload.vue"),
   },
   //消息-联系人列表
   {
@@ -137,7 +149,7 @@ const routes = [
     component: () => import("../views/message/Chatdetails.vue"),
     props: true,
   },
-
+  //消息-创建群聊
   {
     path: "/groupchat",
     component: () => import("../views/message/Groupchat.vue"),
