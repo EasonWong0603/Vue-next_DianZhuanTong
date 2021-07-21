@@ -22,7 +22,7 @@
         </div>
         <!--发表文字-->
         <div class="content">
-          你还在纠结大盘不放量吗？其实你知道A股已经开始裂变了吗？美股化顿，港股化已是不争的事实，A股不需要全面上涨，全面放量，现在就是精准打击、精准放量阶段，只有集中力量把科技、金融撬动，才能有效刺激放量。多方位的刺激与地域性的差异导致全面放量现在就是精准打击
+          你还在纠结大盘不放量吗？其实你知道A股已经开始裂变了吗？美股化顿，港股化已是不争的事实，A股不需要全面上涨，全面放量，现在就是精准打击、精准放量阶段，只有集中力量把科技、金融撬动，才能有效刺激放量。多方位的刺激与地域性的差异导致美股化顿，港股化已是不争的事实，A股不需要全面上涨，全面放量
         </div>
         <!--分享图片-->
         <div class="Share">
@@ -45,7 +45,7 @@
     <!--tab选项卡-->
     <div class="nav">
       <div class="navhead">
-        <van-tabs v-model="active">
+        <van-tabs v-model="active" type="line">
           <!--评论页-->
           <van-tab title="评论123">
             <ul class="navul">
@@ -147,8 +147,9 @@ export default {
     const out = () => {
       router.go(-1);
     };
+
+    //分享
     const state = reactive({
-      //分享
       share: [
         {
           name: "微信",
@@ -244,13 +245,12 @@ export default {
     color: #333333;
   }
   .detailed {
+    background: #ffffff;
     width: 100%;
-    margin-bottom: 20px;
     .chart {
       width: 100%;
       height: 370px;
-      height: 370px;
-      background: #ffffff;
+      height: 432px;
       box-shadow: 0px 0px 9px 0px rgba(182, 182, 182, 0.42);
       padding: 13px 16px 43px 19px;
       position: relative;
@@ -316,17 +316,15 @@ export default {
       }
       //发表文字
       .content {
-        float: left;
         width: 340px;
-        height: 98px;
+        height: 125px;
         font-size: 14px;
         font-family: PingFang;
         font-weight: 500;
         color: #666666;
-        line-height: 20px;
+        line-height: 21px;
         display: -webkit-box; /*将对象转为弹性盒模型展示*/
-        -webkit-box-orient: vertical; /*设置弹性盒模型子元素的排列方式*/
-        -webkit-line-clamp: 5; /*限制文本行数*/
+        -webkit-line-clamp: 6; /*限制文本行数*/
         overflow: hidden; /*超出隐藏*/
         span {
           width: 29px;
@@ -346,6 +344,7 @@ export default {
         border-radius: 3px;
         float: left;
         margin-top: 10px;
+        margin-bottom: 10px;
         img {
           display: block;
           width: 100%;
@@ -371,9 +370,9 @@ export default {
       }
     }
   }
-
   //转发  点击   评论
   .nav {
+    display: block;
     width: 374px;
     height: 100%;
     background: #ffffff;
@@ -387,10 +386,13 @@ export default {
           margin-left: 10px;
           text-indent: 10px;
         }
+        .navp {
+          color: #aaaaaa;
+        }
         .navimg {
           display: block;
-          height: 50px;
-          width: 50px;
+          height: 40px;
+          width: 40px;
           float: left;
           img {
             display: block;
@@ -436,14 +438,13 @@ export default {
         width: 375px;
       }
       p {
-        margin-bottom: 10px;
         margin-left: 10px;
         text-indent: 10px;
       }
       .relayimg {
         display: block;
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
         float: left;
         img {
           display: block;
@@ -460,6 +461,8 @@ export default {
       }
       .relayp {
         height: 30px;
+        color: #aaaaaa;
+        margin-top: 15px;
       }
       .relayline {
         display: block;
@@ -487,12 +490,20 @@ export default {
       display: block;
       width: 12px;
       height: 12px;
+      margin-right: 3px;
+      margin-top: 1px;
     }
+  }
+  .van-nav-bar__content {
+    background: #f8f8f8;
   }
   .van-ellipsis {
     height: 20px;
     // z-index: 1 !important;
     font-weight: bold;
+  }
+  .van-tabs {
+    border-radius: 17px 17px 0px 0px !important;
   }
 }
 </style>
