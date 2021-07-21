@@ -33,6 +33,8 @@ const routes = [
         beforeEnter: (to, from, next) => {
           if (!sessionStorage.getItem("token")) {
             next("/register");
+          } else {
+            next();
           }
         },
       },
@@ -43,6 +45,8 @@ const routes = [
         beforeEnter: (to, from, next) => {
           if (!sessionStorage.getItem("token")) {
             next("/register");
+          } else {
+            next();
           }
         },
       },
