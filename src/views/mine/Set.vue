@@ -65,7 +65,9 @@ export default {
 @import "../../assets/css/var.less";
 .set {
   .base-width;
-  height: 812px;
+  height: 100%;
+  position: fixed;
+
   .van-icon {
     color: #9c9c9c;
   }

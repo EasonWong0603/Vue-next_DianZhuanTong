@@ -91,10 +91,11 @@ export default {
 
     // 获取本地的个性签名
     let message = ref(localStorage.getItem("message"));
+    //
 
     // 返回上一个页面按钮的事件
     const onClickLeft = () => {
-      router.push("/setup");
+      router.go(-1);
     };
 
     // 上传图片组件
@@ -125,6 +126,7 @@ export default {
     const show = ref(false);
     const showPopup = () => {
       show.value = true;
+      birthday.value = "";
     };
     // 取消按钮
     const onCancel = () => {
@@ -163,6 +165,7 @@ export default {
     //失去焦点保存个性签名到本地
     const messagehold = () => {
       localStorage.setItem("message", message.value);
+      localStorage.setItem("growthvalue", 15);
     };
 
     return {
@@ -204,7 +207,8 @@ export default {
 .SetSelfInformation {
   //个人资料页面
   .base-width;
-  height: 812px;
+  height: 100%;
+  position: fixed;
   .van-nav-bar {
     margin-bottom: 16px;
     .van-icon {

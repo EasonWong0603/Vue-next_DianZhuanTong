@@ -25,16 +25,33 @@ const routes = [
       {
         path: "/home/community",
         component: () => import("../views/home/Community.vue"),
+        meta: {
+          title: "社区交流 - 热门动态",
+        },
       },
       // 消息
       {
         path: "/home/message",
         component: () => import("../views/home/Message.vue"),
+        beforeEnter: (to, from, next) => {
+          if (!sessionStorage.getItem("token")) {
+            next("/register");
+          } else {
+            next();
+          }
+        },
       },
       // 我的
       {
         path: "/home/mine",
         component: () => import("../views/home/Mine.vue"),
+        beforeEnter: (to, from, next) => {
+          if (!sessionStorage.getItem("token")) {
+            next("/register");
+          } else {
+            next();
+          }
+        },
       },
     ],
   },
@@ -190,6 +207,12 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+
+// 全局后置钩子
+router.afterEach((to) => {
+  // 设置页面title
+  document.title = to.meta.title || "点赚通 - 为您量身打造的理财项目";
 });
 
 export default router;

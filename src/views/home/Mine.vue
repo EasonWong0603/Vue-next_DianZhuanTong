@@ -81,6 +81,7 @@
           class="membercenterin"
           :icon="require('../../assets/images/mine/icon_article@3x.png')"
           text="关注文章"
+          @click="openarticle"
         />
       </van-grid>
     </div>
@@ -93,7 +94,8 @@
         :icon="require('../../assets/images/mine/icon_honhbao@3x.png')"
         title="我的红包"
         is-link
-        value="根据红包页得红包数"
+        value="0个"
+        @click="getwallet"
       />
       <!-- 我的积分 -->
       <van-cell
@@ -102,7 +104,9 @@
         title="我的积分"
         is-link
         value=""
+        @click="getintegral"
       />
+
       <!-- 邀请好友 -->
       <van-cell
         :border="false"
@@ -126,7 +130,7 @@
         title="我的银行卡"
         is-link
         value=""
-        @click="handleclick"
+        to="/bankcard"
       />
       <!-- 帮助中心 -->
       <van-cell
@@ -145,14 +149,16 @@
 import { ref } from "vue";
 // 引入所需的组件
 import { Toast } from "vant";
-import MineHeader from "@/components/mine/MineHeader.vue";
-import router from "../../router/index";
+
+import MineHeader from "../../components/MineHeader.vue";
 
 export default {
   setup() {
     const username = ref(localStorage.getItem("username")); //获取名字
     const message = ref(localStorage.getItem("message")); //获取个性签名
     const follower = ref(localStorage.getItem("follower")); //获取关注数
+
+    // 邀请好友-分享页面
     const showShare = ref(false);
     const options = [
       { name: "微信", icon: "wechat" },
@@ -161,27 +167,36 @@ export default {
       { name: "分享海报", icon: "poster" },
       { name: "二维码", icon: "qrcode" },
     ];
-
     const onSelect = (option) => {
       Toast(option.name);
       showShare.value = false;
     };
 
-    // 点击跳转银行卡页面
-    const handleclick = () => {
-      router.push("/bankcard");
+    //我的积分的轻提示
+    const getintegral = () => {
+      Toast("您现在的积分为0，加油赚取积分吧！");
+    };
+    //关注文章的轻提示
+    const openarticle = () => {
+      Toast("我们正在抓紧开发，敬请期待");
+    };
+    //我的红包-轻提醒
+    const getwallet = () => {
+      Toast("还没有红包哦，快去领取吧");
     };
 
     return {
       username, //名字
       message, //个签
       follower, //关注
-      handleclick, // 跳转银行卡
 
       //ShareSheet 分享面板-3个
       options,
       onSelect,
       showShare,
+      getintegral, //我的积分-轻提示
+      openarticle, //关注文章-轻提示
+      getwallet, //我的红包
     };
   },
   components: {
@@ -284,6 +299,7 @@ export default {
       border-radius: 10px;
       position: absolute;
       bottom: 0px;
+
       .flex-around;
       .num {
         //收藏关注等等的数量的样式
@@ -304,7 +320,7 @@ export default {
         font-weight: 400;
         color: #8a8a8a;
         line-height: 18px;
-        margin-top: 13px;
+        margin: 13px 0 0 -5px;
       }
     }
   }
@@ -338,7 +354,7 @@ export default {
   }
   .memberwelfare {
     // 会员福利盒子
-    .pos-left-width;
+    .pos-left-width();
     top: 382px;
     height: 238px;
     background: #ffffff;
@@ -348,12 +364,20 @@ export default {
     flex-direction: column;
     justify-content: space-around;
     .van-cell__value {
-      height: 12px;
+      height: 18px;
       font-size: 13px;
       font-family: PingFang;
       font-weight: 500;
       color: #fc5d26;
       line-height: 18px;
+    }
+    .van-popup--bottom {
+      margin: 0 auto 120px;
+      right: 0;
+      width: 90%;
+    }
+    .van-popup--round {
+      border-radius: 30px;
     }
   }
 
