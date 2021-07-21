@@ -231,7 +231,7 @@
 <script>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import MineHeader from "@/components/mine/MineHeader.vue";
+import MineHeader from "@/components/MineHeader.vue";
 export default {
   setup() {
     let username = ref(localStorage.getItem("username")); //获取本地姓名

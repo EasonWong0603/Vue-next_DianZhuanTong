@@ -149,7 +149,7 @@
 import { ref } from "vue";
 // 引入所需的组件
 import { Toast } from "vant";
-import MineHeader from "@/components/mine/MineHeader.vue";
+import MineHeader from "@/components/MineHeader.vue";
 export default {
   setup() {
     const username = ref(localStorage.getItem("username")); //获取名字

@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import MineHeader from "@/components/mine/MineHeader.vue";
+import MineHeader from "@/components/MineHeader.vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 
