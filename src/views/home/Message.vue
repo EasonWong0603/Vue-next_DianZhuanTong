@@ -15,7 +15,6 @@
           :actions="actions"
           :overlay="true"
           placement="bottom-end"
-          style="left: 237px"
           @select="onSelect"
         >
           <template #reference>
@@ -55,7 +54,9 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p style="font-size: 14px; color: #282828">导师消息</p>
+              <p style="font-size: 14px; color: #282828; font-weight: bold">
+                导师消息
+              </p>
               <span class="time" style="color: #6b6b6b">5月14日</span>
             </div>
           </template>
@@ -88,7 +89,9 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p style="font-size: 14px; color: #282828">团队消息</p>
+              <p style="font-size: 14px; color: #282828; font-weight: bold">
+                团队消息
+              </p>
               <span class="time" style="color: #6b6b6b">5月14日</span>
             </div>
           </template>
@@ -113,7 +116,9 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p style="font-size: 14px; color: #282828">{{ item.name }}</p>
+              <p style="font-size: 14px; color: #282828; font-weight: bold">
+                {{ item.name }}
+              </p>
               <span class="time" style="color: #6b6b6b">{{ item.time }}</span>
             </div>
           </template>
@@ -128,7 +133,9 @@
           <van-button square type="danger" text="删除" />
         </template>
         <!-- 未读消息提醒 -->
-        <span class="num">99+</span>
+        <span :class="item.msgcount == 0 ? 'none' : 'num'">{{
+          item.msgcount
+        }}</span>
       </van-swipe-cell>
     </div>
   </div>
@@ -136,10 +143,8 @@
 
 <script>
 import { getPersonlistDataApi } from "../../utils/api";
-import { ref, onBeforeMount, reactive, onMounted} from "vue";
+import { ref, onBeforeMount, reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
-
-import { } from "vue";
 
 export default {
   setup() {
@@ -300,5 +305,8 @@ export default {
 }
 .van-popover .van-popover__arrow {
   right: var(--van-border-radius-sm);
+}
+.none {
+  display: none;
 }
 </style>

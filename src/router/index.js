@@ -70,7 +70,7 @@ const routes = [
       },
       // 首页-导师详情页-评价
       {
-        path: "/leaderdetail/evaluation:id",
+        path: "/leaderdetail/evaluation/:id",
         component: () => import("../views/index/leaderdetail/Evaluation.vue"),
       },
       // 首页-导师详情页-动态
