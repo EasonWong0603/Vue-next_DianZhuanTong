@@ -15,13 +15,13 @@
     </ul>
     <div class="detailed">
       <ul class="chart">
-        <li class="chart1">
+        <li class="chart1" @click="community">
           <img
             src="../../assets/images/community/20180513224039_tgfwu@3x.png"
             alt=""
           />
         </li>
-        <li class="chart2">
+        <li class="chart2" @click="community">
           <p>Rose</p>
           <span>31分钟</span>
         </li>
@@ -52,7 +52,7 @@
         </li>
       </ul>
       <ul class="chart charts">
-        <li class="chart1">
+        <li class="chart1" @click="community">
           <img
             src="../../assets/images/community/20151216132026_3iCHk@3x.png"
             alt=""
@@ -104,6 +104,7 @@
 <script>
 import { getPersonlistDataApi } from "../../utils/api";
 import { onMounted, ref } from "vue";
+import route from "../../router/index";
 export default {
   setup() {
     const detailContent = ref("");
@@ -116,12 +117,18 @@ export default {
       detailContent.value = res.data.result;
       console.log(detailContent.value);
     };
+
+    const community = () => {
+      route.push("/communitydetail");
+    };
+
     onMounted(() => {
       getPerson();
     });
     return {
       detailContent,
       getPerson,
+      community,
     };
   },
 };
@@ -330,6 +337,7 @@ export default {
       }
     }
   }
+
   //底部
   .foot {
     margin-top: 20px;

@@ -1,33 +1,37 @@
 <template>
   <div class="detail">
-    <van-nav-bar title="详情" left-arrow @click-left="onClickLeft" />
+    <van-nav-bar title="详情" left-arrow @click-left="out" />
     <div class="detailed">
-      <ul class="chart">
-        <li class="chart1">
+      <div class="chart">
+        <div class="chart1">
           <img
             src="../../assets/images/community/20180513224039_tgfwu@3x.png"
             alt=""
           />
-        </li>
-        <li class="chart2">
+        </div>
+        <div class="chart2">
           <p>Rose</p>
           <span>31分钟</span>
-        </li>
-        <li class="chart3">+ 关注</li>
-        <li class="chart4">
+        </div>
+        <div class="chart3">+ 关注</div>
+        <div class="chart4">
           你还在纠结大盘不放量吗？其实你知道A股已经开始裂变了吗？美股化顿，港股化已是不争的事实，A股不需要全面上涨，全面放量，现在就是精准打击、精准放量阶段，只有集中力量把科技、金融撬动，才能有效刺激放量。多方位的刺激与地域性的差异导致全面放量现在就是精准打击
-        </li>
-        <li class="chart5">
+        </div>
+        <div class="chart5">
           <img src="../../assets/images/community/323@3x.png" />
-        </li>
-        <li class="chart6">
+        </div>
+        <div class="chart6">
           <span>分享到</span>
-          <span><img src="" alt="" /></span>
-          <span>111</span>
-          <span>111</span>
-          <span>111</span>
-        </li>
-      </ul>
+          <span
+            class="shareicon"
+            v-for="item in state.share"
+            :key="item.name"
+            @click="handleClick(item)"
+          >
+            <img :src="item.img" />
+          </span>
+        </div>
+      </div>
     </div>
     <div class="nav">
       <div class="navhead">
@@ -62,23 +66,21 @@
           <van-tab title="转发20">
             <ul class="relay">
               <li v-for="item in detailContent" :key="item.id">
-                <p class="navimg"><img :src="item.headimg" alt="" /></p>
-                <p class="navname">{{ item.name }}</p>
-                <p class="navp">
-                  <span>{{ item.time }}</span>
+                <p class="relayimg"><img :src="item.headimg" alt="" /></p>
+                <p class="relayname">{{ item.name }}</p>
+                <p class="relayp">
+                  {{ item.time }}
                 </p>
-                <span class="navline"></span>
+                <span class="relayline"></span>
               </li></ul
           ></van-tab>
           <van-tab title="赞2345">
-            <ul class="like">
+            <ul class="relay">
               <li v-for="item in detailContent" :key="item.id">
-                <p class="navimg"><img :src="item.headimg" alt="" /></p>
-                <p class="navname">{{ item.name }}</p>
-                <p class="navp">
-                  <span>暂无介绍</span>
-                </p>
-                <span class="navline"></span>
+                <p class="relayimg"><img :src="item.headimg" alt="" /></p>
+                <p class="relayname">{{ item.name }}</p>
+                <p class="relayp">{{ item.selfintro }}</p>
+                <span class="relayline"></span>
               </li></ul
           ></van-tab>
         </van-tabs>
@@ -103,33 +105,66 @@
 </template>
 
 <script>
+import { getPersonlistDataApi } from "../../utils/api"; //人物卡
+
+import router from "@/router/index.js"; //引入路由
+
+import { onMounted, ref, reactive } from "vue"; //存储人物数据
 import { Toast } from "vant";
-import { getPersonlistDataApi } from "../../utils/api";
-import { onMounted, ref } from "vue";
+
 export default {
   setup() {
-    const onClickLeft = () => {
-      Toast("返回");
-    };
-
+    //导航栏
     const detailContent = ref("");
-    // const state = reactive({
-    //   detailContent: "",
-    // });
+
+    //人物数据
     const getPerson = async () => {
       const res = await getPersonlistDataApi();
       console.log(res.data.result);
       detailContent.value = res.data.result;
       console.log(detailContent.value);
     };
+
     onMounted(() => {
       getPerson();
     });
 
+    //返回
+    const out = () => {
+      router.go(-1);
+    };
+    const state = reactive({
+      //分享
+      share: [
+        {
+          name: "微信",
+          img: require("../../assets/images/community/Communitydetail/wechat@3x.png"),
+        },
+        {
+          name: "朋友圈",
+          img: require("../../assets/images/community/Communitydetail/pengyouquan@3x.png"),
+        },
+        {
+          name: "QQ",
+          img: require("../../assets/images/community/Communitydetail/dianhua-@3x.png"),
+        },
+        {
+          name: "空间",
+          img: require("../../assets/images/community/Communitydetail/qqkongjian@3x.png"),
+        },
+      ],
+    });
+
+    const handleClick = (item) => {
+      Toast(item.name);
+    };
+
     return {
-      onClickLeft,
       detailContent,
       getPerson,
+      out,
+      state,
+      handleClick,
     };
   },
 };
@@ -247,14 +282,19 @@ export default {
         }
       }
       .chart6 {
-        display: flex;
-        float: left;
         width: 100%;
         height: 40px;
-        .flex-center();
-        span {
-          text-align: center;
-          flex: 1 1 auto;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        .shareicon {
+          display: block;
+          width: 20px;
+          height: 20px;
+          img {
+            width: 18px;
+            height: 18px;
+          }
         }
       }
     }
@@ -263,13 +303,11 @@ export default {
   //转发  点击   评论
   .nav {
     width: 374px;
-    height: 498px;
+    height: 100%;
     background: #ffffff;
     box-shadow: 0px 0px 9px 0px rgba(182, 182, 182, 0.42);
 
     .navul {
-      height: 412px;
-      overflow: hidden;
       li {
         margin-top: 10px;
         p {
@@ -314,6 +352,47 @@ export default {
           border-top: 1px solid #dddddd;
           margin-left: 60px;
         }
+      }
+    }
+
+    //转发
+    .relay {
+      background: #fff;
+      li {
+        display: block;
+        margin-top: 20px;
+        width: 375px;
+      }
+      p {
+        margin-bottom: 10px;
+        margin-left: 10px;
+        text-indent: 10px;
+      }
+      .relayimg {
+        display: block;
+        height: 50px;
+        width: 50px;
+        float: left;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .relayname {
+        height: 12px;
+        font-size: 13px;
+        font-family: PingFang;
+        font-weight: 500;
+        color: #333333;
+      }
+      .relayp {
+        height: 30px;
+      }
+      .relayline {
+        display: block;
+        border-top: 1px solid #dddddd;
+        margin-left: 60px;
       }
     }
   }
