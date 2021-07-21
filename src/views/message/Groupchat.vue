@@ -26,12 +26,16 @@
       <!-- 列表信息 -->
       <ul class="itemlist">
         <!-- 每个 -->
-        <li class="each" v-for="(item, index) in state.list" :key="index">
+        <li
+          class="each"
+          v-for="(item, index) in state.list"
+          :key="index"
+          @click="handleclick(index)"
+        >
           <!-- 复选框 -->
           <div
             class="checkbox"
             :class="{ active: state.actives[index] === true }"
-            @click="handleclick(index)"
           ></div>
           <!-- 头像 -->
           <img :src="item.img" />
@@ -68,17 +72,20 @@ export default {
       if (!state.actives[i]) {
         state.actives[i] = true;
         state.selectList.push(state.list[i].img);
+        console.log(1 + "---" + state.selectList);
       } else {
         state.actives[i] = false;
         state.selectList = state.selectList.filter(
           (item) => item !== state.list[i].img
         );
+        console.log(2 + "---" + state.selectList);
       }
     };
 
     // 获取数据
     const getlist = async () => {
       const { data } = await getFriendDataApi();
+      console.log(data);
       state.list = data.result;
     };
 
