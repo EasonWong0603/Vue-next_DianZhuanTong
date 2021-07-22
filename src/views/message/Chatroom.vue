@@ -163,7 +163,7 @@ export default {
 
     //点击发送
     const textValue = ref("");
-    const textlist = ["我遇到一个问题", "请问现在有时间吗"];
+    const textlist = ["我遇到一个问题"];
 
     const handleClick = () => {
       if (textValue.value !== "") {
