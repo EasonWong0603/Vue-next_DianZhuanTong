@@ -29,7 +29,10 @@
     <nav>
       <ul>
         <li>
-          <img src="../../assets/images/index/Home/01.png" />
+          <img
+            src="../../assets/images/index/Home/01.png"
+            @click="this.$router.push('/aaaa')"
+          />
           <p>投资理财</p>
         </li>
         <li>

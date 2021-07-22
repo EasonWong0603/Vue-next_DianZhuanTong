@@ -14,6 +14,7 @@
     >
   </div>
 </template>
+
 <script>
 //引入整个路由
 import { useRouter } from "vue-router";
@@ -32,7 +33,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 #NotFound {
   height: 100%;
   display: flex;

@@ -6,7 +6,7 @@
       <van-nav-bar
         title="加入点赚通"
         left-arrow
-        @click-left="onClickLeft"
+        @click="this.$router.go(-1)"
         :fixed="true"
       />
     </header>
@@ -26,18 +26,18 @@
 
 <script>
 //引入整个路由
-import { useRouter } from "vue-router";
+// import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { Toast } from "vant";
 
 export default {
   setup() {
-    // 定义整个路由
-    const router = useRouter();
-    // 后退上级路由
-    const onClickLeft = () => {
-      router.go(-1);
-    };
+    // // 定义整个路由
+    // const router = useRouter();
+    // // 后退上级路由
+    // const onClickLeft = () => {
+    //   router.go(-1);
+    // };
 
     // 立即邀请
     const handleclick = () => {
@@ -71,7 +71,7 @@ export default {
     };
 
     return {
-      onClickLeft,
+      // onClickLeft,
       handleclick,
       options,
       showShare,
