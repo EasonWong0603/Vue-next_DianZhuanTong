@@ -30,6 +30,7 @@
           placeholder="简要描述你要反馈的意见和建议"
           show-word-limit
           autofocus
+          ref="myRef"
         />
       </van-cell-group>
       <!-- 拍照上传 -->
@@ -46,7 +47,8 @@
 <script>
 //引入整个路由
 import { useRouter } from "vue-router";
-import { reactive } from "vue";
+import { reactive, ref, onMounted } from "vue";
+
 import { Toast } from "vant";
 
 export default {
@@ -72,19 +74,33 @@ export default {
     // tap
     const fn = (i) => {
       state.num = i;
+      myRef.value.focus();
     };
+
+    // 输入框自动获取焦点
+    const myRef = ref(null);
+
+    onMounted(() => {
+      myRef.value.focus();
+    });
 
     // 提交反馈
     const handleclick = () => {
-      Toast.loading({
-        message: "正在发送...",
-        forbidClick: true,
-        duration: 2000,
-      });
-      setTimeout(() => {
-        state.message = "";
-        Toast.success("反馈成功");
-      }, 2500);
+      if (state.message !== "") {
+        Toast.loading({
+          message: "正在发送...",
+          forbidClick: true,
+          duration: 1000,
+        });
+        setTimeout(() => {
+          router.go(-1);
+          state.message = "";
+          myRef.value.focus();
+          Toast.success("反馈成功");
+        }, 1600);
+      } else {
+        Toast.fail("内容不能为空");
+      }
     };
 
     return {
@@ -93,6 +109,7 @@ export default {
       afterRead,
       fn,
       handleclick,
+      myRef,
     };
   },
 };

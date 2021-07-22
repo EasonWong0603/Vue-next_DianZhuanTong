@@ -6,13 +6,13 @@
       title="会员"
       :border="false"
       left-arrow
-      @click-left="onClickLeft"
+      @click="this.$router.go(-1)"
     />
     <!-- 姓名的盒子，姓名头像，成长值，积分，续费会员 -->
     <div class="namediv">
       <div class="namedivtop">
         <!-- 头像的盒子 判断，如果设置了头像就是设置的头像，没有就放自定义图片-->
-        <div class="photo">
+        <div class="photo" @click="this.$router.push('/setselfinformation')">
           <!-- 头像 -->
           <van-image
             round
@@ -24,42 +24,48 @@
         <!-- 介绍的盒子 -->
         <div class="information">
           <!-- 名字，获取注册时的名字 -->
-          <div class="name">{{ username }}</div>
-          <!-- 等级的红钻图片 -->
-          <div class="vipimg">
-            <img
-              v-if="growthvalue >= 0 && growthvalue < 200"
-              src="../../assets/images/mine/icon_v_v0@3x.png"
-              alt=""
-            />
-            <img
-              v-if="growthvalue >= 200 && growthvalue < 400"
-              src="../../assets/images/mine/icon_v_v1@3x.png"
-              alt=""
-            />
-            <img
-              v-if="growthvalue >= 400 && growthvalue < 600"
-              src="../../assets/images/mine/icon_v_v2@3x.png"
-              alt=""
-            />
-            <img
-              v-if="growthvalue >= 600 && growthvalue < 800"
-              src="../../assets/images/mine/icon_v_v3@3x.png"
-              alt=""
-            />
-            <img
-              v-if="growthvalue >= 800 && growthvalue < 1000"
-              src="../../assets/images/mine/icon_v_v4@3x.png"
-              alt=""
-            />
-            <img
-              v-if="growthvalue >= 1000"
-              src="../../assets/images/mine/icon_v_v5@3x.png"
-              alt=""
-            />
+          <div class="name" @click="this.$router.push('/setselfinformation')">
+            {{ username }}
+            <!-- 等级的红钻图片 -->
+            <div class="vipimg">
+              <img
+                v-if="growthvalue >= 0 && growthvalue < 200"
+                src="../../assets/images/mine/icon_v_v0@3x.png"
+                alt=""
+              />
+              <img
+                v-if="growthvalue >= 200 && growthvalue < 400"
+                src="../../assets/images/mine/icon_v_v1@3x.png"
+                alt=""
+              />
+              <img
+                v-if="growthvalue >= 400 && growthvalue < 600"
+                src="../../assets/images/mine/icon_v_v2@3x.png"
+                alt=""
+              />
+              <img
+                v-if="growthvalue >= 600 && growthvalue < 800"
+                src="../../assets/images/mine/icon_v_v3@3x.png"
+                alt=""
+              />
+              <img
+                v-if="growthvalue >= 800 && growthvalue < 1000"
+                src="../../assets/images/mine/icon_v_v4@3x.png"
+                alt=""
+              />
+              <img
+                v-if="growthvalue >= 1000"
+                src="../../assets/images/mine/icon_v_v5@3x.png"
+                alt=""
+              />
+            </div>
           </div>
+
           <!-- 个人简介：一个判断 -->
-          <div class="introduction">
+          <div
+            class="introduction"
+            @click="this.$router.push('/setselfinformation')"
+          >
             简介：{{ message ? message : "暂无介绍" }}
           </div>
           <div class="growthdiv">
@@ -76,7 +82,7 @@
           <!-- 成长值  -->
         </div>
         <!-- 会员等级 -->
-        <div class="grade">
+        <div class="grade" @click="this.$router.push('/wallet')">
           <span>续费会员</span>
         </div>
       </div>
@@ -204,9 +210,8 @@
           type="primary"
           size="small"
           icon-position="right"
-          hairline="false"
           color="linear-gradient(-23deg, #ff504b, #ff814e)"
-          @click="getvalue"
+          @click="growthvaluechange"
           >领取15成长值</van-button
         >
         <van-button
@@ -219,7 +224,7 @@
           text="已领取"
           :disabled="true"
           color="#E2E2E2"
-          @click="getvalue"
+          @click="this.$router.push('/setselfinformation')"
         ></van-button>
       </van-cell>
       <van-cell :center="true" to="/SetSelfInformation">上传头像</van-cell>
@@ -231,40 +236,31 @@
 <script>
 import { ref } from "vue";
 import { Toast } from "vant";
-//引入整个路由
-import { useRouter } from "vue-router";
 import MineHeader from "@/components/MineHeader.vue";
 export default {
   setup() {
-    // 定义整个路由
-    const router = useRouter();
-    let username = ref(localStorage.getItem("username")); //获取本地姓名
+    const username = ref(localStorage.getItem("username")); //获取本地姓名
     const message = ref(localStorage.getItem("message")); //获取个性签名
-    let growthvalue = ref(
+    const growthvalue = ref(
       localStorage.getItem("growthvalue")
         ? localStorage.getItem("growthvalue")
         : 0
     ); //成长值的值
-    // 返回上个界面
-    const onClickLeft = () => {
-      router.go(-1);
-    };
     // 我的特权的弹出层
     const clicktoast = () => {
       Toast("我的特权");
     };
-    // 之前未绑定账号转到绑定账号页面
-    const getvalue = () => {
-      router.push("/SetSelfInformation");
+    const growthvaluechange = () => {
+      growthvalue.value += 15;
+      localStorage.setItem("growthvalue", growthvalue.value);
     };
 
     return {
-      username,
+      growthvalue,
       message,
-      growthvalue, //成长值的值
-      onClickLeft, //返回
+      username,
       clicktoast, //点击弹出
-      getvalue, //
+      growthvaluechange, //成长值改变
     };
   },
   components: {
@@ -324,28 +320,30 @@ export default {
       }
       .information {
         //个人信息
-
         height: 40px;
         position: absolute;
         left: 94px;
         top: 21px;
+
         .name {
           //姓名
           font-size: 16px;
           font-family: PingFang;
           font-weight: 500;
           color: #333333;
+          display: flex;
+          overflow: auto;
         }
+
         .vipimg {
+          .flex-shr();
           // 红钻
           width: 21px;
           height: 20px;
-          position: absolute;
-          top: 0px;
-          left: 70px;
+
           img {
             width: 21px;
-            height: 20px;
+            .flex-shr();
           }
         }
         .introduction {

@@ -11,7 +11,7 @@
     <div class="namediv">
       <div class="namedivtop">
         <!-- 头像的盒子 判断，如果设置了头像就是设置的头像，没有就放自定义图片-->
-        <div class="photo">
+        <div class="photo" @click="toSetSelfInformation">
           <!-- 头像 -->
           <van-image
             round
@@ -23,9 +23,9 @@
         <!-- 介绍的盒子 -->
         <div class="information">
           <!-- 名字，获取注册时的名字 -->
-          <div class="name">{{ username }}</div>
+          <div class="name" @click="toSetSelfInformation">{{ username }}</div>
           <!-- 个人简介：一个判断 -->
-          <div class="introduction">
+          <div class="introduction" @click="toSetSelfInformation">
             简介：{{ message ? message : "暂无介绍" }}
           </div>
         </div>
@@ -149,7 +149,7 @@
 import { ref } from "vue";
 // 引入所需的组件
 import { Toast } from "vant";
-
+import { useRouter } from "vue-router";
 import MineHeader from "../../components/MineHeader.vue";
 
 export default {
@@ -157,7 +157,7 @@ export default {
     const username = ref(localStorage.getItem("username")); //获取名字
     const message = ref(localStorage.getItem("message")); //获取个性签名
     const follower = ref(localStorage.getItem("follower")); //获取关注数
-
+    const router = useRouter(); // 引入路由
     // 邀请好友-分享页面
     const showShare = ref(false);
     const options = [
@@ -185,6 +185,11 @@ export default {
       Toast("还没有红包哦，快去领取吧");
     };
 
+    // 跳转用户设置页面
+    const toSetSelfInformation = () => {
+      router.push("/setSelfInformation");
+    };
+
     return {
       username, //名字
       message, //个签
@@ -197,6 +202,7 @@ export default {
       getintegral, //我的积分-轻提示
       openarticle, //关注文章-轻提示
       getwallet, //我的红包
+      toSetSelfInformation, //跳转用户设置页面
     };
   },
   components: {

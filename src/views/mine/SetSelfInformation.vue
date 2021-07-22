@@ -108,7 +108,7 @@ export default {
 
     //设置生日组件信息
     // 生日
-    const birthday = ref(""); //单元格右侧显示文本
+    const birthday = ref(localStorage.getItem("birthday") || ""); //单元格右侧显示文本
     // 时间组件
     const currentDate = ref(new Date()); //定义弹出时间即当前日期
     // 时间格式转string格式函数
@@ -144,7 +144,7 @@ export default {
 
     // 性别弹出框组件
     const columns = ["男", "女", "第三性别"];
-    let sexbase = ref("");
+    let sexbase = ref(localStorage.getItem("age") || "");
     //性别弹出层
     const showsex = ref(false);
     const showPopupsex = () => {
@@ -168,6 +168,8 @@ export default {
     const messagehold = () => {
       localStorage.setItem("message", message.value);
       localStorage.setItem("growthvalue", 15);
+      localStorage.setItem("age", sexbase.value);
+      localStorage.setItem("birthday", birthday.value);
     };
 
     return {

@@ -215,7 +215,7 @@ const routes = [
   },
   // 我的-设置-个人信息设置
   {
-    path: "/SetSelfInformation",
+    path: "/setselfinformation",
     component: () => import("../views/mine/SetSelfInformation.vue"),
     meta: {
       title: "个人信息设置",

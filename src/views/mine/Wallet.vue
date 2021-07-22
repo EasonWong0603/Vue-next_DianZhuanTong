@@ -91,7 +91,7 @@
 <script>
 //引入整个路由
 import { useRouter } from "vue-router";
-import { ref, watch } from "vue";
+import { ref, watch, nextTick } from "vue";
 import { Toast } from "vant";
 
 export default {
@@ -121,7 +121,9 @@ export default {
     // 输入框自动获取焦点
     const myRef = ref(null);
 
-    watch(myRef, () => {
+    // 监听
+    watch(shows, async () => {
+      await nextTick();
       myRef.value.focus();
     });
 
