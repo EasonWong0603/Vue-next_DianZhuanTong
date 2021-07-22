@@ -71,7 +71,7 @@
           </p>
         </div>
       </div>
-      <div class="message" :class="noneClass == 1 ? 'none' : ''">
+      <div class="message">
         <div class="send">
           <div class="msg">
             <img
