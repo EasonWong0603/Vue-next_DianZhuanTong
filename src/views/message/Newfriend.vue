@@ -75,10 +75,8 @@ export default {
     //点击按钮同意
 
     const addClass = (i) => {
-      console.log(obj.value);
       if (!obj.value[i]) {
         obj.value[i] = true;
-        console.log(obj.value);
       }
     };
     return {

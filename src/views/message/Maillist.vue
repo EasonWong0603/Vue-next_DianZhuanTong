@@ -13,8 +13,7 @@
         />
       </template>
     </van-nav-bar>
-    <!-- 搜索 -->
-    <van-search v-model="value" placeholder="搜索" />
+
     <!-- 联系人索引 -->
 
     <van-index-bar :sticky="true" :sticky-offset-top="46">
@@ -45,7 +44,7 @@
         <span class="num">2</span>
       </div>
       <!-- 创建群聊 -->
-      <div class="list-card">
+      <div class="list-card" @click="Groupchat">
         <van-image
           class="shadow"
           radius="7px"
@@ -58,7 +57,6 @@
           "
         />
         <p
-          @click="Groupchat"
           class="title"
           style="
             font-size: 14px;

@@ -36,7 +36,7 @@
     >
     <!-- 列表项-系统通知-不可见 -->
     <div class="list">
-      <van-swipe-cell>
+      <van-swipe-cell disabled="true">
         <div class="icon-left">
           <span></span>
           <van-image
@@ -75,7 +75,7 @@
         <!-- <span class="num"></span> -->
       </van-swipe-cell>
       <!-- 列表项-系统通知-不可见 -->
-      <van-swipe-cell
+      <van-swipe-cell disabled="true"
         ><van-image
           round
           width="40"

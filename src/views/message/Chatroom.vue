@@ -42,12 +42,13 @@
               alt=""
             />
 
-            <p>你好在不在呀，妹子！</p>
+            <p style="box-shadow: 0px 0px 10px 0px rgba(236, 236, 236, 0.78)">
+              我们已经是好友了,可以开始聊天了
+            </p>
           </div>
         </div>
       </div>
-      <div class="show" v-for="item1 in textlist" :key="item1">
-        <!-- <div class="time">05/22 06:30</div> -->
+      <div class="show">
         <div class="msg">
           <img
             style="
@@ -59,17 +60,72 @@
             src="https://img.yzcdn.cn/vant/cat.jpeg"
             alt=""
           />
-          <p>{{ item1 }}</p>
-          <!-- <ul>
-            <li>
-             
-            </li>
-          </ul> -->
+          <p
+            style="
+              box-shadow: 0px 0px 10px 0px rgba(220, 86, 86, 0.48);
+              color: #ffffff;
+              background: #ff634e;
+            "
+          >
+            你好, 在吗
+          </p>
+        </div>
+      </div>
+      <div class="message" :class="noneClass == 1 ? 'none' : ''">
+        <div class="send">
+          <div class="msg">
+            <img
+              style="
+                border: 1px solid #ddd;
+                height: 36px;
+                width: 36px;
+                border-radius: 18px;
+              "
+              :src="item.img"
+              alt=""
+            />
+
+            <p style="box-shadow: 0px 0px 10px 0px rgba(236, 236, 236, 0.78)">
+              你好,在的
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="show" v-for="item1 in textlist" :key="item1">
+        <div class="msg">
+          <img
+            style="
+              border: 1px solid #ddd;
+              height: 36px;
+              width: 36px;
+              border-radius: 18px;
+            "
+            src="https://img.yzcdn.cn/vant/cat.jpeg"
+            alt=""
+          />
+          <p
+            style="
+              box-shadow: 0px 0px 10px 0px rgba(220, 86, 86, 0.48);
+              color: #ffffff;
+              background: #ff634e;
+            "
+          >
+            {{ item1 }}
+          </p>
         </div>
       </div>
       <div class="footer">
-        <input type="text" v-model="textValue" />
-        <p @click="handleClick">发送</p>
+        <input
+          type="text"
+          v-model="textValue"
+          style="box-shadow: 0px 0px 10px 0px rgba(236, 236, 236, 0.78)"
+        />
+        <p
+          @click="handleClick"
+          style="box-shadow: 0px 0px 10px 0px rgba(220, 86, 86, 0.48)"
+        >
+          发送
+        </p>
         <img src="../../assets/images/index/Message/footer.png" alt="" />
       </div>
     </div>
@@ -107,7 +163,7 @@ export default {
 
     //点击发送
     const textValue = ref("");
-    const textlist = ["你好", "请问现在有时间吗"];
+    const textlist = ["我遇到一个问题", "请问现在有时间吗"];
 
     const handleClick = () => {
       if (textValue.value !== "") {
@@ -115,6 +171,7 @@ export default {
         textValue.value = "";
       }
     };
+
     return {
       back,
       gotoChatdetails,
