@@ -13,8 +13,7 @@
         />
       </template>
     </van-nav-bar>
-    <!-- 搜索 -->
-    <van-search v-model="value" placeholder="搜索" />
+
     <!-- 联系人索引 -->
 
     <van-index-bar :sticky="true" :sticky-offset-top="46">
@@ -45,7 +44,7 @@
         <span class="num">2</span>
       </div>
       <!-- 创建群聊 -->
-      <div class="list-card">
+      <div class="list-card" @click="Groupchat">
         <van-image
           class="shadow"
           radius="7px"
@@ -58,7 +57,6 @@
           "
         />
         <p
-          @click="Groupchat"
           class="title"
           style="
             font-size: 14px;
@@ -80,7 +78,7 @@
           <div class="zhezhao" @click="gotoChatroom(item.id)"></div>
           <div class="zhezhao2" @click="gotoChatdetails(item.id)"></div>
 
-          <van-cell :border="false" style="height: 73px; disply: flex">
+          <van-cell :border="false" style="disply: flex">
             <template #title>
               <van-image
                 radius="7px"
@@ -195,7 +193,6 @@ export default {
     right: 15px;
     top: 50%;
     font-size: @xxs-font;
-    font-weight: 100;
     color: #fff;
     height: @s-font;
     min-width: @s-font;
@@ -211,10 +208,11 @@ export default {
 }
 .van-cell__title {
   display: flex;
+  height: 45px;
   justify-content: flex-start;
 }
 .van-button--normal {
-  height: 73px;
+  height: 65px;
   width: 80px;
   border: 0;
   background: linear-gradient(-23deg, #2fb383, #28cfb3);
