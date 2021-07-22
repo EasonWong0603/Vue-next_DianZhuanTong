@@ -276,7 +276,6 @@ export default {
       right: 15px;
       top: 50%;
       font-size: @xxs-font;
-      font-weight: 100;
       color: #fff;
       height: @s-font;
       min-width: @s-font;
