@@ -101,29 +101,16 @@ const routes = [
   {
     path: "/communitydetail",
     component: () => import("../views/community/Communitydetail.vue"),
-    children: [
-      // 社区-社区详情页-转发
-      {
-        path: "/communitydetail/forward",
-        component: () =>
-          import("../views/community/communitydetail/Forward.vue"),
-      },
-      // 社区-社区详情页-赞
-      {
-        path: "/communitydetail/like",
-        component: () => import("../views/community/communitydetail/Like.vue"),
-      },
-    ],
   },
   // 社区-评论
   {
     path: "/comment",
-    component: () => import("../views/community/communitydetail/Comment.vue"),
+    component: () => import("../views/community/Comment.vue"),
   },
   // 社区-发布信息
   {
     path: "/upload",
-    component: () => import("../views/community/communitydetail/Upload.vue"),
+    component: () => import("../views/community/Upload.vue"),
   },
   //消息-联系人列表
   {
