@@ -12,7 +12,7 @@
     <div class="namediv">
       <div class="namedivtop">
         <!-- 头像的盒子 判断，如果设置了头像就是设置的头像，没有就放自定义图片-->
-        <div class="photo">
+        <div class="photo" @click="toSetSelfInformation">
           <!-- 头像 -->
           <van-image
             round
@@ -24,42 +24,45 @@
         <!-- 介绍的盒子 -->
         <div class="information">
           <!-- 名字，获取注册时的名字 -->
-          <div class="name">{{ username }}</div>
-          <!-- 等级的红钻图片 -->
-          <div class="vipimg">
-            <img
-              v-if="growthvalue >= 0 && growthvalue < 200"
-              src="../../assets/images/mine/icon_v_v0@3x.png"
-              alt=""
-            />
-            <img
-              v-if="growthvalue >= 200 && growthvalue < 400"
-              src="../../assets/images/mine/icon_v_v1@3x.png"
-              alt=""
-            />
-            <img
-              v-if="growthvalue >= 400 && growthvalue < 600"
-              src="../../assets/images/mine/icon_v_v2@3x.png"
-              alt=""
-            />
-            <img
-              v-if="growthvalue >= 600 && growthvalue < 800"
-              src="../../assets/images/mine/icon_v_v3@3x.png"
-              alt=""
-            />
-            <img
-              v-if="growthvalue >= 800 && growthvalue < 1000"
-              src="../../assets/images/mine/icon_v_v4@3x.png"
-              alt=""
-            />
-            <img
-              v-if="growthvalue >= 1000"
-              src="../../assets/images/mine/icon_v_v5@3x.png"
-              alt=""
-            />
+          <div class="name" @click="toSetSelfInformation">
+            {{ username }}
+            <!-- 等级的红钻图片 -->
+            <div class="vipimg">
+              <img
+                v-if="growthvalue >= 0 && growthvalue < 200"
+                src="../../assets/images/mine/icon_v_v0@3x.png"
+                alt=""
+              />
+              <img
+                v-if="growthvalue >= 200 && growthvalue < 400"
+                src="../../assets/images/mine/icon_v_v1@3x.png"
+                alt=""
+              />
+              <img
+                v-if="growthvalue >= 400 && growthvalue < 600"
+                src="../../assets/images/mine/icon_v_v2@3x.png"
+                alt=""
+              />
+              <img
+                v-if="growthvalue >= 600 && growthvalue < 800"
+                src="../../assets/images/mine/icon_v_v3@3x.png"
+                alt=""
+              />
+              <img
+                v-if="growthvalue >= 800 && growthvalue < 1000"
+                src="../../assets/images/mine/icon_v_v4@3x.png"
+                alt=""
+              />
+              <img
+                v-if="growthvalue >= 1000"
+                src="../../assets/images/mine/icon_v_v5@3x.png"
+                alt=""
+              />
+            </div>
           </div>
+
           <!-- 个人简介：一个判断 -->
-          <div class="introduction">
+          <div class="introduction" @click="toSetSelfInformation">
             简介：{{ message ? message : "暂无介绍" }}
           </div>
           <div class="growthdiv">
@@ -76,7 +79,7 @@
           <!-- 成长值  -->
         </div>
         <!-- 会员等级 -->
-        <div class="grade">
+        <div class="grade" @click="handleclick">
           <span>续费会员</span>
         </div>
       </div>
@@ -204,7 +207,6 @@
           type="primary"
           size="small"
           icon-position="right"
-          hairline="false"
           color="linear-gradient(-23deg, #ff504b, #ff814e)"
           @click="getvalue"
           >领取15成长值</van-button
@@ -253,17 +255,29 @@ export default {
     };
     // 之前未绑定账号转到绑定账号页面
     const getvalue = () => {
-      router.push("/SetSelfInformation");
+      router.push("/setSelfInformation");
+    };
+
+    // 跳转充值页面
+    const handleclick = () => {
+      router.push("/wallet");
+    };
+
+    // 跳转用户设置页面
+    const toSetSelfInformation = () => {
+      router.push("/setSelfInformation");
     };
 
     return {
-      username,
-      message,
-      growthvalue, //成长值的值
-      onClickLeft, //返回
-      showPopup, //弹出
       show,
-      getvalue, //
+      message,
+      username,
+      growthvalue, //成长值的值
+      getvalue, // 之前未绑定账号转到绑定账号页面
+      showPopup, //弹出
+      onClickLeft, //返回
+      handleclick, // 跳转充值页面
+      toSetSelfInformation, // 跳转用户设置页面
     };
   },
   components: {
@@ -323,28 +337,30 @@ export default {
       }
       .information {
         //个人信息
-
         height: 40px;
         position: absolute;
         left: 94px;
         top: 21px;
+
         .name {
           //姓名
           font-size: 16px;
           font-family: PingFang;
           font-weight: 500;
           color: #333333;
+          display: flex;
+          overflow: auto;
         }
+
         .vipimg {
+          .flex-shr();
           // 红钻
           width: 21px;
           height: 20px;
-          position: absolute;
-          top: 0px;
-          left: 70px;
+
           img {
             width: 21px;
-            height: 20px;
+            .flex-shr();
           }
         }
         .introduction {

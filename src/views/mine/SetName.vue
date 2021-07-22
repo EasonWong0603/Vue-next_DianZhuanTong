@@ -34,7 +34,7 @@ export default {
     };
     //点击完成返回上一级，并且把数据重新存入本地
     const onClickRight = () => {
-      router.push("/SetSelfInformation");
+      router.go(-1);
       username = localStorage.setItem("username", state.value);
     };
 
