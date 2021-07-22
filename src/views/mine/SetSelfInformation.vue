@@ -140,11 +140,12 @@ export default {
       birthday.value += formatter("month", value.getMonth() + 1); //添加当前月份，并格式化
       birthday.value += formatter("day", value.getDate()); //添加当前日期，并格式化
       show.value = false; //弹窗消失
+      localStorage.setItem("birthday", birthday.value);
     };
 
     // 性别弹出框组件
     const columns = ["男", "女", "第三性别"];
-    let sexbase = ref(localStorage.getItem("age") || "");
+    let sexbase = ref(localStorage.getItem("sex") || "");
     //性别弹出层
     const showsex = ref(false);
     const showPopupsex = () => {
@@ -154,6 +155,7 @@ export default {
     const onConfirmsex = (value) => {
       sexbase.value = value;
       showsex.value = false;
+      localStorage.setItem("sex", sexbase.value);
     };
     // 取消按钮
     const onCancelsex = () => {
@@ -168,8 +170,6 @@ export default {
     const messagehold = () => {
       localStorage.setItem("message", message.value);
       localStorage.setItem("growthvalue", 15);
-      localStorage.setItem("age", sexbase.value);
-      localStorage.setItem("birthday", birthday.value);
     };
 
     return {
