@@ -140,9 +140,9 @@ export default {
 
     const getPerson = async () => {
       const res = await getPersonlistDataApi();
-      console.log(res.data.result);
+      // console.log(res.data.result);
       detailContent.value = res.data.result;
-      console.log(detailContent.value);
+      // console.log(detailContent.value);
     };
     //路由跳转
     const community = () => {
@@ -185,7 +185,7 @@ export default {
       });
       setTimeout(() => {
         if (!already.value) {
-          localStorage.setItem("follower", 0);
+          localStorage.removeItem("follower");
         }
 
         already.value = !already.value;
@@ -200,11 +200,11 @@ export default {
       { name: "拍摄", subname: "照片或视频" },
       { name: "从手机相册选择" },
     ];
-    const onSelect = (item) => {
+    const onSelect = () => {
       // 默认情况下点击选项时不会自动收起
       // 可以通过 close-on-click-action 属性开启自动收起
       show.value = false;
-      Toast(item.name);
+      // Toast(item.name);
       router.push("/upload");
     };
 
