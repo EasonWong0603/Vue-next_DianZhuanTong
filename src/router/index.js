@@ -86,6 +86,7 @@ const routes = [
       title: "全部精选导师",
     },
   },
+
   // 首页-导师列表-搜索
   {
     path: "/search",

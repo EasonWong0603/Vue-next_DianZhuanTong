@@ -37,9 +37,7 @@
           <p class="battel">{{ state.detailContent.simpleIntro2 }}</p>
           <div class="care">
             <span>关注 {{ state.detailContent.attention }}</span>
-            <span class="moudle"
-              >粉丝 {{ state.detailContent.followerer }}</span
-            >
+            <span class="moudle">粉丝 {{ state.detailContent.follower }}</span>
           </div>
         </div>
       </div>
@@ -151,6 +149,7 @@ export default {
     const think = async () => {
       const res = await getPersonlistDataApi();
       state.talk = res.data.result;
+      // console.log(state.talk);
     };
     //老师详情
     const login = async () => {
