@@ -27,7 +27,13 @@
         <!-- 充值 -->
         <van-popup v-model:show="shows">
           <h3>要充值多少呢</h3>
-          <input type="number" placeholder="请输入金额" v-model="money" />
+          <input
+            type="number"
+            placeholder="请输入金额"
+            v-model="money"
+            @keyup.enter="click"
+            ref="myRef"
+          />
           <van-button round type="primary" color="#07C160" @click="click"
             >充值</van-button
           >
@@ -81,7 +87,7 @@
 <script>
 // 引入路由
 import router from "../../router/index.js";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { Toast } from "vant";
 
 export default {
@@ -101,19 +107,27 @@ export default {
     };
 
     // 钱
-    let money = ref("");
+    let money = ref(null);
 
     // 取钱
     let obtain = ref(localStorage.getItem("money") || "0.00");
 
+    // 输入框自动获取焦点
+    const myRef = ref(null);
+
+    watch(myRef, () => {
+      myRef.value.focus();
+    });
+
     // 充值
     const click = () => {
+      myRef.value.focus();
       let moneys = (+money.value).toFixed(2);
       if (moneys !== "0.00") {
         localStorage.setItem("money", (+obtain.value + +moneys).toFixed(2));
         obtain.value = (+obtain.value + +moneys).toFixed(2);
         money.value = "";
-        show.value = false;
+        shows.value = false;
         Toast.success("充值成功");
       } else {
         Toast.fail("请输入金额");
@@ -152,6 +166,7 @@ export default {
       withdrawal, // 体现
       noserve, // 服务停用
       bankcard, // 银行卡
+      myRef,
     };
   },
 };

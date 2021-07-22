@@ -149,7 +149,9 @@
 import { ref } from "vue";
 // 引入所需的组件
 import { Toast } from "vant";
-import MineHeader from "@/components/MineHeader.vue";
+
+import MineHeader from "../../components/MineHeader.vue";
+
 export default {
   setup() {
     const username = ref(localStorage.getItem("username")); //获取名字
@@ -352,7 +354,7 @@ export default {
   }
   .memberwelfare {
     // 会员福利盒子
-    .pos-left-width;
+    .pos-left-width();
     top: 382px;
     height: 238px;
     background: #ffffff;
@@ -369,6 +371,21 @@ export default {
       color: #fc5d26;
       line-height: 18px;
     }
+    .van-popup--bottom {
+      margin: 0 auto 120px;
+      right: 0;
+      width: 90%;
+    }
+    .van-popup--round {
+      border-radius: 30px;
+    }
+  }
+
+  .van-cell,
+  .van-cell__left-icon,
+  .van-cell__right-icon {
+    line-height: normal;
+    height: initial;
   }
 }
 </style>

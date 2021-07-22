@@ -7,7 +7,7 @@
       <!-- 左箭头 -->
       <van-icon name="arrow-left" @click="cancel" />
       <!-- 发送 -->
-      <i class="sendout" @click="sendout">发送</i>
+      <i class="sendout" @click="sendout">发表</i>
     </header>
     <!-- 内容 -->
     <main>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import rotuer from "../../../router/index";
+import rotuer from "../../router/index";
 import { reactive } from "vue";
 import { Toast } from "vant";
 
@@ -33,8 +33,8 @@ export default {
     const state = reactive({
       message: "",
       fileList: [
-        { url: require("../../../assets/images/community/photo01.jpg") },
-        { url: require("../../../assets/images/community/photo02.jpg") },
+        { url: require("../../assets/images/community/photo01.jpg") },
+        { url: require("../../assets/images/community/photo02.jpg") },
       ],
     });
 
@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "../../../assets/css/var.less";
+@import "../../assets/css/var.less";
 #upload {
   // 头部
   header {

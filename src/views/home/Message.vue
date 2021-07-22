@@ -1,7 +1,8 @@
 <template>
-  <div class="news">
+  <div class="message">
     <!-- bar导航 -->
-    <van-nav-bar title="消息" :fixed="true" :placeholder="true">
+    <van-nav-bar :fixed="true" :placeholder="true">
+      <template #title><p style="font-weight: 800">消息</p></template>
       <template #right>
         <van-icon
           :name="
@@ -15,7 +16,6 @@
           :actions="actions"
           :overlay="true"
           placement="bottom-end"
-          style="left: 237px"
           @select="onSelect"
         >
           <template #reference>
@@ -32,7 +32,7 @@
 
     <!-- 通知栏 -->
     <van-notice-bar mode="closeable" color="#FF504B;"
-      >技术是开发它的人的共同灵魂。</van-notice-bar
+      >有未读消息，点击可查看消息</van-notice-bar
     >
     <!-- 列表项-系统通知-不可见 -->
     <div class="list">
@@ -55,7 +55,9 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p style="font-size: 14px; color: #282828">导师消息</p>
+              <p style="font-size: 14px; color: #282828; font-weight: bold">
+                导师消息
+              </p>
               <span class="time" style="color: #6b6b6b">5月14日</span>
             </div>
           </template>
@@ -88,7 +90,9 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p style="font-size: 14px; color: #282828">团队消息</p>
+              <p style="font-size: 14px; color: #282828; font-weight: bold">
+                团队消息
+              </p>
               <span class="time" style="color: #6b6b6b">5月14日</span>
             </div>
           </template>
@@ -113,7 +117,9 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p style="font-size: 14px; color: #282828">{{ item.name }}</p>
+              <p style="font-size: 14px; color: #282828; font-weight: bold">
+                {{ item.name }}
+              </p>
               <span class="time" style="color: #6b6b6b">{{ item.time }}</span>
             </div>
           </template>
@@ -128,7 +134,9 @@
           <van-button square type="danger" text="删除" />
         </template>
         <!-- 未读消息提醒 -->
-        <span class="num">99+</span>
+        <span :class="item.msgcount == 0 ? 'none' : 'num'">{{
+          item.msgcount
+        }}</span>
       </van-swipe-cell>
     </div>
   </div>
@@ -207,90 +215,98 @@ export default {
 
 <style lang="less" scoped>
 @import "../../assets/css/var.less";
-.van-swipe-cell {
-  display: flex;
-  position: relative;
-  .zhezhao {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 10000;
-    top: 0px;
-    left: 0px;
-  }
-  .zhezhao2 {
-    width: 80px;
-    height: 100%;
-    position: absolute;
-    z-index: 10000;
-    top: 0px;
-    right: -80px;
-  }
-  .van-image {
-    position: absolute;
-    left: @xs-font;
-    top: @s-font;
-    z-index: 100;
-  }
+.message {
+  .van-swipe-cell {
+    display: flex;
+    position: relative;
+    .zhezhao {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 10000;
+      top: 0px;
+      left: 0px;
+    }
+    .zhezhao2 {
+      width: 80px;
+      height: 100%;
+      position: absolute;
+      z-index: 10000;
+      top: 0px;
+      right: -80px;
+    }
+    .van-image {
+      position: absolute;
+      left: @xs-font;
+      top: @s-font;
+      z-index: 100;
+    }
 
-  .van-cell {
-    padding-left: 58px;
-    width: 375px;
-    flex-direction: column;
-    align-items: flex-start;
-    .title {
-      display: flex;
-      width: 305px;
-      justify-content: space-between;
-      p {
-        font-size: @s-font;
-      }
+    .van-cell {
+      padding-left: 58px;
+      width: 375px;
+      flex-direction: column;
+      align-items: flex-start;
+      .title {
+        display: flex;
+        width: 305px;
+        justify-content: space-between;
+        p {
+          font-size: @s-font;
+        }
 
-      span {
-        font-size: @xxs-font;
-        color: #6b6b6b;
+        span {
+          font-size: @xxs-font;
+          color: #6b6b6b;
+        }
       }
     }
+    .van-button--normal {
+      height: 66px;
+      width: 80px;
+      border: 0;
+      background: linear-gradient(-23deg, #ff514b, #ff814e);
+    }
+    .num {
+      line-height: @s-font;
+      padding: 0 3px 0 3px;
+      position: absolute;
+      z-index: 101;
+      display: block;
+      right: 15px;
+      top: 50%;
+      font-size: @xxs-font;
+      font-weight: 100;
+      color: #fff;
+      height: @s-font;
+      min-width: @s-font;
+      background: linear-gradient(-23deg, #ff514b, #ff814e);
+      border-radius: 7px;
+      box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
+      text-align: center;
+      color: #f8f8f8;
+    }
   }
-  .van-button--normal {
-    height: 66px;
-    width: 80px;
-    border: 0;
-    background: linear-gradient(-23deg, #ff514b, #ff814e);
+  .van-notice-bar {
+    height: 32px;
+    font-size: @xs-font;
   }
-  .num {
-    line-height: @s-font;
-    padding: 0 3px 0 3px;
-    position: absolute;
-    z-index: 101;
-    display: block;
-    right: 15px;
-    top: 50%;
-    font-size: @xxs-font;
-    font-weight: 100;
-    color: #fff;
-    height: @s-font;
-    min-width: @s-font;
-    background: linear-gradient(-23deg, #ff514b, #ff814e);
-    border-radius: 7px;
-    box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
-    text-align: center;
-    color: #f8f8f8;
+  .van-nav-bar__content
+    .van-nav-bar__right
+    .van-popover__wrapper
+    .van-badge__wrapper {
+    margin-right: 10px;
+    margin-top: 7px;
+    height: 14px;
   }
-}
-.van-notice-bar {
-  height: 32px;
-  font-size: @xs-font;
-}
-.van-nav-bar__content
-  .van-nav-bar__right
-  .van-popover__wrapper
-  .van-badge__wrapper {
-  margin-right: 10px;
-  margin-top: 7px;
-  height: 14px;
-}
-.van-popover .van-popover__arrow {
-  right: var(--van-border-radius-sm);
+  .van-popover .van-popover__arrow {
+    right: var(--van-border-radius-sm);
+  }
+  .none {
+    display: none;
+  }
+  .van-nav-bar__placeholder {
+    height: 100px;
+  }
 }
 </style>

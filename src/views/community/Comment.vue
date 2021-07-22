@@ -23,7 +23,7 @@
 <script>
 import { reactive } from "vue";
 import { Toast } from "vant";
-import router from "../../../router/index";
+import router from "../../router/index";
 
 export default {
   setup() {
@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "../../../assets/css/var.less";
+@import "../../assets/css/var.less";
 
 #comment {
   height: 623px;
