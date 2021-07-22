@@ -19,14 +19,17 @@
 </template>
 
 <script>
+//引入整个路由
 import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { reactive } from "vue";
 // import { reactive } from "vue";
 export default {
   setup() {
-    let username = ref(localStorage.getItem("username"));
+    // 定义整个路由
     const router = useRouter();
+    let username = ref(localStorage.getItem("username"));
+
     //点击取消返回上一级
     const onClickLeft = () => {
       // router.push("/SetSelfInformation");
@@ -34,7 +37,7 @@ export default {
     };
     //点击完成返回上一级，并且把数据重新存入本地
     const onClickRight = () => {
-      router.push("/SetSelfInformation");
+      router.go(-1);
       username = localStorage.setItem("username", state.value);
     };
 

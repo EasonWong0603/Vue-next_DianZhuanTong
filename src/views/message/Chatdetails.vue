@@ -19,7 +19,7 @@
         <div class="left">
           <van-image radius="10px" width="60px" height="60px" :src="item.img" />
 
-          <p class="name">{{ item.name }}</p>
+          <p class="name" style="font-size: 12px">{{ item.name }}</p>
         </div>
         <div class="right">
           <van-image
@@ -48,11 +48,13 @@
 </template>
 <script>
 import { reactive, onMounted, ref } from "vue";
+//引入整个路由
 import { useRouter } from "vue-router";
 import { getFriendbackApi } from "../../utils/api";
 export default {
   props: ["id"],
   setup(props) {
+    // 定义整个路由
     const router = useRouter();
     const back = () => {
       router.back();

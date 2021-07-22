@@ -48,14 +48,16 @@
 </template>
 
 <script>
-// 引入路由
-import rotuer from "../../router/index";
+//引入整个路由
+import { useRouter } from "vue-router";
 import { reactive, onMounted } from "vue";
 
 import { getGroupchatDataApi } from "../../utils/api";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const state = reactive({
       selectList: [], // 小头像
       actives: {}, // 复选框
@@ -64,7 +66,7 @@ export default {
 
     // 导航点击返回上个页面
     const onClickLeft = () => {
-      rotuer.go(-1);
+      router.go(-1);
     };
 
     // 复选框

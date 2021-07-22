@@ -36,7 +36,7 @@
     >
     <!-- 列表项-系统通知-不可见 -->
     <div class="list">
-      <van-swipe-cell>
+      <van-swipe-cell :disabled="true">
         <div class="icon-left">
           <span></span>
           <van-image
@@ -75,7 +75,7 @@
         <!-- <span class="num"></span> -->
       </van-swipe-cell>
       <!-- 列表项-系统通知-不可见 -->
-      <van-swipe-cell
+      <van-swipe-cell :disabled="true"
         ><van-image
           round
           width="40"
@@ -145,10 +145,13 @@
 <script>
 import { getPersonlistDataApi } from "../../utils/api";
 import { ref, reactive, onMounted } from "vue";
+//引入整个路由
 import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const showPopover = ref(false);
     const actions = [
       {
@@ -161,7 +164,6 @@ export default {
         icon: require("../../assets/images/index/Message/icon_popup_create@3x.png"),
       },
     ];
-    const router = useRouter();
     //渲染消息数据
     const state = reactive({
       listData: "",
@@ -201,7 +203,6 @@ export default {
     return {
       actions,
       showPopover,
-      // change,
       gotoMaillist,
       gotoChatroom,
       dellist,
@@ -276,7 +277,6 @@ export default {
       right: 15px;
       top: 50%;
       font-size: @xxs-font;
-      font-weight: 100;
       color: #fff;
       height: @s-font;
       min-width: @s-font;

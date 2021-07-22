@@ -15,11 +15,13 @@
   </div>
 </template>
 <script>
-// 引入路由
-import router from "@/router/index.js";
+//引入整个路由
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     // 点击后退上个页面
     const goback = () => {
       router.go(-1);

@@ -12,48 +12,39 @@
       <!-- 清除缓存，轻浮动 -->
       <van-cell :center="true" @click="clean" title="清除缓存" is-link />
       <!--  -->
-      <van-cell :center="true" title="关于我们" is-link @click="showPopup" />
-      <van-popup v-model:show="show">关于我们</van-popup>
-      <van-cell
-        :center="true"
-        title="特别感谢"
-        is-link
-        @click="showPopupthank"
-      />
-      <van-popup v-model:show="showthank">特别感谢</van-popup>
+      <van-cell :center="true" title="关于我们" is-link @click="clicktoast1" />
+      <van-cell :center="true" title="特别感谢" is-link @click="clicktoast2" />
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
 import { Toast } from "vant";
+//引入整个路由
 import { useRouter } from "vue-router";
 export default {
   setup() {
+    // 定义整个路由
     const router = useRouter();
+
     const onClickLeft = () => {
       router.push("/home/mine");
     };
     const clean = () => {
       Toast.success("清除成功");
     };
-    const show = ref(false);
-    const showPopup = () => {
-      show.value = true;
+    const clicktoast1 = () => {
+      Toast("关于我们");
     };
-    const showthank = ref(false);
-    const showPopupthank = () => {
-      showthank.value = true;
+    const clicktoast2 = () => {
+      Toast("特别感谢");
     };
 
     return {
       onClickLeft,
       clean,
-      show,
-      showPopup,
-      showthank,
-      showPopupthank,
+      clicktoast1,
+      clicktoast2,
     };
   },
 };

@@ -25,8 +25,8 @@
           <span @click="withdrawal">提现</span>
         </div>
         <!-- 充值 -->
-        <van-popup v-model:show="shows">
-          <h3>要充值多少呢</h3>
+        <van-popup v-model:show="shows" class="topup">
+          <h3>请输入充值金额</h3>
           <input
             type="number"
             placeholder="请输入金额"
@@ -34,7 +34,11 @@
             @keyup.enter="click"
             ref="myRef"
           />
-          <van-button round type="primary" color="#07C160" @click="click"
+          <van-button
+            round
+            type="primary"
+            color="linear-gradient(-23deg, #ff504b, #ff814e)"
+            @click="click"
             >充值</van-button
           >
         </van-popup>
@@ -85,13 +89,15 @@
 </template>
 
 <script>
-// 引入路由
-import router from "../../router/index.js";
-import { ref, watch } from "vue";
+//引入整个路由
+import { useRouter } from "vue-router";
+import { ref, watch, nextTick } from "vue";
 import { Toast } from "vant";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     // 导航左箭头
     const onClickLeft = () => {
       router.go(-1);
@@ -115,7 +121,9 @@ export default {
     // 输入框自动获取焦点
     const myRef = ref(null);
 
-    watch(myRef, () => {
+    // 监听
+    watch(shows, async () => {
+      await nextTick();
       myRef.value.focus();
     });
 
@@ -231,6 +239,19 @@ export default {
         font-weight: 500;
         color: #fff;
         margin: 0 15px;
+      }
+      .topup {
+        height: 200px;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        input {
+          height: 40px;
+        }
+        .van-button {
+          height: 40px;
+        }
       }
     }
 

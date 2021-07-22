@@ -25,13 +25,15 @@
 </template>
 
 <script>
-// 引入路由
-import router from "@/router/index.js";
+//引入整个路由
+import { useRouter } from "vue-router";
 import { ref } from "vue";
 import { Toast } from "vant";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     // 后退上级路由
     const onClickLeft = () => {
       router.go(-1);

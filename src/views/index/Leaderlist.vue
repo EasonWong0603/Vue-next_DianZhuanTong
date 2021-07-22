@@ -51,11 +51,13 @@
 <script>
 import { getLeaderlistDataApi } from "../../../src/utils/api";
 import { reactive, onMounted } from "vue";
-// 引入路由
-import router from "@/router/index.js";
+//引入整个路由
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const state = reactive({
       preData: "",
     });

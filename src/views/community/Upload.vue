@@ -16,7 +16,7 @@
         rows="4"
         type="textarea"
         placeholder="说点什么吧..."
-        autofocus
+        ref="myRef"
       />
       <van-uploader v-model="state.fileList" multiple />
     </main>
@@ -24,23 +24,29 @@
 </template>
 
 <script>
-import rotuer from "../../router/index";
-import { reactive } from "vue";
+//引入整个路由
+import { useRouter } from "vue-router";
+import { reactive, ref, onMounted } from "vue";
 import { Toast } from "vant";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const state = reactive({
       message: "",
-      fileList: [
-        { url: require("../../assets/images/community/photo01.jpg") },
-        { url: require("../../assets/images/community/photo02.jpg") },
-      ],
+      fileList: [{ url: require("../../assets/images/community/photo02.jpg") }],
+    });
+
+    // 获取焦点
+    const myRef = ref(null);
+    onMounted(() => {
+      myRef.value.focus();
     });
 
     // 回退上个页面
     const cancel = () => {
-      rotuer.go(-1);
+      router.go(-1);
     };
 
     // 发送
@@ -55,7 +61,7 @@ export default {
           Toast.success("发送成功");
           state.message = "";
           state.fileList = [];
-          rotuer.go(-1);
+          router.go(-1);
         }, 1500);
       } else {
         Toast.fail({ message: "内容不能为空", duration: 1000 });
@@ -66,6 +72,7 @@ export default {
       state,
       cancel,
       sendout,
+      myRef,
     };
   },
 };

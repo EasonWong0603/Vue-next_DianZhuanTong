@@ -19,8 +19,8 @@
       <!-- 介绍 -->
       <div class="van-bg">
         <div class="van-card">
-          <span class="focus" @click="follower" v-if="already">关注</span>
-          <span class="nofocus" @click="followers" v-else>已关注</span>
+          <span class="focus" @click="follow" v-if="already">关注</span>
+          <span class="nofocus" @click="cancel" v-else>已关注</span>
           <div class="pre-bg">
             <img :src="state.detailContent.headimg" class="touxiang" />
           </div>
@@ -111,18 +111,14 @@
       </van-tabs>
       <!-- 立即咨询 -->
       <van-action-bar>
-        <van-action-bar-icon text="¥0.00" @click="onClickIcon" class="price" />
-        <van-action-bar-icon
-          text="已有1020人咨询"
-          @click="onClickIcon"
-          class="zixun"
-        />
+        <van-action-bar-icon text="¥0.00" class="price" />
+        <van-action-bar-icon text="已有1020人咨询" class="zixun" />
         <div class="box">
           <van-action-bar-button
             id="but"
             type="danger"
             text="立即咨询"
-            @click="onClickButton"
+            :to="`/chatroom/${id}`"
           />
         </div>
       </van-action-bar>
@@ -135,14 +131,16 @@ import {
   getLeaderbackDataApi,
   getPersonlistDataApi,
 } from "../../../src/utils/api";
-import { reactive, onMounted } from "vue";
-import { ref } from "vue";
+import { reactive, onMounted, ref } from "vue";
 // 引入路由
-import router from "@/router/index.js";
+import { useRouter } from "vue-router";
+import { Toast } from "vant";
 
 export default {
   props: { id: String },
   setup(props) {
+    // 定义整个路由
+    const router = useRouter();
     const state = reactive({
       detailContent: [],
       talk: [],
@@ -150,7 +148,6 @@ export default {
     //评价
     const think = async () => {
       const res = await getPersonlistDataApi();
-      // console.log(res);
       state.talk = res.data.result;
       // console.log(state.talk);
     };
@@ -161,18 +158,45 @@ export default {
       console.log(state.detailContent);
     };
 
-    let already = ref(!localStorage.getItem("follower"));
+    // 点击关注
+    const already = ref(!localStorage.getItem("follower"));
 
-    //关注 已关注
-    const follower = () => {
-      console.log(already.value);
-      already.value = !already.value;
-      localStorage.setItem("follower", already.value);
+    const follow = () => {
+      if (!sessionStorage.getItem("token")) {
+        router.push("/register");
+      } else {
+        Toast.loading({
+          message: "关注中...",
+          forbidClick: true,
+          duration: 500,
+        });
+        setTimeout(() => {
+          if (already.value) {
+            localStorage.setItem("follower", 1);
+          }
+
+          already.value = !already.value;
+
+          Toast.success("关注成功");
+        }, 800);
+      }
     };
 
-    const followers = () => {
-      already.value = !already.value;
-      localStorage.removeItem("follower");
+    const cancel = () => {
+      Toast.loading({
+        message: "取消中...",
+        forbidClick: true,
+        duration: 500,
+      });
+      setTimeout(() => {
+        if (!already.value) {
+          localStorage.setItem("follower", 0);
+        }
+
+        already.value = !already.value;
+
+        Toast.success("取消成功");
+      }, 800);
     };
 
     //跳转上一级
@@ -183,24 +207,17 @@ export default {
     onMounted(() => {
       think();
       login();
-      // let already = localStorage.getItem("follower");
     });
-
-    const onClickIcon = () => {};
-
-    const onClickButton = () => {};
 
     return {
       login,
       state,
       active,
       think,
-      onClickIcon,
-      onClickButton,
       onClickLeft,
       already,
-      follower,
-      followers,
+      follow,
+      cancel,
     };
   },
 };

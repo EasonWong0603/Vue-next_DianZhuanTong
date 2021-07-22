@@ -121,13 +121,17 @@
 <script>
 import { getPersonlistDataApi } from "../../utils/api"; //人物卡
 
-import router from "@/router/index.js"; //引入路由
+//引入整个路由
+import { useRouter } from "vue-router";
 
 import { onMounted, ref, reactive } from "vue"; //存储人物数据
 import { Toast } from "vant";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
+
     //导航栏
     const detailContent = ref("");
 

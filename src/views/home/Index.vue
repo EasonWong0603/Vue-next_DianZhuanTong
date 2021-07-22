@@ -198,12 +198,16 @@
 <script>
 import { getLeaderpartDataApi } from "../../../src/utils/api";
 import { reactive, onMounted } from "vue";
-import route from "../../router/index";
+
+//引入整个路由
+import { useRouter } from "vue-router";
 // 引入所需的组件
 import { Toast } from "vant";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const state = reactive({
       value: "", // 搜索框
       teacherList: [], // 导师列表
@@ -211,27 +215,27 @@ export default {
 
     // 跳转加入页面
     const join = () => {
-      route.push("/join");
+      router.push("/join");
     };
 
     // 跳转积分页面
     const pointsdetail = () => {
-      route.push("/pointsdetail");
+      router.push("/pointsdetail");
     };
 
     // 跳转项目页面
     const itemdetail = () => {
-      route.push("/itemdetail");
+      router.push("/itemdetail");
     };
 
     // 跳转导师列表页面
     const leaderlist = () => {
-      route.push("/leaderlist");
+      router.push("/leaderlist");
     };
 
     // 跳转导师详情页面
     const leaderdetail = (id) => {
-      route.push("/leaderdetail/" + id);
+      router.push("/leaderdetail/" + id);
     };
 
     // 无此页面
