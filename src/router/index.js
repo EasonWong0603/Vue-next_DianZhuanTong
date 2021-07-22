@@ -75,6 +75,7 @@ const routes = [
     path: "/leaderlist",
     component: () => import("../views/index/Leaderlist.vue"),
   },
+
   // 首页-导师列表-搜索
   {
     path: "/search",
