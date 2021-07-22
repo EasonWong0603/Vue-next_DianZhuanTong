@@ -182,7 +182,7 @@ const routes = [
     },
     props: true,
   },
-  //消息-创建群聊
+  // 消息-创建群聊
   {
     path: "/groupchat",
     component: () => import("../views/message/Groupchat.vue"),

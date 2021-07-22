@@ -66,6 +66,7 @@
               ><img :src="item.headimg" class="comag" />
             </span>
             <span class="man">{{ item.name }}</span>
+            <span class="lasttime">{{ item.lasttime }}</span>
             <p class="comment">{{ item.content }}</p>
           </div>
         </van-tab>
@@ -449,22 +450,19 @@ export default {
         height: 74px;
         position: relative;
         border-bottom: 1px solid rgb(233, 233, 233);
-        // margin-top: 16px;
-        margin: 16px 20px 0 20px;
+        margin: 11px 20px 0 20px;
 
         .coimg {
           display: inline-block;
           width: 30px;
           height: 30px;
-
           border-radius: 80px;
-          margin-left: 22px;
           position: relative;
           .comag {
-            width: 36px;
-            height: 36px;
-            margin: auto;
+            width: 29px;
+            height: 29px;
             position: absolute;
+            top: 4px;
           }
         }
         .man {
@@ -477,7 +475,14 @@ export default {
           color: #333333;
           margin-left: 10px;
           display: inline-block;
-          margin-top: 2px;
+          margin-top: 4px;
+        }
+        .lasttime {
+          margin-left: 220px;
+          position: absolute;
+          top: 13px;
+          color: rgb(187, 187, 187);
+          right: 0;
         }
       }
 
@@ -487,8 +492,7 @@ export default {
         font-size: 13px;
         font-weight: 500;
         color: #aaaaaa;
-        margin-left: 22px;
-        margin-top: 8px;
+        margin-top: 10px;
       }
     }
 
