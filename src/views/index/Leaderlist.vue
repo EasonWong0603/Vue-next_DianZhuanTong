@@ -15,33 +15,35 @@
       />
     </div>
     <!-- 导师详情 -->
-    <van-card
-      v-for="item in state.preData"
-      :key="item.id"
-      :desc="item.simpleIntro"
-      :title="item.name"
-      :thumb="item.headimg"
-      @click="gotoDetail(item.id)"
-    >
-      <template #tags>
-        <van-tag plain type="danger" class="tag1">{{
-          item.perfession[0]
-        }}</van-tag>
-        <van-tag plain type="danger" class="tag2">{{
-          item.perfession[1]
-        }}</van-tag>
-      </template>
-      <template #footer>
-        <div class="image">
-          <img src="../../assets/images/index/leader/redu@3x.png" /><span>{{
-            item.hot
-          }}</span>
-          <img src="../../assets/images/index/leader/yonghu2@3x.png" /><span>{{
-            item.follower
-          }}</span>
-        </div></template
+    <main>
+      <van-card
+        v-for="item in state.preData"
+        :key="item.id"
+        :desc="item.simpleIntro"
+        :title="item.name"
+        :thumb="item.headimg"
+        @click="gotoDetail(item.id)"
       >
-    </van-card>
+        <template #tags>
+          <van-tag plain type="danger" class="tag1">{{
+            item.perfession[0]
+          }}</van-tag>
+          <van-tag plain type="danger" class="tag2">{{
+            item.perfession[1]
+          }}</van-tag>
+        </template>
+        <template #footer>
+          <div class="image">
+            <img src="../../assets/images/index/leader/redu@3x.png" /><span>{{
+              item.hot
+            }}</span>
+            <img src="../../assets/images/index/leader/yonghu2@3x.png" /><span
+              >{{ item.follower }}</span
+            >
+          </div></template
+        >
+      </van-card>
+    </main>
   </div>
   <router-view />
 </template>
@@ -96,14 +98,20 @@ export default {
 #leaderdetail {
   //导航栏
   .nav {
+    width: 100%;
     height: 44px;
-    background-color: white;
-    position: relative;
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
     .last {
       width: 9px;
       height: 16px;
       display: inline-block;
       margin-left: 17px;
+      background: white;
       margin-top: 15px;
     }
     .money {
@@ -116,6 +124,7 @@ export default {
       margin-left: 127px;
       position: absolute;
       top: 13px;
+      background: white;
     }
     .search {
       width: 17px;
@@ -123,17 +132,25 @@ export default {
       display: inline-block;
       left: 342px;
       margin-top: 15px;
+      background: white;
       position: absolute;
     }
   }
+
+  // 导师
+  main {
+    margin-top: 64px;
+    padding-bottom: 20px;
+  }
+
   .van-card {
     width: 341px;
     height: 144px;
     background: #ffffff;
     box-shadow: 0px 4px 14px 0px rgba(198, 198, 198, 0.61);
     border-radius: 4px;
-    margin: auto;
-    margin-top: 20px !important;
+    margin: 16px auto 0;
+    // margin-top: 20px !important;
     .van-image__img {
       width: 100px;
       height: 113px;
