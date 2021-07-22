@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="chatroom">
     <!-- 导航 -->
     <div class="rander" v-for="item in state.listData" :key="item">
       <van-nav-bar :fixed="true" :placeholder="true" :z-index="10000">
@@ -129,86 +129,88 @@ export default {
 </script>
 
 <style lang="less">
-.message {
-  padding: 10px;
-}
-.time {
-  font-size: 12px;
-  color: #999;
-  margin-top: 14px;
-
-  margin-bottom: 14px;
-  text-align: center;
-}
-
-.footer {
-  position: fixed;
-  bottom: 0;
-  height: 92px;
-  line-height: 14px;
-  width: 100%;
-  max-width: 720px;
-  border-top: 0px solid #ddd;
-  input {
-    margin-left: 3px;
-    width: 285px;
-    height: 34px;
-    border-radius: 17px;
-    border: 0px solid #ddd;
-    padding: 0 10px;
-    margin-top: 8px;
-    margin-left: 10px;
+.chatroom {
+  .message {
+    padding: 10px;
   }
-  p {
-    width: 63px;
-    height: 34px;
-    font-size: 14px;
-    color: #fff;
-    line-height: 35px;
+  .time {
+    font-size: 12px;
+    color: #999;
+    margin-top: 14px;
+
+    margin-bottom: 14px;
     text-align: center;
-    background: linear-gradient(-23deg, #ff514b, #ff814e);
-    border-radius: 17px;
-    float: right;
-    margin-top: 8px;
-    margin-right: 10px;
   }
-  img {
-    margin-top: 10px;
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    height: 92px;
+    line-height: 14px;
     width: 100%;
+    max-width: 720px;
+    border-top: 0px solid #ddd;
+    input {
+      margin-left: 3px;
+      width: 285px;
+      height: 34px;
+      border-radius: 17px;
+      border: 0px solid #ddd;
+      padding: 0 10px;
+      margin-top: 8px;
+      margin-left: 10px;
+    }
+    p {
+      width: 63px;
+      height: 34px;
+      font-size: 14px;
+      color: #fff;
+      line-height: 35px;
+      text-align: center;
+      background: linear-gradient(-23deg, #ff514b, #ff814e);
+      border-radius: 17px;
+      float: right;
+      margin-top: 8px;
+      margin-right: 10px;
+    }
+    img {
+      margin-top: 10px;
+      width: 100%;
+    }
   }
-}
 
-.send:after,
-.show:after,
-.msg:after {
-  content: "";
-  clear: both;
-  display: table;
-}
+  .send:after,
+  .show:after,
+  .msg:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
-.msg > img {
-  width: 11px;
-  float: left;
-}
-.msg > p {
-  float: left;
-  margin: 0px 6px;
-  padding: 10px;
-  background: #fff;
-  font-size: 14px;
-  position: relative;
-  border-radius: 10px;
-  max-width: 620px;
-  box-sizing: border-box;
-}
+  .msg > img {
+    width: 11px;
+    float: left;
+  }
+  .msg > p {
+    float: left;
+    margin: 0px 6px;
+    padding: 10px;
+    background: #fff;
+    font-size: 14px;
+    position: relative;
+    border-radius: 10px;
+    max-width: 620px;
+    box-sizing: border-box;
+  }
 
-.show .msg img,
-.show .msg p,
-.show .msg {
-  float: right;
-}
+  .show .msg img,
+  .show .msg p,
+  .show .msg {
+    float: right;
+  }
 
-.show {
-  padding: 10px;
+  .show {
+    padding: 10px;
+  }
 }
 </style>
