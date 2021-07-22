@@ -7,7 +7,7 @@
       @click-left="onClickLeft"
       @click-right="onClickRight"
     />
-    <van-cell-group inset border="true">
+    <van-cell-group inset :border="true">
       <van-field
         v-model="state.value"
         placeholder="更改昵称"
@@ -29,7 +29,8 @@ export default {
     const router = useRouter();
     //点击取消返回上一级
     const onClickLeft = () => {
-      router.push("/SetSelfInformation");
+      // router.push("/SetSelfInformation");
+      router.go(-1);
     };
     //点击完成返回上一级，并且把数据重新存入本地
     const onClickRight = () => {
@@ -56,8 +57,8 @@ export default {
 @import "../../assets/css/var.less";
 .setname {
   .base-width();
-  height: 812px;
-  position: relative;
+  height: 100%;
+  position: fixed;
   .van-nav-bar__text {
     color: #494949;
   }

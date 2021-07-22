@@ -23,6 +23,10 @@ export const getPersonlistDataApi = (data) => http.post("/personlist", data);
 // 消息方形人物通讯录列表接口
 export const getFriendDataApi = (data) => http.post("/message/friend", data);
 
+// 消息方形人物群聊列表接口
+export const getGroupchatDataApi = (data) =>
+  http.post("/message/groupchat", data);
+
 // 消息方形人物通讯录好友详情接口
 export const getFriendbackApi = (data) =>
   http.post("/message/friendback", data);
