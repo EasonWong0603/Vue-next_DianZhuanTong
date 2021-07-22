@@ -1,12 +1,8 @@
 <template>
   <div>
     <!-- 导航 -->
-    <van-nav-bar
-      title="联系人"
-      :fixed="true"
-      :placeholder="true"
-      :z-index="10000"
-    >
+    <van-nav-bar :fixed="true" :placeholder="true" :z-index="10000"
+      ><template #title><p style="font-weight: 800">联系人</p></template>
       <template #left>
         <van-icon
           :name="
@@ -35,7 +31,17 @@
             box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
           "
         />
-        <p class="title">新的好友</p>
+        <p
+          class="title"
+          style="
+            font-size: 14px;
+            font-weight: bold;
+            color: #333333;
+            line-height: 45px;
+          "
+        >
+          新的好友
+        </p>
         <span class="num">2</span>
       </div>
       <!-- 创建群聊 -->
@@ -51,224 +57,63 @@
             box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
           "
         />
-        <p class="title">创建群聊</p>
+        <p
+          @click="Groupchat"
+          class="title"
+          style="
+            font-size: 14px;
+            font-weight: bold;
+            color: #333333;
+            line-height: 45px;
+          "
+        >
+          创建群聊
+        </p>
       </div>
-      <!-- A -->
-      <van-index-anchor index="A" />
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
+      <!-- 渲染列表 -->
 
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <!-- B -->
-      <van-index-anchor index="B" />
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <van-index-anchor index="C" />
+      <div class="list" v-for="item1 in state.listData" :key="item1">
+        <van-index-anchor :index="item1.prefix" />
 
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <van-index-anchor index="D" />
+        <van-swipe-cell v-for="(item, index) in item1.member" :key="index">
+          <!-- 热区 -->
+          <div class="zhezhao" @click="gotoChatroom(item.id)"></div>
+          <div class="zhezhao2" @click="gotoChatdetails(item.id)"></div>
 
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
+          <van-cell :border="false" style="height: 73px; disply: flex">
+            <template #title>
+              <van-image
+                radius="7px"
+                width="45px"
+                height="45px"
+                :src="item.img"
+                style="float: left"
+              />
+              <p
+                style="
+                  font-size: 14px;
+                  font-weight: bold;
+                  color: #333333;
+                  line-height: 45px;
+                "
+              >
+                &emsp;{{ item.name }}
+              </p>
+            </template>
+          </van-cell>
+          <template #right>
+            <van-button square type="danger" text="详情" />
+          </template>
+        </van-swipe-cell>
       </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <van-index-anchor index="E" />
-
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div>
-      <div class="list-card">
-        <van-image
-          radius="7px"
-          width="45px"
-          height="45px"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <p class="title">这是联系人姓名</p>
-      </div></van-index-bar
-    >
+    </van-index-bar>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import { getFriendDataApi } from "../../utils/api";
 
 export default {
   setup() {
@@ -278,13 +123,45 @@ export default {
     const back = () => {
       router.back();
     };
+
+    //跳转添加好友
     const newFriend = () => {
       router.push("/newfriend");
+    };
+
+    const Groupchat = () => {
+      router.push("/groupchat");
+    };
+    //渲染联系人数据
+    const state = reactive({
+      listData: "",
+      listData2: "",
+    });
+
+    const randerList = async () => {
+      const res = await getFriendDataApi();
+      state.listData = res.data.result;
+    };
+    onMounted(() => {
+      randerList();
+    });
+    //跳转聊天室
+    const gotoChatroom = (id) => {
+      router.push("/chatroom/" + id);
+    };
+    //跳转聊天详情
+    const gotoChatdetails = (id) => {
+      router.push("/chatdetails/" + id);
     };
     return {
       value,
       back,
       newFriend,
+      randerList,
+      state,
+      gotoChatroom,
+      gotoChatdetails,
+      Groupchat,
     };
   },
 };
@@ -325,5 +202,34 @@ export default {
     text-align: center;
     color: #f8f8f8;
   }
+}
+.van-swipe-cell__wrapper {
+  height: 73px;
+}
+.van-cell__title {
+  display: flex;
+  justify-content: flex-start;
+}
+.van-button--normal {
+  height: 73px;
+  width: 80px;
+  border: 0;
+  background: linear-gradient(-23deg, #2fb383, #28cfb3);
+}
+.zhezhao {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10000;
+  top: 0px;
+  left: 0px;
+}
+.zhezhao2 {
+  width: 80px;
+  height: 100%;
+  position: absolute;
+  z-index: 10000;
+  top: 0px;
+  right: -80px;
 }
 </style>

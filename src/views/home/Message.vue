@@ -1,7 +1,8 @@
 <template>
   <div class="news">
     <!-- bar导航 -->
-    <van-nav-bar title="消息" :fixed="true" :placeholder="true">
+    <van-nav-bar :fixed="true" :placeholder="true">
+      <template #title><p style="font-weight: 800">消息</p></template>
       <template #right>
         <van-icon
           :name="
@@ -15,7 +16,6 @@
           :actions="actions"
           :overlay="true"
           placement="bottom-end"
-          style="left: 237px"
           @select="onSelect"
         >
           <template #reference>
@@ -32,7 +32,7 @@
 
     <!-- 通知栏 -->
     <van-notice-bar mode="closeable" color="#FF504B;"
-      >技术是开发它的人的共同灵魂。</van-notice-bar
+      >有未读消息，点击可查看消息</van-notice-bar
     >
     <!-- 列表项-系统通知-不可见 -->
     <div class="list">
@@ -55,7 +55,9 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p style="font-size: 14px; color: #282828">导师消息</p>
+              <p style="font-size: 14px; color: #282828; font-weight: bold">
+                导师消息
+              </p>
               <span class="time" style="color: #6b6b6b">5月14日</span>
             </div>
           </template>
@@ -88,7 +90,9 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p style="font-size: 14px; color: #282828">团队消息</p>
+              <p style="font-size: 14px; color: #282828; font-weight: bold">
+                团队消息
+              </p>
               <span class="time" style="color: #6b6b6b">5月14日</span>
             </div>
           </template>
@@ -113,7 +117,9 @@
         <van-cell :border="false">
           <template #title>
             <div class="title">
-              <p style="font-size: 14px; color: #282828">{{ item.name }}</p>
+              <p style="font-size: 14px; color: #282828; font-weight: bold">
+                {{ item.name }}
+              </p>
               <span class="time" style="color: #6b6b6b">{{ item.time }}</span>
             </div>
           </template>
@@ -128,7 +134,9 @@
           <van-button square type="danger" text="删除" />
         </template>
         <!-- 未读消息提醒 -->
-        <span class="num">99+</span>
+        <span :class="item.msgcount == 0 ? 'none' : 'num'">{{
+          item.msgcount
+        }}</span>
       </van-swipe-cell>
     </div>
   </div>
@@ -292,5 +300,11 @@ export default {
 }
 .van-popover .van-popover__arrow {
   right: var(--van-border-radius-sm);
+}
+.none {
+  display: none;
+}
+.van-nav-bar__placeholder {
+  height: 100px;
 }
 </style>
