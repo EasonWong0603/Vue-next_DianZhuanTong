@@ -24,12 +24,15 @@
 </template>
 
 <script>
-import rotuer from "../../router/index";
+//引入整个路由
+import { useRouter } from "vue-router";
 import { reactive } from "vue";
 import { Toast } from "vant";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const state = reactive({
       message: "",
       fileList: [
@@ -40,7 +43,7 @@ export default {
 
     // 回退上个页面
     const cancel = () => {
-      rotuer.go(-1);
+      router.go(-1);
     };
 
     // 发送
@@ -55,7 +58,7 @@ export default {
           Toast.success("发送成功");
           state.message = "";
           state.fileList = [];
-          rotuer.go(-1);
+          router.go(-1);
         }, 1500);
       } else {
         Toast.fail({ message: "内容不能为空", duration: 1000 });

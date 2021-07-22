@@ -44,12 +44,15 @@
 </template>
 
 <script>
-import rotuer from "../../router/index";
+//引入整个路由
+import { useRouter } from "vue-router";
 import { reactive } from "vue";
 import { Toast } from "vant";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const state = reactive({
       message: "",
       list: ["账号问题", "支付问题", "其他问题"],
@@ -58,7 +61,7 @@ export default {
 
     // 导航后退
     const onClickLeft = () => {
-      rotuer.go(-1);
+      router.go(-1);
     };
 
     // 此时可以自行将文件上传至服务器

@@ -1,6 +1,7 @@
 <template>
   <MineHeader></MineHeader>
   <van-form @submit="onSubmit">
+    <h2>点赚通</h2>
     <!-- from组件 -->
     <van-cell-group inset class="register-van-form">
       <!-- 填写用户名 -->
@@ -48,15 +49,17 @@
 <script>
 import MineHeader from "@/components/MineHeader.vue";
 import { reactive } from "vue";
+//引入整个路由
 import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const state = reactive({
       username: "",
       password: "",
     });
-    const router = useRouter();
 
     //判断密码长度
     // const validatorMessage = (val) => {
@@ -66,17 +69,16 @@ export default {
     // };
     //const validatorMessage = (val) => `${val} 不合法，请重新输入`;
     const validatorMessage = (val) => {
-      console.log(val.length);
       if (val.length < 6) {
         return `密码少于6位`;
       }
     };
 
     //提交按钮-本地储存密码，用户名，跳转到首页
-    const onSubmit = (values) => {
-      localStorage.setItem("username", values.username);
-      localStorage.setItem("password", values.password);
-      sessionStorage.setItem("token", values.username + values.password);
+    const onSubmit = () => {
+      localStorage.setItem("username", state.username);
+      localStorage.setItem("password", state.password);
+      sessionStorage.setItem("token", state.username + state.password);
       router.push("/home");
     };
 
@@ -93,6 +95,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
+h2 {
+  font-size: 30px;
+  text-align: center;
+  padding-top: 30px;
+  color: #ff814e;
+}
 .register-van-form {
   margin-top: 50px;
 }

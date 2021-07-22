@@ -44,15 +44,17 @@
 </template>
 
 <script>
+//引入整个路由
 import { useRouter } from "vue-router";
+
 import { ref, reactive, onMounted } from "vue";
 import { getNewfriendDataApi } from "../../utils/api";
 
 export default {
   setup() {
-    const value = ref("");
-
+    // 定义整个路由
     const router = useRouter();
+    const value = ref("");
     //返回
     function back() {
       router.back();

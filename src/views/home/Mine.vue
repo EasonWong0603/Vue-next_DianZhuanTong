@@ -372,7 +372,7 @@ export default {
       line-height: 18px;
     }
     .van-popup--bottom {
-      margin: 0 auto 120px;
+      margin: 0 auto 300px;
       right: 0;
       width: 90%;
     }

@@ -41,9 +41,13 @@
 
 <script>
 import { reactive, onMounted } from "vue";
-import router from "@/router/index.js";
+
+//引入整个路由
+import { useRouter } from "vue-router";
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const state = reactive({
       textValue: "",
       search: false,

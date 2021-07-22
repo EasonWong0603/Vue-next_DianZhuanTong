@@ -112,6 +112,7 @@
 
 <script>
 import { ref, reactive, onMounted } from "vue";
+//引入整个路由
 import { useRouter } from "vue-router";
 import { getFriendDataApi } from "../../utils/api";
 
@@ -119,7 +120,9 @@ export default {
   setup() {
     const value = ref("");
 
+    // 定义整个路由
     const router = useRouter();
+
     const back = () => {
       router.back();
     };

@@ -92,21 +92,27 @@
 // 引入所需的组件
 import { Toast } from "vant";
 
-// 引入路由
-import router from "@/router/index.js";
+//引入整个路由
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     // 点击兑换触发
     const handleClick = () => {
-      Toast.loading({
-        message: "加载中...",
-        forbidClick: true,
-        duration: 0,
-      });
-      setTimeout(() => {
-        Toast.fail(`网络不太好`);
-      }, 3000);
+      if (!sessionStorage.getItem("token")) {
+        router.push("/register");
+      } else {
+        Toast.loading({
+          message: "加载中...",
+          forbidClick: true,
+          duration: 0,
+        });
+        setTimeout(() => {
+          Toast.fail(`网络不太好`);
+        }, 3000);
+      }
     };
 
     // 点击后退上个页面

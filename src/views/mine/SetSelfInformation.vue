@@ -80,10 +80,12 @@
 
 <script>
 import { ref } from "vue";
+//引入整个路由
 import { useRouter } from "vue-router";
 import { Toast } from "vant";
 export default {
   setup() {
+    // 定义整个路由
     const router = useRouter();
 
     //获取本地名字

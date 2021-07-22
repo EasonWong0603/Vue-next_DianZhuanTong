@@ -129,10 +129,13 @@
 <script>
 import { getPersonlistDataApi } from "../../utils/api"; //人物卡
 import { onMounted, ref } from "vue"; //按需引入
-import route from "../../router/index"; //引入路由
+//引入整个路由
+import { useRouter } from "vue-router";
 import { Toast } from "vant";
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const detailContent = ref("");
 
     const getPerson = async () => {
@@ -143,7 +146,7 @@ export default {
     };
     //路由跳转
     const community = () => {
-      route.push("/communitydetail");
+      router.push("/communitydetail");
     };
 
     onMounted(() => {
@@ -154,20 +157,24 @@ export default {
     const already = ref(!localStorage.getItem("follower"));
 
     const follow = () => {
-      Toast.loading({
-        message: "关注中...",
-        forbidClick: true,
-        duration: 500,
-      });
-      setTimeout(() => {
-        if (already.value) {
-          localStorage.setItem("follower", 1);
-        }
+      if (!sessionStorage.getItem("token")) {
+        router.push("/register");
+      } else {
+        Toast.loading({
+          message: "关注中...",
+          forbidClick: true,
+          duration: 500,
+        });
+        setTimeout(() => {
+          if (already.value) {
+            localStorage.setItem("follower", 1);
+          }
 
-        already.value = !already.value;
+          already.value = !already.value;
 
-        Toast.success("关注成功");
-      }, 800);
+          Toast.success("关注成功");
+        }, 800);
+      }
     };
 
     const cancel = () => {
@@ -198,12 +205,12 @@ export default {
       // 可以通过 close-on-click-action 属性开启自动收起
       show.value = false;
       Toast(item.name);
-      route.push("/upload");
+      router.push("/upload");
     };
 
     //跳转发表
     const comment = () => {
-      route.push("/comment");
+      router.push("/comment");
     };
     return {
       detailContent,

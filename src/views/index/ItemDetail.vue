@@ -76,11 +76,13 @@
 import { ref } from "vue";
 import { Toast } from "vant";
 
-// 引入路由
-import router from "@/router/index.js";
+//引入整个路由
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     // tap信息
     const active = ref(0);
 
@@ -93,21 +95,24 @@ export default {
     const already = ref(!localStorage.getItem("follower"));
 
     const follow = () => {
-      console.log(already);
-      Toast.loading({
-        message: "关注中...",
-        forbidClick: true,
-        duration: 500,
-      });
-      setTimeout(() => {
-        if (already.value) {
-          localStorage.setItem("follower", 1);
-        }
+      if (!sessionStorage.getItem("token")) {
+        router.push("/register");
+      } else {
+        Toast.loading({
+          message: "关注中...",
+          forbidClick: true,
+          duration: 500,
+        });
+        setTimeout(() => {
+          if (already.value) {
+            localStorage.setItem("follower", 1);
+          }
 
-        already.value = !already.value;
-        console.log(already);
-        Toast.success("关注成功");
-      }, 800);
+          already.value = !already.value;
+
+          Toast.success("关注成功");
+        }, 800);
+      }
     };
 
     const cancel = () => {
@@ -126,6 +131,7 @@ export default {
         Toast.success("取消成功");
       }, 800);
     };
+
     // 导航信息
     const show = ref(false);
     const actions = [{ name: "分享" }, { name: "复制链接" }, { name: "举报" }];

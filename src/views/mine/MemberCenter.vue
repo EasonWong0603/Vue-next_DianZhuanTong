@@ -190,9 +190,9 @@
       :center="true"
       title="我的特权"
       is-link
-      @click="showPopup"
+      @click="clicktoast"
     />
-    <van-popup v-model:show="show">我的特权</van-popup>
+    <!-- <van-popup v-model:show="show">我的特权</van-popup> -->
     <!-- 成长任务 -->
     <div class="growthtask">
       <van-cell :center="true">成长任务</van-cell>
@@ -230,10 +230,14 @@
 
 <script>
 import { ref } from "vue";
+import { Toast } from "vant";
+//引入整个路由
 import { useRouter } from "vue-router";
 import MineHeader from "@/components/MineHeader.vue";
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     let username = ref(localStorage.getItem("username")); //获取本地姓名
     const message = ref(localStorage.getItem("message")); //获取个性签名
     let growthvalue = ref(
@@ -241,15 +245,13 @@ export default {
         ? localStorage.getItem("growthvalue")
         : 0
     ); //成长值的值
-    const router = useRouter();
     // 返回上个界面
     const onClickLeft = () => {
-      router.push("/home/mine");
+      router.go(-1);
     };
     // 我的特权的弹出层
-    const show = ref(false);
-    const showPopup = () => {
-      show.value = true;
+    const clicktoast = () => {
+      Toast("我的特权");
     };
     // 之前未绑定账号转到绑定账号页面
     const getvalue = () => {
@@ -261,8 +263,7 @@ export default {
       message,
       growthvalue, //成长值的值
       onClickLeft, //返回
-      showPopup, //弹出
-      show,
+      clicktoast, //点击弹出
       getvalue, //
     };
   },

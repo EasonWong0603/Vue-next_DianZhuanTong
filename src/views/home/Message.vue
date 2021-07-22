@@ -145,10 +145,13 @@
 <script>
 import { getPersonlistDataApi } from "../../utils/api";
 import { ref, reactive, onMounted } from "vue";
+//引入整个路由
 import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const showPopover = ref(false);
     const actions = [
       {
@@ -161,7 +164,6 @@ export default {
         icon: require("../../assets/images/index/Message/icon_popup_create@3x.png"),
       },
     ];
-    const router = useRouter();
     //渲染消息数据
     const state = reactive({
       listData: "",
@@ -201,7 +203,6 @@ export default {
     return {
       actions,
       showPopover,
-      // change,
       gotoMaillist,
       gotoChatroom,
       dellist,

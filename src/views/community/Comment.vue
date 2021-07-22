@@ -21,12 +21,16 @@
 </template>
 
 <script>
-import { reactive } from "vue";
 import { Toast } from "vant";
-import router from "../../router/index";
+//引入整个路由
+import { useRouter } from "vue-router";
+
+import { reactive } from "vue";
 
 export default {
   setup() {
+    // 定义整个路由
+    const router = useRouter();
     const state = reactive({
       text: "",
     });

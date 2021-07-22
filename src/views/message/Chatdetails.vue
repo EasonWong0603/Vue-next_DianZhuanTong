@@ -48,11 +48,13 @@
 </template>
 <script>
 import { reactive, onMounted, ref } from "vue";
+//引入整个路由
 import { useRouter } from "vue-router";
 import { getFriendbackApi } from "../../utils/api";
 export default {
   props: ["id"],
   setup(props) {
+    // 定义整个路由
     const router = useRouter();
     const back = () => {
       router.back();
