@@ -29,7 +29,6 @@
           maxlength="200"
           placeholder="简要描述你要反馈的意见和建议"
           show-word-limit
-          autofocus
           ref="myRef"
         />
       </van-cell-group>

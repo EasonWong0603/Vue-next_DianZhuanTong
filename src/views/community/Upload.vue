@@ -16,7 +16,7 @@
         rows="4"
         type="textarea"
         placeholder="说点什么吧..."
-        autofocus
+        ref="myRef"
       />
       <van-uploader v-model="state.fileList" multiple />
     </main>
@@ -25,17 +25,20 @@
 
 <script>
 import rotuer from "../../router/index";
-import { reactive } from "vue";
+import { reactive, ref, onMounted } from "vue";
 import { Toast } from "vant";
 
 export default {
   setup() {
     const state = reactive({
       message: "",
-      fileList: [
-        { url: require("../../assets/images/community/photo01.jpg") },
-        { url: require("../../assets/images/community/photo02.jpg") },
-      ],
+      fileList: [{ url: require("../../assets/images/community/photo02.jpg") }],
+    });
+
+    // 获取焦点
+    const myRef = ref(null);
+    onMounted(() => {
+      myRef.value.focus();
     });
 
     // 回退上个页面
@@ -66,6 +69,7 @@ export default {
       state,
       cancel,
       sendout,
+      myRef,
     };
   },
 };
