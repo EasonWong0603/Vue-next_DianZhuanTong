@@ -18,6 +18,7 @@ import {
   Image as VanImage, // 图片
   Popup, //弹出层
   Toast, // 轻提示
+  Switch, //开关
 
   // 表单组件
   Field, //输入框
@@ -69,6 +70,7 @@ app.use(Icon); // 图标
 app.use(VanImage); // 图片
 app.use(Popup); //弹出层
 app.use(Toast); // 轻提示
+app.use(Switch); //开关
 
 // 表单组件
 app.use(Field); //输入框

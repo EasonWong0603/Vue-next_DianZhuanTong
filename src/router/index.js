@@ -75,78 +75,49 @@ const routes = [
     path: "/leaderlist",
     component: () => import("../views/index/Leaderlist.vue"),
   },
+  // 首页-导师列表-搜索
+  {
+    path: "/search",
+    component: () => import("../views/index/Search.vue"),
+  },
   // 首页-导师详情页
   {
     path: "/leaderdetail/:id",
     component: () => import("../views/index/Leaderdetail.vue"),
-    children: [
-      // 首页-导师介绍页
-      {
-        path: "/leaderdetail/introduction:id",
-        component: () => import("../views/index/leaderdetail/Introduction.vue"),
-      },
-      // 首页-导师详情页-评价
-      {
-        path: "/leaderdetail/evaluation:id",
-        component: () => import("../views/index/leaderdetail/Search.vue"),
-      },
-      // 首页-导师详情页-动态
-      {
-        path: "/leaderdetail/news:id",
-        component: () => import("../views/index/leaderdetail/News.vue"),
-      },
-    ],
+    props: true,
   },
   // 社区-社区详情页
   {
     path: "/communitydetail",
     component: () => import("../views/community/Communitydetail.vue"),
-    children: [
-      // 社区-社区详情页-转发
-      {
-        path: "/communitydetail/forward",
-        component: () =>
-          import("../views/community/communitydetail/Forward.vue"),
-      },
-      // 社区-社区详情页-赞
-      {
-        path: "/communitydetail/like",
-        component: () => import("../views/community/communitydetail/Like.vue"),
-      },
-    ],
   },
   // 社区-评论
   {
     path: "/comment",
-    component: () => import("../views/community/communitydetail/Comment.vue"),
+    component: () => import("../views/community/Comment.vue"),
   },
   // 社区-发布信息
   {
     path: "/upload",
-    component: () => import("../views/community/communitydetail/Upload.vue"),
+    component: () => import("../views/community/Upload.vue"),
   },
-  //消息-联系人列表
+  // 消息-联系人列表
   {
     path: "/maillist",
     component: () => import("../views/message/Maillist.vue"),
-  },
-  // 登录
-  {
-    path: "/search",
-    component: () => import("../views/index/leaderdetail/Search.vue"),
   },
   // 新的朋友
   {
     path: "/newfriend",
     component: () => import("../views/message/Newfriend.vue"),
   },
-  //消息-聊天室
+  // 消息-聊天室
   {
     path: "/chatroom/:id",
     component: () => import("../views/message/Chatroom.vue"),
     props: true,
   },
-  //消息-聊天详情
+  // 消息-聊天详情
   {
     path: "/chatdetails/:id",
     component: () => import("../views/message/Chatdetails.vue"),

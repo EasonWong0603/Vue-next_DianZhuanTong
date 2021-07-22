@@ -1,7 +1,8 @@
 <template>
   <div>
     <!-- 导航 -->
-    <van-nav-bar title="新的好友" :fixed="true" :placeholder="true">
+    <van-nav-bar :fixed="true" :placeholder="true">
+      <template #title><p style="font-weight: 800">新的好友</p></template>
       <template #left>
         <van-icon
           :name="
@@ -13,10 +14,10 @@
       </template>
     </van-nav-bar>
     <!-- 列表 -->
-    <van-swipe-cell v-for="(item, index) in state.listData" :key="index">
-      <div class="zhezhao" @click="gotoChatroom(item.id)"></div>
-      <div class="zhezhao2" @click="gotoChatdetails(item.id)"></div>
-      <span class="show">同意1</span>
+    <div class="list" v-for="(item, index) in state.listData" :key="index">
+      <!-- 同意按钮 -->
+      <span class="show" @click="addClass(index)" v-if="!obj[index]">同意</span>
+      <span class="unshow" v-else>已同意</span>
       <van-image
         class="left"
         radius="7px"
@@ -38,17 +39,13 @@
           </p></template
         >
       </van-cell>
-      <template #right>
-        <van-button square type="danger" text="详情" />
-      </template>
-    </van-swipe-cell>
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { reactive, onMounted } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import { getNewfriendDataApi } from "../../utils/api";
 
 export default {
@@ -73,20 +70,23 @@ export default {
       randerList();
     });
 
-    //跳转聊天室
-    const gotoChatroom = (id) => {
-      router.push("/chatroom/" + id);
-    };
-    //跳转聊天详情
-    const gotoChatdetails = (id) => {
-      router.push("/chatdetails/" + id);
+    const obj = ref({});
+
+    //点击按钮同意
+
+    const addClass = (i) => {
+      console.log(obj.value);
+      if (!obj.value[i]) {
+        obj.value[i] = true;
+        console.log(obj.value);
+      }
     };
     return {
       value,
       back,
       state,
-      gotoChatroom,
-      gotoChatdetails,
+      addClass,
+      obj,
     };
   },
 };
@@ -101,17 +101,6 @@ export default {
   align-items: center;
   height: 73px;
   background: #fff;
-
-  .unshow {
-    text-align: center;
-    line-height: 32px;
-    display: block;
-    width: 66px;
-    height: 32px;
-    border-radius: 16px;
-    background: transparent;
-    color: #bfbfbf;
-  }
 }
 .show {
   position: absolute;
@@ -119,14 +108,28 @@ export default {
   right: 14px;
   text-align: center;
   line-height: 32px;
-  color: #fff;
   display: block;
   width: 66px;
   height: 32px;
-  background: linear-gradient(-23deg, #ff514b, #ff814e);
-  box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
   border-radius: 16px;
   z-index: 10000;
+  color: #fff;
+  background: linear-gradient(-23deg, #ff514b, #ff814e);
+  box-shadow: 0px 2px 4px 0px rgba(253, 73, 38, 0.61);
+}
+
+.unshow {
+  position: absolute;
+  top: 50%-20px;
+  right: 14px;
+  text-align: center;
+  line-height: 32px;
+  display: block;
+  width: 66px;
+  height: 32px;
+  border-radius: 16px;
+  z-index: 10000;
+  color: #999;
 }
 .van-cell {
   padding-left: 60px;
@@ -134,14 +137,14 @@ export default {
   flex-direction: column;
   align-items: flex-start;
 }
-.van-swipe-cell {
+.list {
   padding-left: 16px;
   height: 73px;
   background: #fff;
+  position: relative;
 }
 .van-image {
   position: absolute;
-
   top: 10px;
   z-index: 100;
 }

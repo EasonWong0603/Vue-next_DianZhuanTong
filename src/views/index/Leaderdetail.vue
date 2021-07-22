@@ -1,17 +1,17 @@
 <template>
-  <div class="bag">
+  <div class="bag" style="background: url(state.detailContent.headbg)">
+    <img :src="state.detailContent.headbg" class="bagimg" />
     <div class="bagcon">
       <!-- 导航 -->
       <div class="nav">
         <img
-          src="../../assets/images/index/leader/矢量智能对象@3x.png"
+          src="../../assets/images/index/leader/tuceng1.png"
           @click="onClickLeft"
           class="last"
         />
         <span class="money">详情</span>
         <img
-          src="../../assets/images/index/leader/放大镜.png"
-          @click="gotosearch"
+          src="../../assets/images/index/leader/sandian.png"
           class="search"
         />
       </div>
@@ -19,6 +19,8 @@
       <!-- 介绍 -->
       <div class="van-bg">
         <div class="van-card">
+          <span class="focus" @click="follower" v-if="already">关注</span>
+          <span class="nofocus" @click="followers" v-else>已关注</span>
           <div class="pre-bg">
             <img :src="state.detailContent.headimg" class="touxiang" />
           </div>
@@ -34,8 +36,10 @@
           <span class="num2">一级导师</span>
           <p class="battel">{{ state.detailContent.simpleIntro2 }}</p>
           <div class="care">
-            <span>关注{{ state.detailContent.attention }}</span>
-            <span class="moudle">粉丝{{ state.detailContent.follower }}</span>
+            <span>关注 {{ state.detailContent.attention }}</span>
+            <span class="moudle"
+              >粉丝 {{ state.detailContent.followerer }}</span
+            >
           </div>
         </div>
       </div>
@@ -85,19 +89,19 @@
           />
           <!-- 3个icon -->
           <div class="idea">
-            <span>
+            <span class="icommg">
               <img
                 src="../../assets/images/index/leader/zhuanfa@3x.png"
                 class="iconimg"
               /><span class="word">转发</span>
             </span>
-            <span>
+            <span class="icommg">
               <img
                 src="../../assets/images/index/leader/pinglun@3x.png"
                 class="iconimg"
               /><span class="word">1324</span>
             </span>
-            <span>
+            <span class="icommg">
               <img
                 src="../../assets/images/index/leader/zan@3x.png"
                 class="iconimg"
@@ -153,22 +157,34 @@ export default {
     };
     //老师详情
     const login = async () => {
-      console.log(props.id);
-      const id = router.currentRoute._value.params.id;
-      const res = await getLeaderbackDataApi({ id });
-      // console.log(router.currentRoute._value.params.id);
-      // console.log(res);
+      const res = await getLeaderbackDataApi({ id: props.id });
       state.detailContent = res.data.backid;
-      // console.log(state.detailContent);
+      console.log(state.detailContent);
     };
+
+    let already = ref(!localStorage.getItem("follower"));
+
+    //关注 已关注
+    const follower = () => {
+      console.log(already.value);
+      already.value = !already.value;
+      localStorage.setItem("follower", already.value);
+    };
+
+    const followers = () => {
+      already.value = !already.value;
+      localStorage.removeItem("follower");
+    };
+
     //跳转上一级
     const onClickLeft = () => {
       router.go(-1);
     };
-    const active = ref(2);
+    const active = ref(0);
     onMounted(() => {
       think();
       login();
+      // let already = localStorage.getItem("follower");
     });
 
     const onClickIcon = () => {};
@@ -183,6 +199,9 @@ export default {
       onClickIcon,
       onClickButton,
       onClickLeft,
+      already,
+      follower,
+      followers,
     };
   },
 };
@@ -192,11 +211,13 @@ export default {
 @import "../../assets/css/var.less";
 
 .bag {
-  background-color: rgb(238, 238, 238);
+  .bagimg {
+    width: 100%;
+    position: absolute;
+  }
   //导航栏
   .nav {
     height: 44px;
-    background-color: white;
     position: relative;
     .last {
       width: 9px;
@@ -206,36 +227,70 @@ export default {
       margin-top: 15px;
     }
     .money {
-      width: 68px;
       height: 16px;
       font-size: 16px;
       font-family: PingFang;
       font-weight: 500;
-      color: #323232;
       margin-left: 144px;
       position: absolute;
       top: 13px;
+      width: 34px;
+      color: #ffffff;
     }
     .search {
-      width: 17px;
-      height: 16px;
+      height: 3px;
       display: inline-block;
       left: 342px;
-      margin-top: 15px;
+      margin-top: 20px;
       position: absolute;
     }
   }
   // 介绍
   .van-bg {
-    margin-top: 12px;
+    margin-top: 90px;
 
     .van-card {
       width: 341px;
+      height: 170px;
       background: white;
       margin-top: 12px;
-
       border-radius: 7px 7px 0 0;
       margin: auto;
+      position: relative;
+      .focus {
+        width: 73px;
+        height: 27px;
+        background: linear-gradient(-23deg, #ff514b, #ff814e);
+        box-shadow: 0px 6px 12px 0px rgba(253, 73, 38, 0.49);
+        border-radius: 13px;
+        font-size: 15px;
+        font-family: PingFang;
+        font-weight: 500;
+        color: #ffffff;
+        line-height: 27px;
+        text-align: center;
+        text-shadow: 0px 1px 0px rgba(248, 84, 27, 0.48);
+        position: absolute;
+        left: 250px;
+        margin-top: 8px;
+      }
+      .nofocus {
+        width: 73px;
+        height: 27px;
+        text-shadow: 0px 1px 0px rgba(212, 206, 204, 0.48);
+        background: linear-gradient(-23deg, #857d7d, #e0dddc);
+        box-shadow: 0px 6px 12px 0px rgba(122, 117, 115, 0.49);
+        border-radius: 13px;
+        font-size: 15px;
+        font-family: PingFang;
+        font-weight: 500;
+        color: #ffffff;
+        line-height: 27px;
+        text-align: center;
+        position: absolute;
+        left: 250px;
+        margin-top: 8px;
+      }
       .pre-bg {
         width: 70px;
         height: 70px;
@@ -243,17 +298,21 @@ export default {
         border-radius: 70px;
         display: inline-block;
         overflow: hidden;
-        position: relative;
+        position: absolute;
+        top: -40px;
+        border: 1px solid rgb(255, 255, 255);
+        // position: relative;
         box-shadow: 0px 6px 7px 0px rgba(255, 84, 68, 0.26);
         .touxiang {
           width: 70px;
           height: 70px;
           position: absolute;
-          left: 0;
         }
       }
       .van-content {
         display: flex;
+        margin-top: 32px;
+        position: relative;
       }
 
       .care {
@@ -263,7 +322,7 @@ export default {
         font-weight: 500;
         color: #a5a5a5;
         line-height: 14px;
-        margin-top: 17px;
+        margin-top: 16px;
         .moudle {
           margin-left: 13px;
         }
@@ -315,7 +374,7 @@ export default {
         width: 58px;
         background: #ffdfdb;
         box-shadow: 0px 5px 10px 0px rgba(236, 236, 236, 0.49);
-        border-radius: 7px;
+        border-radius: 20px;
         text-align: center;
         line-height: 19px;
         margin-top: 10px;
@@ -326,18 +385,18 @@ export default {
     }
   }
 
+  .van-tabs .van-tab__pane {
+    padding-bottom: 50px;
+  }
+
   //  立即咨询
   .van-action-bar {
     height: 52px;
     .price {
-      width: 50px;
-      height: 13px;
-      font-size: 10px;
-      font-family: PingFang;
       font-weight: bold;
       color: #ff554b;
-      display: inline;
       margin-left: 22px;
+      font-size: 20px;
     }
     .zixun {
       width: 95px;
@@ -346,7 +405,6 @@ export default {
       font-family: PingFang;
       font-weight: bold;
       color: #aaaaaa;
-      display: inline;
     }
     .box {
       width: 100px;
@@ -367,50 +425,57 @@ export default {
     height: 450px;
     margin: auto;
     background: white;
+
     //评价
-    .imgname {
-      height: 70px;
-      position: relative;
-      background: white;
-
-      .coimg {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-
-        border-radius: 80px;
-        margin-left: 22px;
+    .van-tab__pane {
+      background-color: white;
+      .imgname {
+        height: 74px;
         position: relative;
-        .comag {
-          width: 36px;
-          height: 36px;
-          margin: auto;
+        border-bottom: 1px solid rgb(233, 233, 233);
+        // margin-top: 16px;
+        margin: 16px 20px 0 20px;
+
+        .coimg {
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+
+          border-radius: 80px;
+          margin-left: 22px;
+          position: relative;
+          .comag {
+            width: 36px;
+            height: 36px;
+            margin: auto;
+            position: absolute;
+          }
+        }
+        .man {
           position: absolute;
+          width: 59px;
+          height: 30px;
+          line-height: 30px;
+          font-size: 13px;
+          font-weight: bold;
+          color: #333333;
+          margin-left: 10px;
+          display: inline-block;
+          margin-top: 2px;
         }
       }
-      .man {
-        position: absolute;
-        width: 59px;
-        height: 30px;
-        line-height: 30px;
+
+      .comment {
+        width: 300px;
+        line-height: 18px;
         font-size: 13px;
-        font-weight: bold;
-        color: #333333;
-        margin-left: 10px;
-        display: inline-block;
-        margin-top: 2px;
+        font-weight: 500;
+        color: #aaaaaa;
+        margin-left: 22px;
+        margin-top: 8px;
       }
     }
 
-    .comment {
-      width: 300px;
-      line-height: 18px;
-      font-size: 13px;
-      font-weight: bold;
-      color: #aaaaaa;
-      margin-left: 22px;
-      margin-top: 8px;
-    }
     //介绍老师
     .titl {
       width: 70px;
@@ -423,12 +488,14 @@ export default {
       margin-top: 22px;
     }
     .content {
-      width: 298px;
-      font-size: 14px;
+      width: 300px;
       font-family: PingFang;
-      font-weight: bold;
+      font-weight: 500;
       color: #aaaaaa;
       margin-left: 22px;
+      height: 406px;
+      line-height: 16px;
+      font-size: 13px;
     }
     //动态
     .coimage {
@@ -440,7 +507,7 @@ export default {
       .imangs {
         width: 40px;
         height: 40px;
-        margin-top: 16px;
+        margin-top: 18px;
       }
     }
     .manname {
@@ -450,12 +517,13 @@ export default {
       font-family: PingFang;
       font-weight: bold;
       color: #333333;
+      margin-left: 10px;
     }
     .coent {
       width: 300px;
       line-height: 18px;
       font-size: 13px;
-      font-weight: bold;
+      font-weight: 500;
       color: #aaaaaa;
       margin-left: 22px;
       margin-top: 18px;
@@ -470,6 +538,9 @@ export default {
       margin-top: 24px;
       position: relative;
       .flex-around();
+      .icommg {
+        display: flex;
+      }
       .iconimg {
         width: 12px;
         height: 12px;
@@ -477,7 +548,10 @@ export default {
         margin-right: 6px;
       }
       .word {
-        position: absolute;
+        // position: absolute;
+        font-family: PingFang;
+        font-weight: 500;
+        color: #999999;
       }
     }
   }
