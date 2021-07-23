@@ -6,7 +6,7 @@
       <van-nav-bar
         title="加入点赚通"
         left-arrow
-        @click="this.$router.go(-1)"
+        @click="$router.go(-1)"
         :fixed="true"
       />
     </header>

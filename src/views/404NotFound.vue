@@ -3,37 +3,19 @@
     <!-- 404图片 -->
     <img src="../assets/images/404page.png" />
     <h2>404</h2>
-    <p>抱歉，页面不见了</p>
+    <p>抱歉，页面不见了{{ this }}</p>
     <!-- 返回上一级按钮 -->
     <van-button
       type="warning"
       size="large"
       color="linear-gradient(to right, #ff6034, #ee0a24)"
-      @click="goback"
+      @click="$router.go(-1)"
       >返回</van-button
     >
   </div>
 </template>
 
-<script>
-//引入整个路由
-import { useRouter } from "vue-router";
-
-export default {
-  setup() {
-    // 定义整个路由
-    const router = useRouter();
-    // 点击后退上个页面
-    const goback = () => {
-      router.go(-1);
-    };
-
-    return { goback };
-  },
-};
-</script>
-
-<style lang="less">
+<style lang="less" scoped>
 #NotFound {
   height: 100%;
   display: flex;
